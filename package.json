@@ -1,0 +1,28 @@
+{
+  "name": "monasteries",
+  "version": "1.0.0",
+  "description": "scrapping external sources for monasteries in Europe and building a database",
+  "main": "index.js",
+  "repository": "git@github.com:adammertel/monasteries.git",
+  "author": "adammertel <mertel.adam@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "bulma": "^0.7.2",
+    "cheerio": "^1.0.0-rc.2",
+    "chroma-js": "^2.0.2",
+    "csvtojson": "^2.0.8",
+    "d3": "^5.7.0",
+    "fs": "^0.0.1-security",
+    "leaflet": "^1.3.4",
+    "parcel-bundler": "^1.11.0",
+    "requests": "^0.2.2",
+    "sass": "^1.15.2",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.2.2",
+    "ya-csv": "^0.10.1"
+  }
+}
