@@ -13,6 +13,12 @@ var $;
 
 // bénédictines
 const benedictines = () => {
+  const infoLabels = {
+    "Début de la construction": "construction",
+    Fondation: "establishment",
+    "Fin des travaux": "closing",
+    Fermeture: "closing"
+  };
   const url =
     "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_b%C3%A9n%C3%A9dictines_de_France";
   const rootUrl = "https://fr.wikipedia.org";
@@ -20,17 +26,67 @@ const benedictines = () => {
     if (!err) {
       const $ = cheerio.load(html);
 
-      const getCoords = (data, next) => {
-        request(rootUrl + data.link, (err, resp, ahtml) => {
+      const numberOfRecords = $("table.wikitable tbody tr").length;
+      let proccessed = 0;
+
+      console.log("numberOf records", numberOfRecords);
+
+      const checkFinished = () => {
+        setTimeout(() => {
+          if (proccessed === numberOfRecords) {
+            save();
+          } else {
+            console.log(
+              "checking",
+              proccessed +
+                "/" +
+                numberOfRecords +
+                " [" +
+                toPrecision((proccessed / numberOfRecords) * 100, 3) +
+                "%]"
+            );
+            checkFinished();
+          }
+        }, 1000);
+      };
+      checkFinished();
+
+      const getInfo = (data, next) => {
+        request(data.link, (err, resp, ahtml) => {
           //console.log(resp);
           if (!err) {
             const $a = cheerio.load(ahtml);
+
+            // lat lng
             data.lon = $a("#coordinates")
               .find("a")
               .data("lon");
             data.lat = $a("#coordinates")
               .find("a")
               .data("lat");
+
+            // building dates
+            $a("table.infobox_v2")
+              .find("tr")
+              .map((ri, row) => {
+                const rowLabel = cleanText(
+                  $(row)
+                    .find("th")
+                    .text(),
+                  { trim: true, chars: ["\n"] }
+                );
+
+                if (infoLabels[rowLabel]) {
+                  const rowValue = cleanText(
+                    $(row)
+                      .find("td")
+                      .text(),
+                    { trim: true, chars: ["\n"] }
+                  );
+                  data[infoLabels[rowLabel]] = rowValue;
+                }
+              });
+
             next(data);
           } else {
             next(data);
@@ -38,7 +94,7 @@ const benedictines = () => {
         });
       };
       $("table.wikitable").map((ri, table) => {
-        if (ri === 9) {
+        if (ri > -1) {
           $(table)
             .find("tr")
             .map((ti, row) => {
@@ -60,9 +116,11 @@ const benedictines = () => {
                         .find("a")
                         .attr("class") !== "new"
                     ) {
-                      data.link = $(column)
-                        .find("a")
-                        .attr("href");
+                      data.link =
+                        rootUrl +
+                        $(column)
+                          .find("a")
+                          .attr("href");
                     }
                   }
 
@@ -74,8 +132,6 @@ const benedictines = () => {
                         .text(),
                       { trim: true, chars: ["\n"] }
                     );
-
-                    console.log(genderText);
 
                     let gender = "";
                     let genderNote = "";
@@ -154,14 +210,14 @@ const benedictines = () => {
                 });
 
               if (data.link) {
-                getCoords(data, data1 => {
+                getInfo(data, data1 => {
+                  proccessed += 1;
                   //console.log(data1);
                   addMonastery(data1);
-                  save();
                 });
               } else {
+                proccessed += 1;
                 addMonastery(data);
-                save();
               }
             });
         }
@@ -173,9 +229,9 @@ const benedictines = () => {
 const addMonastery = data => {
   if (data.name) {
     if (monasteries.find(m => m.name === data.name)) {
-      console.log("monastery already in db", data.name);
+      //console.log("monastery already in db", data.name);
     } else {
-      console.log("adding monastery", data);
+      //console.log("adding monastery", data);
       monasteries.push(data);
     }
   }
@@ -208,7 +264,7 @@ const clean = () => {
 
 const save = () => {
   fs.writeFile(storedPath, JSON.stringify(monasteries), () => {
-    console.log("saved");
+    //console.log("saved");
   });
   /*
     var monasteriesW = csv.createCsvFileWriter(monasteriesPath + ".csv", {
