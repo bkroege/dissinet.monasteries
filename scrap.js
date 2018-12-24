@@ -38,7 +38,7 @@ const benedictines = () => {
         });
       };
       $("table.wikitable").map((ri, table) => {
-        if (ri < 2) {
+        if (ri === 9) {
           $(table)
             .find("tr")
             .map((ti, row) => {
@@ -109,42 +109,47 @@ const benedictines = () => {
 
                   // orders
                   if (ci === 3) {
-                    let from = false;
-                    let to = false;
-                    let fromNote = "";
-                    let toNote = "";
-                    let note = "";
-
+                    const orders = [];
                     const dateText = cleanText($(column).text(), {
                       chars: ["\n"],
                       trim: true
                     });
-                    const parts = dateText.split("-");
-                    if (parts.length === 2) {
-                      from = parseInt(parts[0]) || false;
-                      fromNote =
-                        parts[0] == from
-                          ? ""
-                          : cleanText(parts[0], { trim: false });
 
-                      to = parseInt(parts[1]) || false;
-                      toNote =
-                        parts[1] == to
-                          ? ""
-                          : cleanText(parts[1], { trim: false });
-                    } else {
-                      note = dateText;
-                    }
-                    data.orders = [
-                      {
-                        order: "benedictines",
-                        from: from,
-                        to: to,
-                        fromNote: fromNote,
-                        toNote: toNote,
-                        note: note
+                    const occurences = dateText.split(", puis");
+
+                    occurences.map(occurence => {
+                      const parts = occurence.split("-");
+
+                      if (parts.length === 2) {
+                        const parsedFrom = parseInt(parts[0]) || false;
+                        const parsedTo = parseInt(parts[1]) || false;
+                        orders.push({
+                          order: "benedictines",
+                          from: parsedFrom,
+                          to: parsedTo,
+                          fromNote:
+                            parts[0] == parsedFrom
+                              ? ""
+                              : cleanText(parts[0], { trim: false }),
+                          toNote:
+                            parts[1] == parsedTo
+                              ? ""
+                              : cleanText(parts[1], { trim: false }),
+                          note: ""
+                        });
+                      } else {
+                        orders.push({
+                          order: "benedictines",
+                          from: false,
+                          to: false,
+                          fromNote: "",
+                          toNote: "",
+                          note: occurence
+                        });
                       }
-                    ];
+                    });
+
+                    data.orders = orders;
                   }
                 });
 
