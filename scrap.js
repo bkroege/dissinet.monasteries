@@ -42,15 +42,20 @@ const benedictines = () => {
           $(table)
             .find("tr")
             .map((ti, row) => {
+              // single monastery
+              const data = {
+                orders: [{ order: "benedictines", from: false, to: false }]
+              };
+
               $(row)
                 .find("td")
                 .map((ci, column) => {
                   // name
-                  const data = {
-                    orders: [{ order: "benedictines", from: false, to: false }]
-                  };
                   if (ci === 0) {
-                    data.name = cleanName($(column).text());
+                    data.name = cleanText($(column).text(), {
+                      trim: true,
+                      chars: ["\n", ":", "[", "("]
+                    });
 
                     if (
                       $(column)
@@ -62,18 +67,52 @@ const benedictines = () => {
                         .attr("href");
                     }
                   }
-                  if (data.link) {
-                    getCoords(data, data1 => {
-                      //console.log(data1);
-                      addMonastery(data1);
-                      save();
-                    });
-                  } else {
-                    addMonastery(data);
-                    save();
+
+                  // gender
+                  if (ci === 1) {
+                    const genderText = cleanText(
+                      $(column)
+                        .not("sup > *")
+                        .text(),
+                      { trim: true, chars: ["\n"] }
+                    );
+
+                    console.log(genderText);
+
+                    let gender = "";
+                    let genderNote = "";
+                    if (genderText) {
+                      if (
+                        genderText.includes("moines") &&
+                        genderText.includes("moniales")
+                      ) {
+                        genderNote = genderText;
+                        gender = "b";
+                      } else if (genderText === "moines") {
+                        gender = "m";
+                      } else if (genderText === "moniales") {
+                        gender = "n";
+                      } else {
+                        genderNote = genderText;
+                      }
+                    }
+
+                    data.gender = gender;
+                    data.genderNote = genderNote;
+                    console.log(gender);
                   }
-                  //console.log(data.name, data.link);
                 });
+
+              if (data.link) {
+                getCoords(data, data1 => {
+                  //console.log(data1);
+                  addMonastery(data1);
+                  save();
+                });
+              } else {
+                addMonastery(data);
+                save();
+              }
             });
         }
       });
@@ -92,9 +131,20 @@ const addMonastery = data => {
   }
 };
 
-const cleanName = name => {
-  return name
-    .split(":")[0]
+const cleanText = (text, rules) => {
+  let newText = text;
+  if (rules.chars && rules.chars.length) {
+    rules.chars.forEach(char => {
+      newText.split(char)[0];
+    });
+  }
+
+  if (rules["trim"]) {
+    newText.trim();
+  }
+
+  return newText
+
     .split("[")[0]
     .split("(")[0]
     .split("\n")[0]
