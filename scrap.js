@@ -43,9 +43,7 @@ const benedictines = () => {
             .find("tr")
             .map((ti, row) => {
               // single monastery
-              const data = {
-                orders: [{ order: "benedictines", from: false, to: false }]
-              };
+              const data = {};
 
               $(row)
                 .find("td")
@@ -99,7 +97,54 @@ const benedictines = () => {
 
                     data.gender = gender;
                     data.genderNote = genderNote;
-                    console.log(gender);
+                  }
+
+                  // diocese
+                  if (ci === 2) {
+                    data.diocese = cleanText($(column).text(), {
+                      chars: ["\n"],
+                      trim: true
+                    });
+                  }
+
+                  // orders
+                  if (ci === 3) {
+                    let from = false;
+                    let to = false;
+                    let fromNote = "";
+                    let toNote = "";
+                    let note = "";
+
+                    const dateText = cleanText($(column).text(), {
+                      chars: ["\n"],
+                      trim: true
+                    });
+                    const parts = dateText.split("-");
+                    if (parts.length === 2) {
+                      from = parseInt(parts[0]) || false;
+                      fromNote =
+                        parts[0] == from
+                          ? ""
+                          : cleanText(parts[0], { trim: false });
+
+                      to = parseInt(parts[1]) || false;
+                      toNote =
+                        parts[1] == to
+                          ? ""
+                          : cleanText(parts[1], { trim: false });
+                    } else {
+                      note = dateText;
+                    }
+                    data.orders = [
+                      {
+                        order: "benedictines",
+                        from: from,
+                        to: to,
+                        fromNote: fromNote,
+                        toNote: toNote,
+                        note: note
+                      }
+                    ];
                   }
                 });
 
