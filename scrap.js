@@ -42,7 +42,7 @@ const benedictines = () => {
                 "/" +
                 numberOfRecords +
                 " [" +
-                toPrecision((proccessed / numberOfRecords) * 100, 3) +
+                ((proccessed / numberOfRecords) * 100).toPrecision(3) +
                 "%]"
             );
             checkFinished();
@@ -58,12 +58,16 @@ const benedictines = () => {
             const $a = cheerio.load(ahtml);
 
             // lat lng
-            data.lon = $a("#coordinates")
-              .find("a")
-              .data("lon");
-            data.lat = $a("#coordinates")
-              .find("a")
-              .data("lat");
+            data.lon = parseFloat(
+              $a("#coordinates")
+                .find("a")
+                .data("lon")
+            ).toPrecision(5);
+            data.lat = parseFloat(
+              $a("#coordinates")
+                .find("a")
+                .data("lat")
+            ).toPrecision(5);
 
             // building dates
             $a("table.infobox_v2")
