@@ -42,7 +42,7 @@ const benedictines = () => {
                 "/" +
                 numberOfRecords +
                 " [" +
-                ((proccessed / numberOfRecords) * 100).toPrecision(3) +
+                ((proccessed / numberOfRecords) * 100).toFixed(3) +
                 "%]"
             );
             checkFinished();
@@ -58,16 +58,16 @@ const benedictines = () => {
             const $a = cheerio.load(ahtml);
 
             // lat lng
-            data.lon = parseFloat(
+            data.lon = parseCoordinates(
               $a("#coordinates")
                 .find("a")
                 .data("lon")
-            ).toPrecision(5);
-            data.lat = parseFloat(
+            );
+            data.lat = parseCoordinates(
               $a("#coordinates")
                 .find("a")
                 .data("lat")
-            ).toPrecision(5);
+            );
 
             // building dates
             $a("table.infobox_v2")
@@ -184,7 +184,7 @@ const benedictines = () => {
                         const parsedFrom = parseInt(parts[0]) || false;
                         const parsedTo = parseInt(parts[1]) || false;
                         orders.push({
-                          order: "benedictines",
+                          name: "benedictines",
                           from: parsedFrom,
                           to: parsedTo,
                           fromNote:
@@ -199,7 +199,7 @@ const benedictines = () => {
                         });
                       } else {
                         orders.push({
-                          order: "benedictines",
+                          name: "benedictines",
                           from: false,
                           to: false,
                           fromNote: "",
@@ -213,11 +213,11 @@ const benedictines = () => {
                   }
                 });
 
-              if (data.link) {
+              if (data.link && !monasteryInStored(data)) {
                 getInfo(data, data1 => {
                   proccessed += 1;
-                  //console.log(data1);
                   addMonastery(data1);
+                  //console.log(data1);
                 });
               } else {
                 proccessed += 1;
@@ -232,13 +232,37 @@ const benedictines = () => {
 
 const addMonastery = data => {
   if (data.name) {
-    if (monasteries.find(m => m.name === data.name)) {
-      //console.log("monastery already in db", data.name);
+    const stored = monasteryInStored(data.name);
+
+    if (stored) {
+      console.log("monastery already in db", data.name);
+      data.orders.forEach(order => {
+        alreadyAdded = stored.orders.find(o => {
+          return (
+            o.name === order.name && order.from === o.from && order.to === o.to
+          );
+        });
+        if (!alreadyAdded) {
+          stored.orders.push(order);
+        }
+      });
+      // add orders
     } else {
       //console.log("adding monastery", data);
       monasteries.push(data);
     }
   }
+};
+
+// if already stored, returns that monastery, otherwise returns false
+const monasteryInStored = checkMonastery => {
+  return monasteries.find(monastery => {
+    return checkMonastery.name === monastery.name;
+  });
+};
+
+parseCoordinates = coord => {
+  return parseFloat(coord).toFixed(4);
 };
 
 const cleanText = (text, rules) => {
@@ -254,7 +278,6 @@ const cleanText = (text, rules) => {
   }
 
   return newText
-
     .split("[")[0]
     .split("(")[0]
     .split("\n")[0]
@@ -280,6 +303,6 @@ const save = () => {
 
 clean();
 var storedMonasteries = fs.readFileSync(storedPath, "utf8");
-console.log(storedMonasteries);
+//console.log(storedMonasteries);
 const monasteries = JSON.parse(storedMonasteries);
 benedictines();
