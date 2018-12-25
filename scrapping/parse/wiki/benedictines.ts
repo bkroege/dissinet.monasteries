@@ -18,7 +18,8 @@ export function parseBenedictinesWiki(store, next) {
     if (!err) {
       const $ = cheerio.load(html);
 
-      const numberOfRecords = 57; //$("table.wikitable tbody tr").length;
+      //const numberOfRecords = 57;
+      const numberOfRecords = $("table.wikitable tbody tr").length;
       let proccessed = 0;
 
       const checkFinished = () => {
@@ -90,7 +91,7 @@ export function parseBenedictinesWiki(store, next) {
         });
       };
       $("table.wikitable").map((ri, table) => {
-        if (ri == 1) {
+        if (ri > -1) {
           $(table)
             .find("tr")
             .map((ti, row) => {

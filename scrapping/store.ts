@@ -9,6 +9,9 @@ var outputPath = "./scrapping/data/";
 export class Store {
   private monasteries = [];
   private filePath = outputPath + "monasteries.json";
+  private autoSave = true;
+  private saving = false;
+  private savingTimeout = 1000;
 
   constructor() {
     // loading previously stored records
@@ -47,6 +50,12 @@ export class Store {
         this.monasteries.push(monastery);
       }
     }
+    if (this.autoSave) {
+      if (!this.saving) {
+        this.saving = true;
+        this.save(this.savingTimeout);
+      }
+    }
   }
 
   // truncate stored data
@@ -56,9 +65,18 @@ export class Store {
   }
 
   // save monasteries object to the file
-  public save() {
-    fs.writeFile(this.filePath, JSON.stringify(this.monasteries), () => {
-      console.log("saved");
-    });
+  public save(timeout = 0) {
+    if (timeout) {
+      setTimeout(() => {
+        fs.writeFile(
+          this.filePath,
+          JSON.stringify(this.monasteries, null, 2),
+          () => {
+            console.log("store saved");
+            this.saving = false;
+          }
+        );
+      }, timeout);
+    }
   }
 }

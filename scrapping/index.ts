@@ -8,6 +8,7 @@ import { parseBenedictinesWiki } from "./parse/wiki/benedictines";
 import { Store } from "./store";
 
 var store = new Store();
+//store.clean();
 parseBenedictinesWiki(store, () => {
-  store.save();
+  console.log("done");
 });
