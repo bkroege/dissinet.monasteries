@@ -6,6 +6,9 @@
   "repository": "git@github.com:adammertel/monasteries.git",
   "author": "adammertel <mertel.adam@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "scrap": "ts-node scrapping/index.ts"
+  },
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
@@ -22,6 +25,7 @@
     "request": "^2.88.0",
     "requests": "^0.2.2",
     "sass": "^1.15.2",
+    "ts-node": "^7.0.1",
     "tslint-config-standard": "^8.0.1",
     "typescript": "^3.2.2",
     "ya-csv": "^0.10.1"
