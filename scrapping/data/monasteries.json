@@ -1,0 +1,2895 @@
+[
+  {
+    "name": "Abbaye N-D de Vive Fontaine d'Andecy",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Châlons-sur-Marne",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": 1790,
+        "fromNote": "XIIe siècle",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Sauveur et Saint-Maurice de Beaulieu",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Verdun",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Sainte-Trinité de Beaulieu",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Tours",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Pierre de Beaumont",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Clermont",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Beaumont-lès-Tours",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Tours",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Vincent de Besançon",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Besançon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Biblisheim",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Strasbourg",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1101,
+        "to": 1791,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Sainte-Berthe de Blangy",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Boulogne-sur-Mer",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Blasimont",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Bazas",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Sauveur de Blaye",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Bordeaux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Pierre de Blesle",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Clermont",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 849,
+        "to": 1789,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bonneval-les-Thouars",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Poitiers",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bon-Secours",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Paris",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bourbourg",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Saint-Omer",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Laurent de Bourges",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Bourges",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Sulpice de Bourges",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bouxières-aux-Dames",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Nancy",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Bragheac",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Clermont",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye du Breuil-Herbault  : voir abbaye de Breuil Herbaud Falleron",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Luçon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1130,
+        "to": 1790,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bricœil",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Troyes",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Brienne-lès-Anse",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Lyon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Sauveur du Bugue",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Périgueux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Croix de Buis",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Saint-Flour",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbatiale Saint-Pierre de Beaulieu-sur-Dordogne",
+    "link": "https://fr.wikipedia.org/wiki/Abbatiale_Saint-Pierre_de_Beaulieu-sur-Dordogne",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Limoges",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 855,
+        "to": false,
+        "fromNote": "",
+        "toNote": "v1790",
+        "note": ""
+      }
+    ],
+    "lon": "1.8392",
+    "lat": "44.9792",
+    "construction": "XIIe siècle",
+    "closing": "XIIIe siècle"
+  },
+  {
+    "name": "Abbaye de Bellefontaine de Bégrolles-en-Mauges",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_Bellefontaine",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Maillezais, puis de La Rochelle, puis d'Angers",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "v1100",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "-0.9385",
+    "lat": "47.1519"
+  },
+  {
+    "name": "Abbaye N-D de l'Annonciation du Barroux",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_l%27Annonciation_du_Barroux",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse d'Avignon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "5.1187",
+    "lat": "44.1563",
+    "establishment": "1992"
+  },
+  {
+    "name": "Abbaye Notre-Dame de Belloc : voir Urt",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Belloc",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "-1.2917",
+    "lat": "43.5024",
+    "construction": "1875"
+  },
+  {
+    "name": "Abbaye Notre-Dame de Venière de Boyer",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_Veni%C3%A8re",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1971,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "4.5415",
+    "lat": "46.3554"
+  },
+  {
+    "name": "Abbaye Sainte-Madeleine du Barroux",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Sainte-Madeleine_du_Barroux",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse d'Avignon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1989,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "5.0983",
+    "lat": "44.1520",
+    "establishment": "1970"
+  },
+  {
+    "name": "Abbaye Sainte-Odile de Baume-les-Dames",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Sainte-Odile",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Besançon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": 1791,
+        "fromNote": "IVe siècle",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "6.3623",
+    "lat": "47.3522",
+    "establishment": "IVe siècle",
+    "closing": "1791"
+  },
+  {
+    "name": "Abbaye Saint-Pierre de Baume-les-Messieurs",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Pierre_de_Baume-les-Messieurs",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Besançon, puis Saint-Claude",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": 1791,
+        "fromNote": "Avant le IXe siècle",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "5.6483",
+    "lat": "46.7072",
+    "establishment": "869",
+    "closing": "1792"
+  },
+  {
+    "name": "Abbaye Saint-Étienne de Baignes",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-%C3%89tienne_de_Baignes",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Saintes",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "-0.2347",
+    "lat": "45.3803",
+    "construction": "XIe siècle"
+  },
+  {
+    "name": "Abbaye Sainte-Croix de Bouzonville",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Sainte-Croix_de_Bouzonville",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Metz",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "6.5328",
+    "lat": "49.2932",
+    "construction": "XIe siècle",
+    "closing": "XVIIe siècle"
+  },
+  {
+    "name": "Abbaye Saint-Étienne de Bassac",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-%C3%89tienne_de_Bassac",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Saintes",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1002,
+        "to": 1790,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "-0.1053",
+    "lat": "45.6619",
+    "construction": "XIe siècle",
+    "closing": "XIIIe siècle"
+  },
+  {
+    "name": "Abbaye Notre-Dame de Gaussan",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Gaussan",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1994,
+        "to": 2008,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "2.8425",
+    "lat": "43.1350"
+  },
+  {
+    "name": "Abbaye Saint-Laumer de Blois",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Laumer_de_Blois",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Chartres puis Blois",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "1.3319",
+    "lat": "47.5837"
+  },
+  {
+    "name": "Abbaye Saint-Florentin-et-Saint-Hilaire",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Florentin_de_Bonneval",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Chartres",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "1.3847",
+    "lat": "48.1779",
+    "establishment": "857"
+  },
+  {
+    "name": "Abbaye royale Saint-Michel de Bois-Aubry : voir Luzé",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_royale_Saint-Michel_de_Bois-Aubry",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "0.4878",
+    "lat": "47.0098",
+    "construction": "XIIe siècle"
+  },
+  {
+    "name": "Abbaye des Blancs-Manteaux : voir Paris",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_des_Blancs-Manteaux",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "2.3575",
+    "lat": "48.8588",
+    "construction": "1685",
+    "closing": "1690"
+  },
+  {
+    "name": "Abbaye Saint-Lucien de Beauvais",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Lucien_de_Beauvais",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Beauvais",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 585,
+        "to": 1791,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "2.0790",
+    "lat": "49.4418",
+    "establishment": "585",
+    "closing": "1791"
+  },
+  {
+    "name": "Abbaye Sainte Marie de Berteaucourt",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Sainte_Marie_de_Berteaucourt",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse d'Amiens",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "2.1585",
+    "lat": "50.0485",
+    "establishment": "1094",
+    "closing": "1790"
+  },
+  {
+    "name": "Abbaye de Bonnesaigne",
+    "link": "https://fr.wikipedia.org/wiki/Liste_des_abbesses_Notre-Dame_de_Bonnesaigne",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Limoges",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "NaN",
+    "lat": "NaN"
+  },
+  {
+    "name": "Abbaye Notre-Dame de Boscodon : voir Crots",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Boscodon",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "6.4500",
+    "lat": "44.5033",
+    "construction": "1142"
+  },
+  {
+    "name": "Abbaye Sainte-Croix de Bordeaux",
+    "link": "https://fr.wikipedia.org/wiki/Abbatiale_Sainte-Croix_de_Bordeaux",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Bordeaux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "-0.5611",
+    "lat": "44.8311",
+    "construction": "XIe siècle"
+  },
+  {
+    "name": "Abbaye de Bonmoutier",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_Bonmoutier",
+    "gender": "",
+    "genderNote": "moniales puis abbaye cistercienne d'hommes",
+    "diocese": "diocèse de Nancy-Toul",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "6.9719",
+    "lat": "48.5568",
+    "construction": "VIIe siècle",
+    "closing": "XIe siècle?"
+  },
+  {
+    "name": "Abbaye de Bergues-Saint-Winoc",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_Saint-Winoc",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse d'Ypres",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "2.4350",
+    "lat": "50.9692"
+  },
+  {
+    "name": "Abbaye Notre-Dame de Breteuil",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Breteuil",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Beauvais",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "2.2964",
+    "lat": "49.6308",
+    "establishment": "inconnue",
+    "closing": "1791"
+  },
+  {
+    "name": "Abbaye Saint-Pierre de Bèze",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Pierre_de_B%C3%A8ze",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Langres",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "5.2723",
+    "lat": "47.4672",
+    "establishment": "630",
+    "closing": "1789"
+  },
+  {
+    "name": "Abbaye Notre-Dame de Bernay",
+    "link": "https://fr.wikipedia.org/wiki/%C3%89glise_abbatiale_de_Notre-Dame_de_Bernay",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Lisieux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "0.5981",
+    "lat": "49.0897",
+    "construction": "1010"
+  },
+  {
+    "name": "Abbaye Saint-Sicaire de Brantôme",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Pierre_de_Brant%C3%B4me",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Périgueux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "0.6470",
+    "lat": "45.3643"
+  },
+  {
+    "name": "Abbaye Notre-Dame de Blanche-Couronne  : voir La Chapelle-Launay",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Blanche-Couronne",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "-1.9856",
+    "lat": "47.3506",
+    "construction": "XIIe siècle"
+  },
+  {
+    "name": "Abbaye Saint-Georges de Boscherville : voir Saint-Martin de Boscherville",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Georges-de-Boscherville",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "0.9645",
+    "lat": "49.4442",
+    "establishment": "XIIe siècle"
+  },
+  {
+    "name": "Abbaye de Bourgueil",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_Bourgueil",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse d'Angers",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 991,
+        "to": 1791,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "0.1717",
+    "lat": "47.2795",
+    "construction": "990",
+    "closing": "1791"
+  },
+  {
+    "name": "Abbaye du Bourg-Dieu : voir Déols",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_D%C3%A9ols",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "1.7011",
+    "lat": "46.8258",
+    "construction": "Xe siècle",
+    "closing": "XIIIe siècle"
+  },
+  {
+    "name": "Abbaye Notre-Dame de Bellaigue",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Bellaigue",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "2.7038",
+    "lat": "46.1598",
+    "establishment": "950"
+  },
+  {
+    "name": "Abbaye Notre-Dame du Bec",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_du_Bec",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse d'Évreux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ],
+    "lon": "0.7217",
+    "lat": "49.2325",
+    "construction": "1034, puis 1039, enfin 1060 à l’emplacement actuel",
+    "closing": "XVIIIe siècle par les Mauristes"
+  },
+  {
+    "name": "Abbaye Saint-Étienne de Baignes",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-%C3%89tienne_de_Baignes",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Saintes",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye N-D de l'Annonciation du Barroux",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_l%27Annonciation_du_Barroux",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse d'Avignon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Sainte-Madeleine du Barroux",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Sainte-Madeleine_du_Barroux",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse d'Avignon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1989,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Étienne de Bassac",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-%C3%89tienne_de_Bassac",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Saintes",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1002,
+        "to": 1790,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye N-D de Vive Fontaine d'Andecy",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Châlons-sur-Marne",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": 1790,
+        "fromNote": "XIIe siècle",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Sauveur et Saint-Maurice de Beaulieu",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Verdun",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Sainte-Trinité de Beaulieu",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Tours",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbatiale Saint-Pierre de Beaulieu-sur-Dordogne",
+    "link": "https://fr.wikipedia.org/wiki/Abbatiale_Saint-Pierre_de_Beaulieu-sur-Dordogne",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Limoges",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 855,
+        "to": false,
+        "fromNote": "",
+        "toNote": "v1790",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Sainte-Odile de Baume-les-Dames",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Sainte-Odile",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Besançon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": 1791,
+        "fromNote": "IVe siècle",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Pierre de Baume-les-Messieurs",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Pierre_de_Baume-les-Messieurs",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Besançon, puis Saint-Claude",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": 1791,
+        "fromNote": "Avant le IXe siècle",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Pierre de Beaumont",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Clermont",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Beaumont-lès-Tours",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Tours",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Lucien de Beauvais",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Lucien_de_Beauvais",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Beauvais",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 585,
+        "to": 1791,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame du Bec",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_du_Bec",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse d'Évreux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bellefontaine de Bégrolles-en-Mauges",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_Bellefontaine",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Maillezais, puis de La Rochelle, puis d'Angers",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "v1100",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Bellaigue",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Bellaigue",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Belloc : voir Urt",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Belloc",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bergues-Saint-Winoc",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_Saint-Winoc",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse d'Ypres",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Bernay",
+    "link": "https://fr.wikipedia.org/wiki/%C3%89glise_abbatiale_de_Notre-Dame_de_Bernay",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Lisieux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Sainte Marie de Berteaucourt",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Sainte_Marie_de_Berteaucourt",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse d'Amiens",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Vincent de Besançon",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Besançon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Pierre de Bèze",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Pierre_de_B%C3%A8ze",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Langres",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Biblisheim",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Strasbourg",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1101,
+        "to": 1791,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Gaussan",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Gaussan",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1994,
+        "to": 2008,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Blanche-Couronne  : voir La Chapelle-Launay",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Blanche-Couronne",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye des Blancs-Manteaux : voir Paris",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_des_Blancs-Manteaux",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Sainte-Berthe de Blangy",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Boulogne-sur-Mer",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Blasimont",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Bazas",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Sauveur de Blaye",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Bordeaux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Pierre de Blesle",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Clermont",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 849,
+        "to": 1789,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Laumer de Blois",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Laumer_de_Blois",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Chartres puis Blois",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye royale Saint-Michel de Bois-Aubry : voir Luzé",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_royale_Saint-Michel_de_Bois-Aubry",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bonmoutier",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_Bonmoutier",
+    "gender": "",
+    "genderNote": "moniales puis abbaye cistercienne d'hommes",
+    "diocese": "diocèse de Nancy-Toul",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bonnesaigne",
+    "link": "https://fr.wikipedia.org/wiki/Liste_des_abbesses_Notre-Dame_de_Bonnesaigne",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Limoges",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Florentin-et-Saint-Hilaire",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Florentin_de_Bonneval",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Chartres",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bonneval-les-Thouars",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Poitiers",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bon-Secours",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Paris",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Georges de Boscherville : voir Saint-Martin de Boscherville",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Georges-de-Boscherville",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Sainte-Croix de Bordeaux",
+    "link": "https://fr.wikipedia.org/wiki/Abbatiale_Sainte-Croix_de_Bordeaux",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Bordeaux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Boscodon : voir Crots",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Boscodon",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bourbourg",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Saint-Omer",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye du Bourg-Dieu : voir Déols",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_D%C3%A9ols",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Laurent de Bourges",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Bourges",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Sulpice de Bourges",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bourgueil",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_Bourgueil",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse d'Angers",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 991,
+        "to": 1791,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bouxières-aux-Dames",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Nancy",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Sainte-Croix de Bouzonville",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Sainte-Croix_de_Bouzonville",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Metz",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Venière de Boyer",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_Veni%C3%A8re",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1971,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Bragheac",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Clermont",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Sicaire de Brantôme",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Pierre_de_Brant%C3%B4me",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Périgueux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Breteuil",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Breteuil",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Beauvais",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye du Breuil-Herbault  : voir abbaye de Breuil Herbaud Falleron",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Luçon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1130,
+        "to": 1790,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bricœil",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Troyes",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Brienne-lès-Anse",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Lyon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Sauveur du Bugue",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Périgueux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Croix de Buis",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Saint-Flour",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Étienne de Baignes",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-%C3%89tienne_de_Baignes",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Saintes",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye N-D de l'Annonciation du Barroux",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_l%27Annonciation_du_Barroux",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse d'Avignon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Sainte-Madeleine du Barroux",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Sainte-Madeleine_du_Barroux",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse d'Avignon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1989,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Étienne de Bassac",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-%C3%89tienne_de_Bassac",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Saintes",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1002,
+        "to": 1790,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye N-D de Vive Fontaine d'Andecy",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Châlons-sur-Marne",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": 1790,
+        "fromNote": "XIIe siècle",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Sauveur et Saint-Maurice de Beaulieu",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Verdun",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Sainte-Trinité de Beaulieu",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Tours",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbatiale Saint-Pierre de Beaulieu-sur-Dordogne",
+    "link": "https://fr.wikipedia.org/wiki/Abbatiale_Saint-Pierre_de_Beaulieu-sur-Dordogne",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Limoges",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 855,
+        "to": false,
+        "fromNote": "",
+        "toNote": "v1790",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Sainte-Odile de Baume-les-Dames",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Sainte-Odile",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Besançon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": 1791,
+        "fromNote": "IVe siècle",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Pierre de Baume-les-Messieurs",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Pierre_de_Baume-les-Messieurs",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Besançon, puis Saint-Claude",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": 1791,
+        "fromNote": "Avant le IXe siècle",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Pierre de Beaumont",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Clermont",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Beaumont-lès-Tours",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Tours",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Lucien de Beauvais",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Lucien_de_Beauvais",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Beauvais",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 585,
+        "to": 1791,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame du Bec",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_du_Bec",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse d'Évreux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bellefontaine de Bégrolles-en-Mauges",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_Bellefontaine",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Maillezais, puis de La Rochelle, puis d'Angers",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "v1100",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Bellaigue",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Bellaigue",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Belloc : voir Urt",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Belloc",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bergues-Saint-Winoc",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_Saint-Winoc",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse d'Ypres",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Bernay",
+    "link": "https://fr.wikipedia.org/wiki/%C3%89glise_abbatiale_de_Notre-Dame_de_Bernay",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Lisieux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Sainte Marie de Berteaucourt",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Sainte_Marie_de_Berteaucourt",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse d'Amiens",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Vincent de Besançon",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Besançon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Pierre de Bèze",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Pierre_de_B%C3%A8ze",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Langres",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Biblisheim",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Strasbourg",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1101,
+        "to": 1791,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Gaussan",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Gaussan",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1994,
+        "to": 2008,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Blanche-Couronne  : voir La Chapelle-Launay",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Blanche-Couronne",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye des Blancs-Manteaux : voir Paris",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_des_Blancs-Manteaux",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Sainte-Berthe de Blangy",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Boulogne-sur-Mer",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Blasimont",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Bazas",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Sauveur de Blaye",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Bordeaux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Pierre de Blesle",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Clermont",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 849,
+        "to": 1789,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Laumer de Blois",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Laumer_de_Blois",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Chartres puis Blois",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye royale Saint-Michel de Bois-Aubry : voir Luzé",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_royale_Saint-Michel_de_Bois-Aubry",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bonmoutier",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_Bonmoutier",
+    "gender": "",
+    "genderNote": "moniales puis abbaye cistercienne d'hommes",
+    "diocese": "diocèse de Nancy-Toul",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bonnesaigne",
+    "link": "https://fr.wikipedia.org/wiki/Liste_des_abbesses_Notre-Dame_de_Bonnesaigne",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Limoges",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Florentin-et-Saint-Hilaire",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Florentin_de_Bonneval",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Chartres",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bonneval-les-Thouars",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Poitiers",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bon-Secours",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Paris",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Georges de Boscherville : voir Saint-Martin de Boscherville",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Georges-de-Boscherville",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Sainte-Croix de Bordeaux",
+    "link": "https://fr.wikipedia.org/wiki/Abbatiale_Sainte-Croix_de_Bordeaux",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Bordeaux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Boscodon : voir Crots",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Boscodon",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bourbourg",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Saint-Omer",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye du Bourg-Dieu : voir Déols",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_D%C3%A9ols",
+    "gender": "",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Laurent de Bourges",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Bourges",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Sulpice de Bourges",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bourgueil",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_Bourgueil",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse d'Angers",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 991,
+        "to": 1791,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bouxières-aux-Dames",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Nancy",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Sainte-Croix de Bouzonville",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Sainte-Croix_de_Bouzonville",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Metz",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Venière de Boyer",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_de_Veni%C3%A8re",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1971,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Bragheac",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Clermont",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Sicaire de Brantôme",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Saint-Pierre_de_Brant%C3%B4me",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Périgueux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Notre-Dame de Breteuil",
+    "link": "https://fr.wikipedia.org/wiki/Abbaye_Notre-Dame_de_Breteuil",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Beauvais",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye du Breuil-Herbault  : voir abbaye de Breuil Herbaud Falleron",
+    "gender": "m",
+    "genderNote": "",
+    "diocese": "diocèse de Luçon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": 1130,
+        "to": 1790,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Bricœil",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Troyes",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye de Brienne-lès-Anse",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Lyon",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Sauveur du Bugue",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Périgueux",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "name": "Abbaye Saint-Croix de Buis",
+    "gender": "n",
+    "genderNote": "",
+    "diocese": "diocèse de Saint-Flour",
+    "orders": [
+      {
+        "name": "benedictines",
+        "from": false,
+        "to": false,
+        "fromNote": "",
+        "toNote": "",
+        "note": ""
+      }
+    ]
+  }
+]

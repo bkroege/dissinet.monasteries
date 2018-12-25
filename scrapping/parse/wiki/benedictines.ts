@@ -1,43 +1,35 @@
 var request = require("request");
 var cheerio = require("cheerio");
-var csv = require("ya-csv");
-var csvtojson = require("csvtojson");
 var fs = require("fs");
 
-var outputPath = "data/";
-var storedPath = outputPath + "monasteries.json";
-var monasteriesPath = outputPath + "monasteries";
-var ordersPath = outputPath + "orders";
+import urls from "./../../util/urls";
+import cleanText from "./../../util/cleantext";
+import cleanCoordinates from "./../../util/cleancoordinates";
 
-var $;
-
-// bénédictines
-const benedictines = () => {
+export function parseBenedictinesWiki(store, next) {
   const infoLabels = {
     "Début de la construction": "construction",
     Fondation: "establishment",
     "Fin des travaux": "closing",
     Fermeture: "closing"
   };
-  const url =
-    "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_b%C3%A9n%C3%A9dictines_de_France";
-  const rootUrl = "https://fr.wikipedia.org";
-  request(url, function(err, resp, html) {
+
+  request(urls.benedictines, function(err, resp, html) {
     if (!err) {
       const $ = cheerio.load(html);
 
-      const numberOfRecords = $("table.wikitable tbody tr").length;
+      const numberOfRecords = 57; //$("table.wikitable tbody tr").length;
       let proccessed = 0;
-
-      console.log("numberOf records", numberOfRecords);
 
       const checkFinished = () => {
         setTimeout(() => {
-          if (proccessed === numberOfRecords) {
-            save();
+          if (
+            proccessed === numberOfRecords //numberOfRecords
+          ) {
+            next();
           } else {
             console.log(
-              "checking",
+              "benedictines ",
               proccessed +
                 "/" +
                 numberOfRecords +
@@ -58,12 +50,12 @@ const benedictines = () => {
             const $a = cheerio.load(ahtml);
 
             // lat lng
-            data.lon = parseCoordinates(
+            data.lon = cleanCoordinates(
               $a("#coordinates")
                 .find("a")
                 .data("lon")
             );
-            data.lat = parseCoordinates(
+            data.lat = cleanCoordinates(
               $a("#coordinates")
                 .find("a")
                 .data("lat")
@@ -98,12 +90,12 @@ const benedictines = () => {
         });
       };
       $("table.wikitable").map((ri, table) => {
-        if (ri > -1) {
+        if (ri == 1) {
           $(table)
             .find("tr")
             .map((ti, row) => {
               // single monastery
-              const data = {};
+              const data: any = {};
 
               $(row)
                 .find("td")
@@ -121,7 +113,7 @@ const benedictines = () => {
                         .attr("class") !== "new"
                     ) {
                       data.link =
-                        rootUrl +
+                        urls.wikiRoot +
                         $(column)
                           .find("a")
                           .attr("href");
@@ -213,96 +205,19 @@ const benedictines = () => {
                   }
                 });
 
-              if (data.link && !monasteryInStored(data)) {
+              if (data.link && !store.alreadyStored(data)) {
                 getInfo(data, data1 => {
                   proccessed += 1;
-                  addMonastery(data1);
+                  store.add(data1);
                   //console.log(data1);
                 });
               } else {
                 proccessed += 1;
-                addMonastery(data);
+                store.add(data);
               }
             });
         }
       });
     }
   });
-};
-
-const addMonastery = data => {
-  if (data.name) {
-    const stored = monasteryInStored(data.name);
-
-    if (stored) {
-      console.log("monastery already in db", data.name);
-      data.orders.forEach(order => {
-        alreadyAdded = stored.orders.find(o => {
-          return (
-            o.name === order.name && order.from === o.from && order.to === o.to
-          );
-        });
-        if (!alreadyAdded) {
-          stored.orders.push(order);
-        }
-      });
-      // add orders
-    } else {
-      //console.log("adding monastery", data);
-      monasteries.push(data);
-    }
-  }
-};
-
-// if already stored, returns that monastery, otherwise returns false
-const monasteryInStored = checkMonastery => {
-  return monasteries.find(monastery => {
-    return checkMonastery.name === monastery.name;
-  });
-};
-
-parseCoordinates = coord => {
-  return parseFloat(coord).toFixed(4);
-};
-
-const cleanText = (text, rules) => {
-  let newText = text;
-  if (rules.chars && rules.chars.length) {
-    rules.chars.forEach(char => {
-      newText.split(char)[0];
-    });
-  }
-
-  if (rules["trim"]) {
-    newText.trim();
-  }
-
-  return newText
-    .split("[")[0]
-    .split("(")[0]
-    .split("\n")[0]
-    .trim();
-};
-
-const clean = () => {
-  fs.writeFileSync(storedPath, "[]");
-  console.log("cleaned");
-};
-
-const save = () => {
-  fs.writeFile(storedPath, JSON.stringify(monasteries), () => {
-    //console.log("saved");
-  });
-  /*
-    var monasteriesW = csv.createCsvFileWriter(monasteriesPath + ".csv", {
-        flags: ""
-    });
-    var ordersW = csv.createCsvFileWriter(ordersPath + ".csv", { flags: "" });
-  */
-};
-
-clean();
-var storedMonasteries = fs.readFileSync(storedPath, "utf8");
-//console.log(storedMonasteries);
-const monasteries = JSON.parse(storedMonasteries);
-benedictines();
+}
