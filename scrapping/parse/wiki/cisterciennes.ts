@@ -130,6 +130,8 @@ export function parseCisterciennesWiki(store, next) {
                 $(column)
                   .find("a")
                   .attr("href");
+            } else {
+              data.link = false;
             }
           } else if (ci === 2) {
             // lat lng
@@ -193,6 +195,15 @@ export function parseCisterciennesWiki(store, next) {
               toNote: toClean ? "" : partTo,
               note: ""
             });
+          });
+        } else {
+          orders.push({
+            name: "cisterciennes",
+            from: false,
+            to: false,
+            fromNote: "",
+            toNote: "",
+            note: ""
           });
         }
 
