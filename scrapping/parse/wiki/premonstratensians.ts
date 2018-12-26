@@ -115,6 +115,10 @@ export function parsePremonstratensiansWiki(store, next) {
             data.link = urls.wikiRoot + potentialLink.attr("href");
           }
 
+          // gender
+          data.gender = "";
+          data.genderText = "";
+
           // time ( *-* )
           const brackets = recordText.split(["("]);
           const potentialTimeValues = brackets
