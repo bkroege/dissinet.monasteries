@@ -10,7 +10,7 @@ import { parseCisterciennesWiki } from "./parse/wiki/cisterciennes";
 import { Store } from "./store";
 
 var store = new Store();
-store.clean();
+//store.clean();
 
 parseCisterciennesWiki(store, () => {
   console.log("done cistercienes");
