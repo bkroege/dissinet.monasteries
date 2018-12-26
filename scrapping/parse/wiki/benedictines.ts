@@ -138,7 +138,7 @@ export function parseBenedictinesWiki(store, next) {
                         genderText.includes("moniales")
                       ) {
                         genderNote = genderText;
-                        gender = "b";
+                        gender = "d";
                       } else if (genderText === "moines") {
                         gender = "m";
                       } else if (genderText === "moniales") {

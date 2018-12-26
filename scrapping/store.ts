@@ -11,7 +11,7 @@ export class Store {
   private filePath = outputPath + "monasteries.json";
   private autoSave = true;
   private saving = false;
-  private savingTimeout = 1000;
+  private savingTimeout = 5000;
 
   constructor() {
     // loading previously stored records
@@ -28,10 +28,10 @@ export class Store {
 
   public add(monastery) {
     if (monastery.name) {
-      const stored = this.alreadyStored(monastery.name);
+      const stored = this.alreadyStored(monastery);
 
       if (stored) {
-        console.log("monastery already in db", monastery.name);
+        console.log("!! monastery already in db", monastery.name);
         monastery.orders.forEach(order => {
           const alreadyAdded = stored.orders.find(o => {
             return (
@@ -60,6 +60,7 @@ export class Store {
 
   // truncate stored data
   public clean() {
+    this.monasteries = [];
     fs.writeFileSync(this.filePath, "[]");
     console.log("cleaned");
   }
@@ -78,5 +79,9 @@ export class Store {
         );
       }, timeout);
     }
+  }
+
+  public data() {
+    return this.monasteries;
   }
 }
