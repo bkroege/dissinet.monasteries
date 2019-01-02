@@ -1,20 +1,19 @@
-import { parseBenedictinesWiki } from "./parse/wiki/benedictines";
-import { parseCisterciennesWiki } from "./parse/wiki/cisterciennes";
-import { parsePremonstratensiansWiki } from "./parse/wiki/premonstratensians";
-import { type } from "os";
+import { parseBenedictinesWiki } from "./parse/wiki-fr/benedictines";
+import { parseCisterciennesWiki } from "./parse/wiki-fr/cisterciennes";
+import { parsePremonstratensiansWiki } from "./parse/wiki-fr/premonstratensians";
 
 /*
  list of sources to parse
 */
 
-const sources: Array<{
+var sources: Array<{
   parse: boolean;
-  parseFn: Function;
+  parser: Function;
   meta: { id: string; type: string; url: string; order?; rootUrl? };
 }> = [
   {
     parse: true,
-    parseFn: parseBenedictinesWiki,
+    parser: parseBenedictinesWiki,
     meta: {
       id: "wiki-fr-benedictines",
       type: "wiki",
@@ -34,7 +33,7 @@ const sources: Array<{
         "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_b%C3%A9n%C3%A9dictines_de_France"
     },
     parse: true,
-    parseFn: parsePremonstratensiansWiki
+    parser: parsePremonstratensiansWiki
   },
   {
     meta: {
@@ -46,6 +45,8 @@ const sources: Array<{
         "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_b%C3%A9n%C3%A9dictines_de_France"
     },
     parse: true,
-    parseFn: parseCisterciennesWiki
+    parser: parseCisterciennesWiki
   }
 ];
+
+export default sources;
