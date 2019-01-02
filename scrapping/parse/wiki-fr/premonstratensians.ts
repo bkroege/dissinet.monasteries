@@ -4,7 +4,7 @@ var fs = require("fs");
 import { WikiFrParser } from "./parser";
 import Base from "./../base";
 
-export class premonstransiansWikiFrParer extends WikiFrParser {
+export class premonstransiansWikiFrParser extends WikiFrParser {
   initialiseRecords(next) {
     request(this.meta.url, (err, resp, html) => {
       if (!err) {

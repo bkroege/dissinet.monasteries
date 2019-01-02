@@ -4,7 +4,7 @@ var fs = require("fs");
 import { WikiFrParser } from "./parser";
 import Base from "./../base";
 
-export class benedictinesWikiFrParer extends WikiFrParser {
+export class benedictinesWikiFrParser extends WikiFrParser {
   initialiseRecords(next) {
     request(this.meta.url, (err, resp, html) => {
       if (!err) {
