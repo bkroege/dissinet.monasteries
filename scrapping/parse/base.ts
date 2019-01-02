@@ -1,7 +1,13 @@
 var Base: any = {
-  generateUuid: (): number => {
+  generateUuid: (): string => {
     const now = new Date();
-    return now.valueOf();
+    return (
+      now.valueOf() +
+      "-" +
+      Math.random()
+        .toString(36)
+        .substring(7)
+    );
   },
   cleanCoordinates: coord => {
     return parseFloat(parseFloat(coord).toFixed(4));
