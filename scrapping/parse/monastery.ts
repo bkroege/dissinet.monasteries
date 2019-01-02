@@ -1,16 +1,23 @@
 import Base from "./base";
+import { timingSafeEqual } from "crypto";
 
 export class Monastery {
   data: any = {};
   store: false;
+  meta: any = {};
 
-  public parsed = false;
-  public saved = false;
+  parsed = false;
+  saved = false;
+  html = "";
 
-  constructor() {
+  constructor(html, meta) {
+    this.meta = meta;
+    this.html = html;
     this.data = {
       id: Base.generateUuid(),
+      source: meta.id,
       name: "",
+      link: false,
       coordinates: {
         lat: false,
         lng: false
@@ -23,9 +30,21 @@ export class Monastery {
     };
   }
 
+  setParam(paramName, value): void {
+    this.data[paramName] = value;
+  }
+
+  setLink(link): void {
+    this.data.link = link;
+  }
+
+  setSource(source): void {
+    this.data.source = source;
+  }
+
   setGender(note, value): void {
     this.data.gender = {
-      note: note,
+      note: Base.cleanText(note, { trim: true, chars: ["\n", ":", "[", "("] }),
       value: value
     };
   }
@@ -38,21 +57,24 @@ export class Monastery {
   }
 
   setName(value): void {
-    this.data.name = value;
+    this.data.name = Base.cleanText(value, {
+      trim: true,
+      chars: ["\n", ":", "[", "("]
+    });
   }
 
   addOrder(newOrder): void {
     this.data.orders.push(newOrder);
   }
 
-  addEmptyOrder(orderName): void {
+  addEmptyOrder(note = ""): void {
     const emptyOrder = {
-      name: orderName,
+      name: this.meta.order,
       from: false,
       to: false,
       fromNote: "",
       toNote: "",
-      note: ""
+      note: note
     };
     this.addOrder(emptyOrder);
   }

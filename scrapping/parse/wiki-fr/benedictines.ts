@@ -37,9 +37,15 @@ export class benedictinesWikiFrParer extends WikiFrParser {
 
       // gender
       if (ci === 1) {
-        const genderText = $(column)
-          .not("sup > *")
-          .text();
+        const genderText = Base.clearnText(
+          $(column)
+            .not("sup > *")
+            .text(),
+          {
+            chars: ["\n"],
+            trim: true
+          }
+        );
 
         let gender = "";
         let genderNote = "";

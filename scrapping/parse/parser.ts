@@ -1,14 +1,18 @@
 var request = require("request");
 var cheerio = require("cheerio");
 
+import { Monastery } from "./monastery";
+
 export class Parser {
-  private trackingTimeout = 1000;
+  trackingTimeout = 1000;
 
-  private meta: any = {};
-  private store = false;
-  private monasteries = [];
+  meta: any = {};
+  store = false;
+  monasteries = [];
 
-  public next: Function = () => {};
+  resolve;
+
+  next: Function = () => {};
 
   constructor(store, meta, next: Function) {
     this.meta = meta;
@@ -16,20 +20,33 @@ export class Parser {
     this.next = next;
   }
 
-  parse() {
-    this.monasteries = this.initialiseRecords();
-    this.monasteries.map(monastery => {
-      this.parseMonastery(monastery);
+  parse(resolve) {
+    this.resolve = resolve;
+
+    this.initialiseRecords(() => {
+      this.startTracking();
+      this.monasteries.map(monastery => {
+        this.parseMonastery(monastery, () => {
+          //console.log(this.meta.id, "monastery parsed");
+        });
+      });
     });
   }
 
   // will be extended
-  parseMonastery(monastery) {
-    return false;
+  parseMonastery(monastery, next) {
+    // parsing monastery html to monastery data
+    monastery.finishParsing();
+    monastery.save(this.store);
+    next();
   }
 
-  initialiseRecords() {
-    return [];
+  addMonastery(monasteryHtml) {
+    this.monasteries.push(new Monastery(monasteryHtml, this.meta));
+  }
+
+  initialiseRecords(next) {
+    next([]);
   }
 
   checkFinished(): boolean {
@@ -43,7 +60,7 @@ export class Parser {
   track(): void {
     setTimeout(() => {
       if (this.checkFinished()) {
-        this.next();
+        this.resolve();
       } else {
         this.report();
         this.track();
@@ -57,7 +74,7 @@ export class Parser {
     const percents = ((parsed / all) * 100).toFixed(3);
 
     const reportText =
-      this.meta.id + ": " + parsed + " / " + all + " [" + percents + "]";
+      this.meta.id + ": " + parsed + " / " + all + " [" + percents + "%]";
 
     console.log(reportText);
   }
