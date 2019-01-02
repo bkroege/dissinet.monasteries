@@ -27,29 +27,8 @@ export class Store {
   }
 
   public add(monastery) {
-    if (monastery.name) {
-      const stored = this.alreadyStored(monastery);
+    this.monasteries.push(monastery);
 
-      if (stored) {
-        console.log("!! monastery already in db", monastery.name);
-        monastery.orders.forEach(order => {
-          const alreadyAdded = stored.orders.find(o => {
-            return (
-              o.name === order.name &&
-              order.from === o.from &&
-              order.to === o.to
-            );
-          });
-          if (!alreadyAdded) {
-            stored.orders.push(order);
-          }
-        });
-        // add orders
-      } else {
-        //console.log("adding monastery", data);
-        this.monasteries.push(monastery);
-      }
-    }
     if (this.autoSave) {
       if (!this.saving) {
         this.saving = true;

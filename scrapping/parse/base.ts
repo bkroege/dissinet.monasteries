@@ -29,6 +29,14 @@ var Base: any = {
       .split("(")[0]
       .split("\n")[0]
       .trim();
+  },
+
+  splitColumn: (html, $) => {
+    const htmlArray = html.split("<br>");
+    return htmlArray.map(line => {
+      const wrapped = "<span>" + line + "</span>";
+      return $(wrapped).text();
+    });
   }
 };
 

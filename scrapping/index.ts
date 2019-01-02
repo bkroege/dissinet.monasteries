@@ -4,23 +4,14 @@ var csv = require("ya-csv");
 var csvtojson = require("csvtojson");
 var fs = require("fs");
 
-import { parseBenedictinesWiki } from "./parse/wiki/benedictines";
-import { parsePremonstratensiansWiki } from "./parse/wiki/premonstratensians";
-import { parseCisterciennesWiki } from "./parse/wiki/cisterciennes";
+var async = require("async");
+
+import sources from "./sources";
+
 import { Store } from "./store";
 
 var store = new Store();
-//store.clean();
-
-parseCisterciennesWiki(store, () => {
-  console.log("done cistercienes");
-  parseBenedictinesWiki(store, () => {
-    console.log("done benedictines");
-    parsePremonstratensiansWiki(store, () => {
-      console.log("done premonstratensians");
-    });
-  });
-});
+store.clean();
 
 /*
 console.log(
@@ -32,3 +23,13 @@ console.log(
     .map(monastery => monastery.orders.map(o => o.name))
 );
 */
+
+const parse = (source, next) => {
+  const parser = new source.parser(store, source.meta, () => {
+    console.log(source.meta.id, "finished");
+  });
+  parser.parse(next);
+};
+const parsed = async.map(sources.filter(s => s.parse), parse, (e, r) => {
+  store.save();
+});
