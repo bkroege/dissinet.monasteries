@@ -64,7 +64,29 @@ export class Monastery {
   }
 
   addOrder(newOrder): void {
+    if (!newOrder.order && this.meta.order) {
+      newOrder.order = this.meta.order;
+    }
     this.data.orders.push(newOrder);
+  }
+
+  parseAndAddOrder(newOrder): void {
+    const parsedFrom = parseInt(newOrder.from) || false;
+    const parsedTo = parseInt(newOrder.to) || false;
+
+    this.addOrder({
+      from: parsedFrom,
+      to: parsedTo,
+      fromNote:
+        newOrder.from == parsedFrom
+          ? ""
+          : Base.cleanText(newOrder.from, { trim: false }),
+      toNote:
+        newOrder.to == parsedTo
+          ? ""
+          : Base.cleanText(newOrder.to, { trim: false }),
+      note: newOrder.note
+    });
   }
 
   addEmptyOrder(note = ""): void {

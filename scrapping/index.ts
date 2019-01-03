@@ -11,7 +11,7 @@ import sources from "./sources";
 import { Store } from "./store";
 
 var store = new Store();
-store.clean();
+console.log(store.monasteries.length);
 
 /*
 console.log(
@@ -23,13 +23,16 @@ console.log(
     .map(monastery => monastery.orders.map(o => o.name))
 );
 */
-
+/*
 const parse = (source, next) => {
   const parser = new source.parser(store, source.meta, () => {
     console.log(source.meta.id, "finished");
   });
   parser.parse(next);
 };
+
 const parsed = async.map(sources.filter(s => s.parse), parse, (e, r) => {
   store.save();
 });
+
+*/

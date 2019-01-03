@@ -25,7 +25,7 @@ var sources: Array<{
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: benedictinesWikiFrParser,
     meta: {
       id: "wiki-fr-benedictines",
@@ -37,7 +37,7 @@ var sources: Array<{
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: premonstransiansWikiFrParser,
     meta: {
       id: "wiki-fr-premonstratensians",
@@ -49,7 +49,7 @@ var sources: Array<{
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: cisteciennesWikiFrParser,
     meta: {
       id: "wiki-fr-cisterciennes",

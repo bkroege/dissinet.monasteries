@@ -7,7 +7,7 @@ var fs = require("fs");
 var outputPath = "./scrapping/data/";
 
 export class Store {
-  private monasteries = [];
+  monasteries = [];
   private filePath = outputPath + "monasteries.json";
   private autoSave = true;
   private saving = false;
