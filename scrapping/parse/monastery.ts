@@ -16,6 +16,7 @@ export class Monastery {
     this.data = {
       id: Base.generateUuid(),
       source: meta.id,
+      type: "",
       name: "",
       link: false,
       coordinates: {
@@ -36,6 +37,9 @@ export class Monastery {
 
   setLink(link): void {
     this.data.link = link;
+  }
+  setType(newType): void {
+    this.data.type = newType;
   }
 
   setSource(source): void {

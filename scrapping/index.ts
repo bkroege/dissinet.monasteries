@@ -23,7 +23,8 @@ console.log(
     .map(monastery => monastery.orders.map(o => o.name))
 );
 */
-/*
+
+store.clean();
 const parse = (source, next) => {
   const parser = new source.parser(store, source.meta, () => {
     console.log(source.meta.id, "finished");
@@ -34,5 +35,3 @@ const parse = (source, next) => {
 const parsed = async.map(sources.filter(s => s.parse), parse, (e, r) => {
   store.save();
 });
-
-*/
