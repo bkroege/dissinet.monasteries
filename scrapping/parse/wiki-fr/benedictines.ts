@@ -60,7 +60,7 @@ export class benedictinesWikiFrParser extends WikiFrParser {
           } else if (genderText === "moines") {
             gender = "m";
           } else if (genderText === "moniales") {
-            gender = "n";
+            gender = "f";
           } else {
             genderNote = genderText;
           }

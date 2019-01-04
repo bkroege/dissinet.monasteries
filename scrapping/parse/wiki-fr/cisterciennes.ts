@@ -25,7 +25,7 @@ export class cisteciennesWikiFrParser extends WikiFrParser {
     const color = $($.html()).css("background");
     if (color) {
       if (color.substr(1, 2) === "FF") {
-        gender = "n";
+        gender = "f";
       } else if (color.substr(5, 2) === "FF") {
         gender = "m";
       }

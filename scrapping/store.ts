@@ -17,6 +17,7 @@ var extentPolygon = turf.polygon([
 var outputPath = "./scrapping/data/";
 
 export class Store {
+  monasteries = [];
   monasteriesRaw = [];
   monasteriesValidated = [];
   private filePathRaw = outputPath + "monasteries_raw.json";
@@ -35,6 +36,9 @@ export class Store {
     var monasteriesValidated =
       fs.readFileSync(this.filePathValidated, "utf8") || "[]";
     this.monasteriesValidated = JSON.parse(monasteriesValidated);
+
+    var monasteriesFixed = fs.readFileSync(this.filePath, "utf8") || "[]";
+    this.monasteries = JSON.parse(monasteriesFixed);
   }
 
   // if already stored, returns that monastery, otherwise returns false
@@ -128,7 +132,7 @@ export class Store {
 
     const bundles = [];
     monasteriesToProccess.forEach(monastery => {
-      if (!monastery.proccessed) {
+      if (!monastery.processed) {
         const monasteriesBundle = [monastery];
         // find all other not-proccessed monasteries
         const others = monasteriesToProccess.filter(other => {
@@ -180,14 +184,14 @@ export class Store {
           .map(m => m.gender.note)
           .filter(n => n);
 
-        if (genders.includes("m") && genders.includes("n")) {
+        if (genders.includes("m") && genders.includes("f")) {
           fixedMonastery.gender.value = "?";
         } else if (genders.includes("d")) {
           fixedMonastery.gender.value = "d";
         } else if (genders.includes("m")) {
           fixedMonastery.gender.value = "m";
-        } else if (genders.includes("n")) {
-          fixedMonastery.gender.value = "n";
+        } else if (genders.includes("f")) {
+          fixedMonastery.gender.value = "f";
         } else {
           fixedMonastery.gender.value = false;
         }
