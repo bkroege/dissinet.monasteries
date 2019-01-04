@@ -13,9 +13,9 @@ var extentPolygon = turf.polygon([
 var outputPath = "./scrapping/data/";
 
 export class Store {
-  monasteries = [];
+  monasteriesRaw = [];
   monasteriesValidated = [];
-  private filePath = outputPath + "monasteries.json";
+  private filePathRaw = outputPath + "monasteries_raw.json";
   private filePathValidated = outputPath + "monasteries_validated.json";
   private autoSave = true;
   private saving = false;
@@ -23,21 +23,22 @@ export class Store {
 
   constructor() {
     // loading previously stored records
-    var storedMonasteries = fs.readFileSync(this.filePath, "utf8");
+    var monasteriesRaw = fs.readFileSync(this.filePathRaw, "utf8");
+    this.monasteriesRaw = JSON.parse(monasteriesRaw);
+
     var monasteriesValidated = fs.readFileSync(this.filePathValidated, "utf8");
-    this.monasteries = JSON.parse(storedMonasteries);
     this.monasteriesValidated = JSON.parse(monasteriesValidated);
   }
 
   // if already stored, returns that monastery, otherwise returns false
   alreadyStored(checkMonastery) {
-    return this.monasteries.find(monastery => {
+    return this.monasteriesRaw.find(monastery => {
       return checkMonastery.name === monastery.name;
     });
   }
 
   add(monastery) {
-    this.monasteries.push(monastery);
+    this.monasteriesRaw.push(monastery);
 
     if (this.autoSave) {
       if (!this.saving) {
@@ -49,8 +50,8 @@ export class Store {
 
   // truncate stored data
   truncate() {
-    this.monasteries = [];
-    fs.writeFileSync(this.filePath, "[]");
+    this.monasteriesRaw = [];
+    fs.writeFileSync(this.filePathRaw, "[]");
 
     this.monasteriesValidated = [];
     fs.writeFileSync(this.monasteriesValidated, "[]");
@@ -62,8 +63,8 @@ export class Store {
     if (timeout) {
       setTimeout(() => {
         fs.writeFile(
-          this.filePath,
-          JSON.stringify(this.monasteries, null, 2),
+          this.filePathRaw,
+          JSON.stringify(this.monasteriesRaw, null, 2),
           () => {
             console.log("store saved");
             this.saving = false;
@@ -73,12 +74,8 @@ export class Store {
     }
   }
 
-  data() {
-    return this.monasteries;
-  }
-
   validate() {
-    this.monasteriesValidated = this.monasteries.filter(monastery => {
+    this.monasteriesValidated = this.monasteriesRaw.filter(monastery => {
       const checkFns = Object.keys(this.checks).map(checkKey => {
         return this.checks[checkKey];
       });
@@ -94,6 +91,10 @@ export class Store {
         console.log("validated store saved");
       }
     );
+  }
+
+  findDuplicates() {
+    this.monasteriesRaw = [];
   }
 
   checks = {
