@@ -24,7 +24,8 @@ console.log(
 );
 */
 
-store.clean();
+//store.truncate();
+
 const parse = (source, next) => {
   const parser = new source.parser(store, source.meta, () => {
     console.log(source.meta.id, "finished");
@@ -32,6 +33,6 @@ const parse = (source, next) => {
   parser.parse(next);
 };
 
-const parsed = async.map(sources.filter(s => s.parse), parse, (e, r) => {
-  store.save();
+async.eachLimit(sources.filter(s => s.parse), 1, parse, (e, r) => {
+  store.saveToFile();
 });

@@ -7,8 +7,9 @@
   "author": "adammertel <mertel.adam@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "scrap": "ts-node scrapping/index.ts",
-    "store-stats": "ts-node scrapping/store-stats.ts"
+    "scrap": "ts-node scrapping/scrap.ts",
+    "validate": "ts-node scrapping/validate.ts",
+    "stats": "ts-node scrapping/store-stats.ts"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
@@ -28,6 +29,8 @@
     "sass": "^1.15.2",
     "ts-node": "^7.0.1",
     "tslint-config-standard": "^8.0.1",
+    "turf": "^3.0.14",
+    "turf-inside": "^3.0.12",
     "typescript": "^3.2.2",
     "ya-csv": "^0.10.1"
   },
