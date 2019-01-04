@@ -1,4 +1,4 @@
-import Base from "./base";
+import Base from "../base";
 import { timingSafeEqual } from "crypto";
 
 export class Monastery {

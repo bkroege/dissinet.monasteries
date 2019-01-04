@@ -1,6 +1,6 @@
 var request = require("request");
 var cheerio = require("cheerio");
-import Base from "./../base";
+import Base from "../../base";
 
 import { Parser } from "./../parser";
 

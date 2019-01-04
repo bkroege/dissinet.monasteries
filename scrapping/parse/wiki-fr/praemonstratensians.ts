@@ -2,7 +2,7 @@ var request = require("request");
 var cheerio = require("cheerio");
 var fs = require("fs");
 import { WikiFrParser } from "./parser";
-import Base from "../base";
+import Base from "../../base";
 
 export class praemonstratensiansWikiFrParser extends WikiFrParser {
   initialiseRecords(next) {
@@ -25,7 +25,6 @@ export class praemonstratensiansWikiFrParser extends WikiFrParser {
     // name
     monastery.setName(recordText.split(",")[0].split("(")[0]);
 
-    console.log(recordText);
     // link
     const potentialLink = $($("a")[0]);
     //console.log(potentialLink.attr("href"));

@@ -9,6 +9,9 @@ var Base: any = {
         .substring(7)
     );
   },
+  isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  },
   cleanCoordinates: coord => {
     return parseFloat(parseFloat(coord).toFixed(4));
   },
