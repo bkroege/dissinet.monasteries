@@ -11,22 +11,24 @@ import sources from "./sources";
 import { Store } from "./store";
 
 var store = new Store();
-console.log("no of monasteries:", store.monasteries.length);
+console.log("no monasteries:", store.monasteriesValidated.length);
 
 const orders = {};
-store.monasteries.forEach(monastery => {
+store.monasteriesValidated.forEach(monastery => {
   monastery.orders.forEach(order => {
     if (order.name in orders) {
       orders[order.name] += 1;
     } else {
-      orders[order.name] = 0;
+      orders[order.name] = 1;
     }
   });
 });
 
-Object.keys(orders).forEach(orderName => {
-  console.log("order", orderName, " occurrences: ", orders[orderName]);
-});
+Object.keys(orders)
+  .sort((a, b) => (orders[a] < orders[b] ? 1 : -1))
+  .forEach(orderName => {
+    console.log("no", orderName, ": ", orders[orderName]);
+  });
 
 /*
 console.log(

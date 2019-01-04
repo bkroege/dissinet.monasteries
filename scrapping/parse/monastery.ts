@@ -70,6 +70,11 @@ export class Monastery {
   addOrder(newOrder): void {
     if (!newOrder.name && this.meta.order) {
       newOrder.name = this.meta.order;
+    } else {
+      newOrder.name = Base.cleanText(newOrder.name, {
+        truncate: true,
+        chars: ["["]
+      });
     }
     this.data.orders.push(newOrder);
   }

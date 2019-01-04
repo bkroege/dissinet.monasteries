@@ -5,6 +5,8 @@ var csvtojson = require("csvtojson");
 var fs = require("fs");
 import Base from "./base";
 
+import orders from "./util/orders";
+
 var turf = require("turf");
 var extentPolygon = turf.polygon([
   [[-6, 41], [11, 41], [11, 52], [-6, 52], [-6, 41]]
@@ -75,6 +77,7 @@ export class Store {
   }
 
   validate() {
+    // check valid
     this.monasteriesValidated = this.monasteriesRaw.filter(monastery => {
       const checkFns = Object.keys(this.checks).map(checkKey => {
         return this.checks[checkKey];
@@ -84,9 +87,23 @@ export class Store {
       });
     });
 
+    // correct
+    const monasteriesCorrected = this.monasteriesValidated.map(monastery => {
+      const fixFns = Object.keys(this.fixes).map(fixKey => {
+        return this.fixes[fixKey];
+      });
+
+      let corrected = Object.assign(monastery, {});
+      fixFns.forEach(fn => {
+        corrected = fn(corrected);
+      });
+
+      return corrected;
+    });
+
     fs.writeFile(
       this.filePathValidated,
-      JSON.stringify(this.monasteriesValidated, null, 2),
+      JSON.stringify(monasteriesCorrected, null, 2),
       () => {
         console.log("validated store saved");
       }
@@ -96,6 +113,29 @@ export class Store {
   findDuplicates() {
     this.monasteriesRaw = [];
   }
+
+  fixes = {
+    orderNames: monastery => {
+      monastery.orders.map(mOrder => {
+        const mOrderName = mOrder.name;
+        const officialNames = orders.map(o => o.name);
+        //console.log(officialNames);
+        if (!officialNames.includes(mOrderName)) {
+          //console.log("incorrect name", mOrderName);
+          let correctName = mOrderName;
+          orders.forEach(order => {
+            if (order.alternativeNames.includes(mOrderName)) {
+              console.log("name changed", mOrderName, "->", order.name);
+              correctName = order.name;
+            }
+          });
+          mOrder.name = correctName;
+        }
+        return mOrder;
+      });
+      return monastery;
+    }
+  };
 
   checks = {
     validCoordinates: monastery => {

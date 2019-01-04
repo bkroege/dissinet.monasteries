@@ -11,6 +11,5 @@ import sources from "./sources";
 import { Store } from "./store";
 
 var store = new Store();
-console.log(store.monasteries.length);
 
 store.validate();
