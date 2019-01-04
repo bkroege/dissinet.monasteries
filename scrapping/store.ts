@@ -3,15 +3,20 @@ var cheerio = require("cheerio");
 var csv = require("ya-csv");
 var csvtojson = require("csvtojson");
 var fs = require("fs");
+import Base from "./base";
 
 var turf = require("turf");
-var extent = turf.polygon([[[-6, 41], [11, 41], [11, 52], [-6, 52], [-6, 41]]]);
+var extentPolygon = turf.polygon([
+  [[-6, 41], [11, 41], [11, 52], [-6, 52], [-6, 41]]
+]);
 
 var outputPath = "./scrapping/data/";
 
 export class Store {
   monasteries = [];
+  monasteriesValidated = [];
   private filePath = outputPath + "monasteries.json";
+  private filePathValidated = outputPath + "monasteries_validated.json";
   private autoSave = true;
   private saving = false;
   private savingTimeout = 5000;
@@ -19,7 +24,9 @@ export class Store {
   constructor() {
     // loading previously stored records
     var storedMonasteries = fs.readFileSync(this.filePath, "utf8");
+    var monasteriesValidated = fs.readFileSync(this.filePathValidated, "utf8");
     this.monasteries = JSON.parse(storedMonasteries);
+    this.monasteriesValidated = JSON.parse(monasteriesValidated);
   }
 
   // if already stored, returns that monastery, otherwise returns false
@@ -44,6 +51,9 @@ export class Store {
   truncate() {
     this.monasteries = [];
     fs.writeFileSync(this.filePath, "[]");
+
+    this.monasteriesValidated = [];
+    fs.writeFileSync(this.monasteriesValidated, "[]");
     console.log("cleaned");
   }
 
@@ -68,28 +78,42 @@ export class Store {
   }
 
   validate() {
-    this.monasteries.forEach(monastery => {
+    this.monasteriesValidated = this.monasteries.filter(monastery => {
       const checkFns = Object.keys(this.checks).map(checkKey => {
         return this.checks[checkKey];
       });
-      const passed = checkFns.every(fn => {
+      return checkFns.every(fn => {
         return fn(monastery);
       });
-      console.log(monastery.source, passed);
     });
+
+    fs.writeFile(
+      this.filePathValidated,
+      JSON.stringify(this.monasteriesValidated, null, 2),
+      () => {
+        console.log("validated store saved");
+      }
+    );
   }
 
   checks = {
+    validCoordinates: monastery => {
+      const coords = monastery.coordinates;
+      return (
+        coords &&
+        coords.lng &&
+        coords.lat &&
+        Base.isNumeric(coords.lng) &&
+        Base.isNumeric(coords.lat)
+      );
+    },
     extent: monastery => {
       const point = turf.point([
         monastery.coordinates.lng,
         monastery.coordinates.lat
       ]);
-      console.log(point);
-      console.log(extent);
-      console.log("");
 
-      return turf.inside(point, extent);
+      return turf.inside(point, extentPolygon);
     }
   };
 }
