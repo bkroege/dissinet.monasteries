@@ -2,9 +2,9 @@ var request = require("request");
 var cheerio = require("cheerio");
 var fs = require("fs");
 import { WikiFrParser } from "./parser";
-import Base from "./../base";
+import Base from "../base";
 
-export class premonstransiansWikiFrParser extends WikiFrParser {
+export class praemonstratensiansWikiFrParser extends WikiFrParser {
   initialiseRecords(next) {
     request(this.meta.url, (err, resp, html) => {
       if (!err) {
@@ -18,14 +18,18 @@ export class premonstransiansWikiFrParser extends WikiFrParser {
   }
 
   parseMonastery(monastery, next) {
+    monastery.setType("abbey");
     const $ = cheerio.load(monastery.html);
-    const recordText = $("").text();
+    const recordText = $("li").text();
 
     // name
     monastery.setName(recordText.split(",")[0].split("(")[0]);
 
+    console.log(recordText);
     // link
     const potentialLink = $($("a")[0]);
+    //console.log(potentialLink.attr("href"));
+
     if (potentialLink.text() === monastery.data.name) {
       monastery.setLink(this.meta.rootUrl + potentialLink.attr("href"));
     }

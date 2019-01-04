@@ -24,6 +24,8 @@ export class collegialesVaflParser extends Parser {
       lat: monastery.html.coordinates[1]
     });
 
+    monastery.setType("collegiate churches");
+
     // data not filled
     if (monastery.data.color !== "#FFFF00" && monastery.html.id) {
       request(this.meta.rootUrl + monastery.html.id, (err, resp, html) => {

@@ -68,8 +68,8 @@ export class Monastery {
   }
 
   addOrder(newOrder): void {
-    if (!newOrder.order && this.meta.order) {
-      newOrder.order = this.meta.order;
+    if (!newOrder.name && this.meta.order) {
+      newOrder.name = this.meta.order;
     }
     this.data.orders.push(newOrder);
   }

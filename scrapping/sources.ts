@@ -1,6 +1,6 @@
 import { benedictinesWikiFrParser } from "./parse/wiki-fr/benedictines";
 import { cisteciennesWikiFrParser } from "./parse/wiki-fr/cisterciennes";
-import { premonstransiansWikiFrParser } from "./parse/wiki-fr/premonstratensians";
+import { praemonstratensiansWikiFrParser } from "./parse/wiki-fr/praemonstratensians";
 
 import { collegialesVaflParser } from "./parse/other/vafl-collegiales";
 
@@ -62,7 +62,7 @@ var sources: Array<{
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: collegialesVaflParser,
     meta: {
       id: "vafl-benedictines",
@@ -74,7 +74,7 @@ var sources: Array<{
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: benedictinesWikiFrParser,
     meta: {
       id: "wiki-fr-benedictines",
@@ -86,19 +86,19 @@ var sources: Array<{
     }
   },
   {
-    parse: false,
-    parser: premonstransiansWikiFrParser,
+    parse: true,
+    parser: praemonstratensiansWikiFrParser,
     meta: {
-      id: "wiki-fr-premonstratensians",
+      id: "wiki-fr-praemonstratensians",
       type: "wiki",
-      order: "premonstratensians",
+      order: "praemonstratensians",
       rootUrl: "https://fr.wikipedia.org",
       url:
-        "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_b%C3%A9n%C3%A9dictines_de_France"
+        "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_pr%C3%A9montr%C3%A9es_de_France"
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: cisteciennesWikiFrParser,
     meta: {
       id: "wiki-fr-cisterciennes",
@@ -106,7 +106,7 @@ var sources: Array<{
       order: "cisterciennes",
       rootUrl: "https://fr.wikipedia.org",
       url:
-        "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_b%C3%A9n%C3%A9dictines_de_France"
+        "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_cisterciennes_de_France"
     }
   }
 ];

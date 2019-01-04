@@ -1,5 +1,6 @@
 var request = require("request");
 var cheerio = require("cheerio");
+var async = require("async");
 
 import { Monastery } from "./monastery";
 
@@ -25,11 +26,12 @@ export class Parser {
 
     this.initialiseRecords(() => {
       this.startTracking();
-      this.monasteries.map(monastery => {
-        this.parseMonastery(monastery, () => {
-          //console.log(this.meta.id, "monastery parsed");
-        });
-      });
+      async.eachLimit(
+        this.monasteries,
+        50,
+        this.parseMonastery.bind(this),
+        () => {}
+      );
     });
   }
 
@@ -60,6 +62,7 @@ export class Parser {
   track(): void {
     setTimeout(() => {
       if (this.checkFinished()) {
+        console.log(this.meta.id, "finished");
         this.resolve();
       } else {
         this.report();

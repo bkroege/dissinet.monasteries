@@ -21,6 +21,7 @@ export class benedictinesWikiFrParser extends WikiFrParser {
   }
 
   parseMonastery(monastery, next) {
+    monastery.setType("abbey");
     const $ = cheerio.load(monastery.html);
     $("td").map((ci, column) => {
       if (ci === 0) {

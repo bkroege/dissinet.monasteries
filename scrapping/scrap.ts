@@ -11,7 +11,6 @@ import sources from "./sources";
 import { Store } from "./store";
 
 var store = new Store();
-console.log(store.monasteries.length);
 
 /*
 console.log(
@@ -24,7 +23,7 @@ console.log(
 );
 */
 
-//store.truncate();
+store.truncate();
 
 const parse = (source, next) => {
   const parser = new source.parser(store, source.meta, () => {

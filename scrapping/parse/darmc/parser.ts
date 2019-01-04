@@ -16,7 +16,6 @@ export class DarmcParser extends Parser {
   }
 
   parseMonastery(monastery, next) {
-    console.log(monastery);
     monastery.setName(monastery.html.Name);
     monastery.setType(monastery.html.Type);
     monastery.setParam("establishment", monastery.html.Founded);

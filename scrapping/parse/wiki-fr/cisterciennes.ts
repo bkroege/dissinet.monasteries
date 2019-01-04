@@ -17,6 +17,7 @@ export class cisteciennesWikiFrParser extends WikiFrParser {
     });
   }
   parseMonastery(monastery, next) {
+    monastery.setType("abbey");
     const $ = cheerio.load(monastery.html);
 
     // gender
