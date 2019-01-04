@@ -13,3 +13,4 @@ import { Store } from "./store";
 var store = new Store();
 
 store.validate();
+store.findDuplicates();
