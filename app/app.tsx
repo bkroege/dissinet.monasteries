@@ -30,12 +30,21 @@ const pie = d3.pie().value(function(d) {
 
 @observer
 export default class AppContainer extends React.Component<any, any> {
+  refs;
   props;
+  mapEl;
+
   constructor(props: any) {
     super(props);
   }
 
   componentDidMount() {
+    this.mapEl = this.refs["map"].leafletElement;
+    this.props.store.mapMoved(
+      this.props.center,
+      this.props.zoom,
+      this.mapEl.getBounds()
+    );
     this.update();
   }
 
@@ -124,19 +133,25 @@ export default class AppContainer extends React.Component<any, any> {
 
   update() {}
 
+  handleMapMove(e) {
+    if (this.mapEl) {
+      this.props.store.mapMoved(e.center, e.zoom, this.mapEl.getBounds());
+    }
+  }
+
   public render() {
-    const store = this.props.store
+    const store = this.props.store;
     return (
       <div id="map">
-        <Map 
-        style={{ height: "100%" }}
-        onViewportChanged={this..bind(this)}
-        ref="map"
-        className="component-map"
-        attributionControl={false}
-        zoom={this.props.zoom}
-        center={this.props.center}
-        maxZoom={20}
+        <Map
+          style={{ height: "100%" }}
+          onViewportChanged={this.handleMapMove.bind(this)}
+          ref="map"
+          className="component-map"
+          attributionControl={false}
+          zoom={store.zoom}
+          center={store.center}
+          maxZoom={20}
         >
           <ScaleControl position="topleft" imperial={false} />
           <AttributionControl position="bottomleft" />
