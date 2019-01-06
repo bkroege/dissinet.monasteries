@@ -1,4 +1,4 @@
-var orders = [
+var orders: any = [
   {
     name: "franciscan"
   },

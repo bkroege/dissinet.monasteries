@@ -7,8 +7,8 @@ export default class AppStore {
   mapZoom;
   mapExtent;
 
-  constructor(data) {
+  constructor(data, orders) {
     this.data = data;
-    this.orders = observable({}, { deep: true });
+    this.orders = observable.array(orders, { deep: true });
   }
 }

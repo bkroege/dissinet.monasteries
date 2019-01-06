@@ -1,19 +1,46 @@
 console.log("hello monasteries");
 
 import "./main.scss";
-import orders from './orders'
+import orders from "./orders";
 
+import AppStore from "./store";
+
+import React from "react";
+import ReactDOM from "react-dom";
+import AppContainer from "./app";
+
+const data = require("./monasteries.json");
+
+console.log(data);
 
 var version = "0.0.1";
-var colors = ['#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd']
+var colors = [
+  "#8dd3c7",
+  "#ffffb3",
+  "#bebada",
+  "#fb8072",
+  "#80b1d3",
+  "#fdb462",
+  "#b3de69",
+  "#fccde5",
+  "#bc80bd",
+  "#d9d9d9"
+];
 
+const ordersColored = orders.map((order, oi) => {
+  order.color = colors[oi];
+  order.active = true;
+});
 
+const store = new AppStore(data, ordersColored);
 
+if (document.body) {
+  document.body.innerHTML = "";
 
-if (document.body && document.getElementById("map")) {
-    document.getElementById("map").outerHTML = "";
-
-  }
+  ReactDOM.render(
+    React.createElement(AppContainer, {
+      store: store
+    }),
+    document.body.appendChild(document.createElement("div"))
+  );
 }
-
-
