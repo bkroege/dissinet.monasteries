@@ -1,6 +1,10 @@
 console.log("hello monasteries");
 
 import "./main.scss";
+import "./../node_modules/leaflet/dist/leaflet.css";
+import "./../node_modules/leaflet.markercluster/dist/MarkerCluster.css";
+import "./../node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css";
+
 import orders from "./orders";
 
 import AppStore from "./store";
