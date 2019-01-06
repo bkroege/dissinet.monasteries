@@ -65,7 +65,10 @@ export class Store {
     fs.writeFileSync(this.filePathRaw, "[]");
 
     this.monasteriesValidated = [];
-    fs.writeFileSync(this.monasteriesValidated, "[]");
+    fs.writeFileSync(this.filePathValidated, "[]");
+
+    this.monasteries = [];
+    fs.writeFileSync(this.filePath, "[]");
     console.log("cleaned");
   }
 
