@@ -9,7 +9,12 @@
   "scripts": {
     "scrap": "ts-node scrapping/scrap.ts",
     "validate": "ts-node scrapping/validate.ts",
-    "stats": "ts-node scrapping/store-stats.ts"
+    "stats": "ts-node scrapping/store-stats.ts",
+    "clean-build": "rm -f -r -d build",
+    "start": "parcel app/index.html --open --out-dir build",
+    "build": "yarn run clean-build && parcel build app/index.html --out-dir build --no-cache --public-url ./",
+    "deploy": "rsync -avz build/ hde@hde.geogr.muni.cz:/var/www/virthtml/hde/monasteries --delete",
+    "build-deploy": "npm run build && npm run deploy"
   },
   "dependencies": {
     "@turf/truncate": "^6.0.1",
