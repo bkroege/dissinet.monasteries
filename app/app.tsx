@@ -1,5 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
+import * as d3 from "d3";
 
 import L from "leaflet";
 import {
@@ -17,16 +18,19 @@ import {
   Tooltip
 } from "react-leaflet";
 
-import * as d3 from "d3";
 import "leaflet.markercluster";
-import "leaflet.markercluster.placementstrategies";
-
 import "leaflet.markercluster.placementstrategies";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 
 const pie = d3.pie().value(function(d) {
   return d.number;
 });
+
+const arc = radius =>
+  d3
+    .arc()
+    .outerRadius(radius)
+    .innerRadius(0);
 
 @observer
 export default class AppContainer extends React.Component<any, any> {
@@ -36,6 +40,7 @@ export default class AppContainer extends React.Component<any, any> {
 
   constructor(props: any) {
     super(props);
+    console.log(MarkerClusterGroup);
   }
 
   componentDidMount() {
@@ -53,20 +58,18 @@ export default class AppContainer extends React.Component<any, any> {
   }
 
   points(features) {
-    return features
-      .filter(f => f.selection.space)
-      .map((feature, ri) => {
-        return (
-          <Marker
-            fillOpacity="1"
-            weight="0"
-            key={feature.props.id}
-            radius={10}
-            position={feature.geo}
-            data={feature}
-          />
-        );
-      });
+    return features.map((feature, ri) => {
+      return (
+        <Marker
+          fillOpacity="1"
+          weight="0"
+          key={feature.id}
+          radius={10}
+          position={feature.geo}
+          data={feature}
+        />
+      );
+    });
   }
 
   clusterMarkerIcon(cluster) {
@@ -110,7 +113,8 @@ export default class AppContainer extends React.Component<any, any> {
       .enter()
       .append("g")
       .style("fill", d => {
-        return colors[d.data.name];
+        return "red";
+        //colors[d.data.name];
       })
       .attr("class", "arc");
 
@@ -160,7 +164,30 @@ export default class AppContainer extends React.Component<any, any> {
             attribution="<a href='http://awmc.unc.edu/wordpress/'>awmc</a>"
             className="map-base-layer-awmc"
           />
-          <Pane />
+          <Pane>
+            <MarkerClusterGroup
+              showCoverageOnHover={false}
+              firstCircleElements={6}
+              clockHelpingCircleOptions={{
+                weight: 0.7,
+                opacity: 1,
+                color: "black",
+                fillOpacity: 0,
+                dashArray: "10 5",
+                transform: "translateY(-10px)"
+              }}
+              spiderfyDistanceSurplus={35}
+              zoomToBoundsOnClick={true}
+              removeOutsideVisibleBounds={true}
+              elementsPlacementStrategy="clock-concentric"
+              iconCreateFunction={this.clusterMarkerIcon}
+              animate={false}
+              singleMarkerMode={true}
+              spiderLegPolylineOptions={{ weight: 0 }}
+            >
+              {this.points(this.props.store.activeData)}
+            </MarkerClusterGroup>
+          </Pane>
         </Map>
       </div>
     );

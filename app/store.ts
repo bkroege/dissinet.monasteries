@@ -32,6 +32,18 @@ export default class AppStore {
     return this._zoom.get();
   }
 
+  @computed
+  get activeData() {
+    return this.data.map(point => {
+      const coordinates = point.point.geometry.coordinates;
+      return {
+        id: point.id,
+        geo: [coordinates[1], coordinates[0]],
+        data: point
+      };
+    });
+  }
+
   @action
   mapMoved(
     newCenter: Array<Number>,
