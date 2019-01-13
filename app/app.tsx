@@ -2,6 +2,8 @@ import React from "react";
 import { observer } from "mobx-react";
 import * as d3 from "d3";
 
+import orders from "./orders";
+
 import L from "leaflet";
 import {
   Map,
@@ -21,6 +23,8 @@ import {
 import "leaflet.markercluster";
 import "leaflet.markercluster.placementstrategies";
 import MarkerClusterGroup from "react-leaflet-markercluster";
+
+console.log(orders);
 
 const pie = d3.pie().value(function(d) {
   return d.number;
@@ -80,18 +84,20 @@ export default class AppContainer extends React.Component<any, any> {
     const m = 1.5;
     const svgSize = (radius + m) * 2;
 
-    let genders = [
-      { name: "monks", number: 0 },
-      { name: "nuns", number: 0 },
-      { name: "double", number: 0 }
-    ];
+    const ordersInCluster = {};
+
     markers.forEach(marker => {
-      const gender = genders.find(g => g.name === marker.options.gender);
-      if (gender) {
-        gender.number += 1;
-      }
+      const orderNames = marker.options.data.data.orders.map(o => o.name);
+      orderNames.forEach(oName => {
+        ordersInCluster[oName] = 1;
+      });
     });
-    const arcs = pie(genders);
+
+    const arcs = pie(
+      Object.keys(ordersInCluster).map(order => {
+        return { name: order, number: 1 };
+      })
+    );
 
     const wrapperEl = document.getElementById("pie");
     const svgEl = document.createElement("svg");
@@ -113,8 +119,8 @@ export default class AppContainer extends React.Component<any, any> {
       .enter()
       .append("g")
       .style("fill", d => {
-        return "red";
-        //colors[d.data.name];
+        const order = orders.find(o => o.name === d.data.name);
+        return order ? order.color : "grey";
       })
       .attr("class", "arc");
 
