@@ -9,9 +9,9 @@ export class WikiFrParser extends Parser {
     if (monastery.data.link) {
       const infoLabels = {
         "Début de la construction": "construction",
-        Fondation: "establishment",
+        "Fondation": "establishment",
         "Fin des travaux": "closing",
-        Fermeture: "closing"
+        "Fermeture": "closing"
       };
       request(monastery.data.link, (err, resp, ahtml) => {
         //console.log(resp);

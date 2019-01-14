@@ -85,7 +85,7 @@ export class collegialesVaflParser extends Parser {
                   order.to = content.substring(toI + 8);
                 } else if (word === "partir") {
                   const fromI = content.indexOf(" partir de ");
-                  order.to = content.substring(fromI + 11);
+                  order.from = content.substring(fromI + 11);
                 }
               });
 

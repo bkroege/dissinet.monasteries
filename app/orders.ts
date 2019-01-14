@@ -39,6 +39,9 @@ var orders: any = [
     name: "augustins"
   },
   {
+    name: "collegiales"
+  },
+  {
     name: "others"
   },
   {
