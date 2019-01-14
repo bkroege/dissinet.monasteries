@@ -17,8 +17,6 @@ $color5: #255b73;
   right: 0;
 }
 
-$legend-circle-size: 8px;
-
 .map {
   top: 0;
   bottom: 0;
@@ -39,14 +37,14 @@ $legend-circle-size: 8px;
   left: 0;
   width: $panel-w;
   position: fixed;
-  color: $color2;
-  background-color: $color5;
+  color: $color1;
+  background-color: $color2;
   padding: 20px;
   .title,
   .subtitle {
-    color: $color2;
+    color: $color1;
     strong {
-      color: $color2;
+      color: $color1;
     }
   }
   .subtitle.section-label {
@@ -65,13 +63,18 @@ $legend-circle-size: 8px;
   .checkbox {
     display: block;
     label {
-      padding-left: 20px;
-      i.shape {
-        font-style: normal;
-        font-size: 15px;
-        padding-left: 10px;
-        padding-right: 5px;
-        vertical-align: top;
+      display: inline;
+
+      .legend-name {
+        padding-left: 0.5em;
+      }
+      .legend-color {
+        width: 1.4em;
+        height: 1.3em;
+        position: absolute;
+        left: 0px;
+        z-index: -1;
+        display: inline-block;
       }
     }
     &.only-label {

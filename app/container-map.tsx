@@ -2,8 +2,6 @@ import React from "react";
 import { observer } from "mobx-react";
 import * as d3 from "d3";
 
-import orders from "./orders";
-
 import L from "leaflet";
 import {
   Map,
@@ -23,8 +21,6 @@ import {
 import "leaflet.markercluster";
 import "leaflet.markercluster.placementstrategies";
 import MarkerClusterGroup from "react-leaflet-markercluster";
-
-console.log(orders);
 
 const pie = d3.pie().value(function(d) {
   return d.number;
@@ -112,6 +108,7 @@ export default class ContainerMap extends React.Component<any, any> {
       .attr("transform", "translate(" + svgSize / 2 + ", " + svgSize / 2 + ")");
 
     svg.append("circle").attr("r", radius + m);
+    const orders = this.props.store.orders;
 
     const unknownOrder = orders.find(o => o.name === "unknown");
     const othersOrder = orders.find(o => o.name === "others");
@@ -196,7 +193,7 @@ export default class ContainerMap extends React.Component<any, any> {
               zoomToBoundsOnClick={true}
               removeOutsideVisibleBounds={true}
               elementsPlacementStrategy="clock-concentric"
-              iconCreateFunction={this.clusterMarkerIcon}
+              iconCreateFunction={this.clusterMarkerIcon.bind(this)}
               animate={false}
               singleMarkerMode={true}
               spiderLegPolylineOptions={{ weight: 0 }}

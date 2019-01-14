@@ -2,7 +2,7 @@ import { keys, toJS, observable, action, computed } from "mobx";
 
 export default class AppStore {
   data;
-  orders;
+  _orders;
 
   _center;
   _zoom;
@@ -10,11 +10,16 @@ export default class AppStore {
 
   constructor(data, orders) {
     this.data = data;
-    this.orders = observable.array(orders, { deep: true });
+    console.log(orders);
+    this._orders = observable.array(orders, { deep: true });
 
     this._center = observable.box([48, 2]);
     this._zoom = observable.box(6);
     this._extent = observable.box([[10, 10], [20, 20]]);
+  }
+
+  @computed get orders() {
+    return toJS(this._orders);
   }
 
   @computed

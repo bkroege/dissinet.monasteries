@@ -1,5 +1,3 @@
-console.log("hello monasteries");
-
 import "./main.scss";
 import "./../node_modules/leaflet/dist/leaflet.css";
 import "./../node_modules/leaflet.markercluster/dist/MarkerCluster.css";
@@ -17,7 +15,7 @@ const data = require("./monasteries.json");
 
 console.log(data);
 
-var version = "0.0.1";
+var version = "0.0.1 (experimental version)";
 var colors = [
   "#8dd3c7",
   "#ffffb3",
@@ -27,16 +25,18 @@ var colors = [
   "#fdb462",
   "#b3de69",
   "#fccde5",
+  "#d9d9d9",
   "#bc80bd",
-  "#d9d9d9"
+  "#ccebc5",
+  "#ffed6f"
 ];
 
-const ordersColored = orders.map((order, oi) => {
+orders.forEach((order, oi) => {
   order.color = colors[oi];
   order.active = true;
 });
 
-const store = new AppStore(data, ordersColored);
+const store = new AppStore(data, orders);
 
 if (document.body) {
   document.body.innerHTML = "";

@@ -1,6 +1,5 @@
 import React from "react";
 import { observer } from "mobx-react";
-import orders from "./orders";
 
 @observer
 export default class ContainerPanel extends React.Component<any, any> {
@@ -27,18 +26,29 @@ export default class ContainerPanel extends React.Component<any, any> {
         <p />
         <h3 className="subtitle section-label">Monastic orders</h3>
         <div className="panel-control">
-          {orders.map((order, oi) => {
+          {store.orders.map((order, oi) => {
             return (
               <div className="field checkbox only-label" key={oi}>
                 <input
-                  className="is-checkradio is-white"
-                  id="all"
+                  className="is-checkradio is-black no-borders"
+                  id={oi}
                   type="checkbox"
-                  name="all"
+                  name={order.name}
                   onChange={this.handleCheckboxClick.bind(this)}
-                  checked={true}
+                  checked={order.active}
+                  style={{
+                    backgroundColor: order.color
+                  }}
                 />
-                <label htmlFor="all">{order.name}</label>
+                <label htmlFor={oi}>
+                  <span
+                    className="legend-color"
+                    style={{
+                      backgroundColor: order.color
+                    }}
+                  />
+                  <span className="legend-name">{order.name}</span>
+                </label>
               </div>
             );
           })}
