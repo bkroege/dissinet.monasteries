@@ -37,7 +37,7 @@ const arc = radius =>
     .innerRadius(0);
 
 @observer
-export default class AppContainer extends React.Component<any, any> {
+export default class ContainerMap extends React.Component<any, any> {
   refs;
   props;
   mapEl;
@@ -162,7 +162,7 @@ export default class AppContainer extends React.Component<any, any> {
   public render() {
     const store = this.props.store;
     return (
-      <div id="map">
+      <div className="map">
         <Map
           style={{ height: "100%" }}
           onViewportChanged={this.handleMapMove.bind(this)}

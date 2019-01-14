@@ -1,5 +1,12 @@
 @import "~bulma/bulma";
 
+$panel-w: 400;
+$color1: #222222;
+$color2: #f9f9f9;
+$color3: #ae956d;
+$color4: #4bb8e8;
+$color5: #255b73;
+
 #map {
   position: absolute;
   top: 0;
@@ -10,69 +17,47 @@
 
 $legend-circle-size: 8px;
 
-.legend {
-  position: absolute;
-  z-index: 800;
-  top: 10;
-  right: 10;
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 10;
-  border-radius: 4px;
-  .title {
-    font-size: 1.2em;
-    margin-bottom: 0.5rem;
-    .version {
-      font-size: 0.8em;
-    }
+.map {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: $panel-w;
+  position: fixed;
+  .leaflet-container {
+    height: 100%;
+    width: 100%;
   }
-  span.colored {
-    display: block;
-    margin-left: 2rem;
-    .circle {
-      width: $legend-circle-size * 2;
-      height: $legend-circle-size * 2;
-      border-radius: $legend-circle-size;
-      background: red;
-      border: 1.5px solid black;
-      display: inline-block;
-      margin-left: 0.3rem;
-      vertical-align: text-bottom;
-    }
-  }
-}
-span.colored .circle {
-  width: $legend-circle-size * 2;
-  height: $legend-circle-size * 2;
-  border-radius: $legend-circle-size;
-  background: red;
-  border: 1.5px solid black;
-  display: inline-block;
-  margin: 0rem 0.5rem;
-  vertical-align: text-bottom;
 }
 
-.modal {
-  z-index: 10000;
-  .modal-card-body {
-    background-color: lightgrey;
-    font-size: 100%;
-    .title {
-      font-size: 2em;
-      .version {
-        font-size: 0.7em;
-      }
-    }
-    .text {
-      font-size: 1em;
-      ul {
-        list-style-type: disc;
-        list-style-position: inside;
-        margin-left: 1rem;
-      }
+.panel {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: none;
+  bottom: 0;
+  left: 0;
+  width: $panel-w;
+  position: fixed;
+  color: $color2;
+  background-color: $color5;
+  padding: 20px;
+  .title,
+  .subtitle {
+    color: $color2;
+    strong {
+      color: $color2;
     }
   }
-  span.colored {
-    font-weight: 800;
+  .subtitle.section-label {
+    padding: 0px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+  .panel-control {
+    padding-left: 10px;
+    padding-bottom: 15px;
+    strong {
+      color: $color2;
+    }
   }
 }
 
