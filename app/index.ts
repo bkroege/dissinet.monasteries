@@ -26,9 +26,9 @@ var colors = [
   "#b3de69",
   "#fccde5",
   "#d9d9d9",
+  "#ffed6f",
   "#bc80bd",
-  "#ccebc5",
-  "#ffed6f"
+  "#ccebc5"
 ];
 
 orders.forEach((order, oi) => {

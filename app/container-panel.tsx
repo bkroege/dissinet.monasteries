@@ -12,7 +12,8 @@ export default class ContainerPanel extends React.Component<any, any> {
   }
 
   handleCheckboxClick(e) {
-    console.log("checkbox clicked");
+    console.log("checkbox clicked", e.target.value);
+    this.props.store.toggleOrder(e.target.value);
   }
 
   render() {
@@ -36,6 +37,7 @@ export default class ContainerPanel extends React.Component<any, any> {
                   name={order.name}
                   onChange={this.handleCheckboxClick.bind(this)}
                   checked={order.active}
+                  value={order.name}
                   style={{
                     backgroundColor: order.color
                   }}

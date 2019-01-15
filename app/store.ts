@@ -49,6 +49,33 @@ export default class AppStore {
     });
   }
 
+  @action activateOrder(orderName) {
+    const newOrders = this.orders;
+    const orderToActivate = newOrders.find(o => o.name === orderName);
+    if (orderToActivate) {
+      orderToActivate.active = true;
+    }
+    this._orders.replace(newOrders);
+  }
+
+  @action deactivateOrder(orderName) {
+    const newOrders = this.orders;
+    const orderToDeactivate = newOrders.find(o => o.name === orderName);
+    if (orderToDeactivate) {
+      orderToDeactivate.active = false;
+    }
+    this._orders.replace(newOrders);
+  }
+
+  @action toggleOrder(orderName) {
+    const orderToToggle = this.orders.find(o => o.name === orderName);
+    if (orderToToggle) {
+      orderToToggle.active
+        ? this.deactivateOrder(orderName)
+        : this.activateOrder(orderName);
+    }
+  }
+
   @action
   mapMoved(
     newCenter: Array<Number>,
