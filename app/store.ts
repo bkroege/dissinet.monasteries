@@ -37,16 +37,27 @@ export default class AppStore {
     return this._zoom.get();
   }
 
+  @computed get activeMonasteryNames() {
+    return this.orders.filter(o => o.active).map(o => o.name);
+  }
+
   @computed
   get activeData() {
-    return this.data.map(point => {
-      const coordinates = point.point.geometry.coordinates;
-      return {
-        id: point.id,
-        geo: [coordinates[1], coordinates[0]],
-        data: point
-      };
-    });
+    return this.data
+      .filter(monastery => {
+        const monasteryOrders = monastery.orders.map(o => o.name);
+        return monasteryOrders.some(orderName =>
+          this.activeMonasteryNames.includes(orderName)
+        );
+      })
+      .map(monastery => {
+        const coordinates = monastery.point.geometry.coordinates;
+        return {
+          id: monastery.id,
+          geo: [coordinates[1], coordinates[0]],
+          data: monastery
+        };
+      });
   }
 
   @action activateOrder(orderName) {

@@ -15,7 +15,7 @@ export default class AppContainer extends React.Component<any, any> {
     const store = this.props.store;
     return (
       <div className="wrapper">
-        <ContainerMap store={store} />
+        <ContainerMap store={store} activeData={store.activeData} />
         <ContainerPanel store={store} />
       </div>
     );

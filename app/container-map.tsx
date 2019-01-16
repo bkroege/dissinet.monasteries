@@ -32,60 +32,113 @@ const arc = radius =>
     .outerRadius(radius)
     .innerRadius(0);
 
+const now = () => {
+  const d = new Date();
+  return d.valueOf();
+};
+
+const radius = 15;
+const m = 1.5;
+const svgSize = (radius + m) * 2;
+
 @observer
 export default class ContainerMap extends React.Component<any, any> {
   refs;
   props;
   mapEl;
+  markerClusterEl;
+  markerClusters;
+
+  processed;
 
   constructor(props: any) {
     super(props);
-    console.log(MarkerClusterGroup);
+    this.markerClusterEl = React.createRef();
+  }
+
+  shouldComponentUpdate() {
+    return true;
   }
 
   componentDidMount() {
     this.mapEl = this.refs["map"].leafletElement;
+
     this.props.store.mapMoved(
       this.props.center,
       this.props.zoom,
       this.mapEl.getBounds()
     );
+
+    this.markerClusters = L.markerClusterGroup({
+      showCoverageOnHover: false,
+      firstCircleElements: 6,
+      clockHelpingCircleOptions: {
+        weight: 0.7,
+        opacity: 1,
+        color: "black",
+        fillOpacity: 0,
+        dashArray: "10 5",
+        transform: "translateY(-10px)"
+      },
+      spiderfyDistanceSurplus: 35,
+      zoomToBoundsOnClick: true,
+      removeOutsideVisibleBounds: true,
+      elementsPlacementStrategy: "clock-concentric",
+      iconCreateFunction: this.clusterMarkerIcon.bind(this),
+      animate: false,
+      singleMarkerMode: true,
+      spiderLegPolylineOptions: { weight: 0 }
+    });
+    this.markerClusters.addTo(this.mapEl);
+
     this.update();
   }
 
   componentDidUpdate() {
     this.update();
+    this.loadClusters();
   }
 
-  points(features) {
-    return features.map((feature, ri) => {
-      return (
-        <Marker
-          fillOpacity="1"
-          weight="0"
-          key={feature.id}
-          radius={10}
-          position={feature.geo}
-          data={feature}
-        />
-      );
+  loadClusters() {
+    const data = this.points();
+
+    this.markerClusters.clearLayers();
+    this.markerClusters.addLayers(this.points());
+  }
+
+  points() {
+    console.log(this.props.activeData.length);
+    return this.props.activeData.map((feature, ri) => {
+      return L.marker(feature.geo, {
+        fillOpacity: 1,
+        weight: 0,
+        radius: 10,
+        data: feature
+      });
     });
   }
 
-  clusterMarkerIcon(cluster) {
-    const markers = cluster.getAllChildMarkers();
-    const single = markers.length === 1;
+  makeClusterGroupRef(el) {
+    this.markerClusterEl = el;
+  }
 
-    const radius = 15;
-    const m = 1.5;
-    const svgSize = (radius + m) * 2;
+  clusterMarkerIcon(cluster) {
+    this.processed = this.processed + 1;
+    const markers = cluster.getAllChildMarkers();
+    //console.log(this.processed, cluster);
+    const single = markers.length === 1;
 
     const ordersInCluster = {};
 
     markers.forEach(marker => {
       const orderNames = marker.options.data.data.orders.map(o => o.name);
       orderNames.forEach(oName => {
-        ordersInCluster[oName] = 1;
+        if (
+          !ordersInCluster[oName] &&
+          this.props.store.activeMonasteryNames.includes(oName)
+        ) {
+          ordersInCluster[oName] = true;
+        }
       });
     });
 
@@ -120,11 +173,7 @@ export default class ContainerMap extends React.Component<any, any> {
       .style("fill", d => {
         let order = orders.find(o => o.name === d.data.name);
         if (!order) {
-          if (d.data === "?") {
-            order = unknownOrder;
-          } else {
-            order = othersOrder;
-          }
+          order = d.data === "?" ? unknownOrder : othersOrder;
         }
         return order ? order.color : "grey";
       })
@@ -156,7 +205,8 @@ export default class ContainerMap extends React.Component<any, any> {
     }
   }
 
-  public render() {
+  render() {
+    this.processed = 0;
     const store = this.props.store;
     return (
       <div className="map">
@@ -168,7 +218,7 @@ export default class ContainerMap extends React.Component<any, any> {
           attributionControl={false}
           zoom={store.zoom}
           center={store.center}
-          maxZoom={20}
+          maxZoom={10}
         >
           <ScaleControl position="topleft" imperial={false} />
           <AttributionControl position="bottomleft" />
@@ -177,30 +227,6 @@ export default class ContainerMap extends React.Component<any, any> {
             attribution="<a href='http://awmc.unc.edu/wordpress/'>awmc</a>"
             className="map-base-layer-awmc"
           />
-          <Pane>
-            <MarkerClusterGroup
-              showCoverageOnHover={false}
-              firstCircleElements={6}
-              clockHelpingCircleOptions={{
-                weight: 0.7,
-                opacity: 1,
-                color: "black",
-                fillOpacity: 0,
-                dashArray: "10 5",
-                transform: "translateY(-10px)"
-              }}
-              spiderfyDistanceSurplus={35}
-              zoomToBoundsOnClick={true}
-              removeOutsideVisibleBounds={true}
-              elementsPlacementStrategy="clock-concentric"
-              iconCreateFunction={this.clusterMarkerIcon.bind(this)}
-              animate={false}
-              singleMarkerMode={true}
-              spiderLegPolylineOptions={{ weight: 0 }}
-            >
-              {this.points(this.props.store.activeData)}
-            </MarkerClusterGroup>
-          </Pane>
         </Map>
       </div>
     );
