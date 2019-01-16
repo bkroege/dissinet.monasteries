@@ -269,6 +269,9 @@ export class Store {
         Base.isNumeric(coords.lat)
       );
     },
+    atLeastOneOrder: monastery => {
+      return monastery.orders.length > 0;
+    },
     extent: monastery => {
       const point = turf.point([
         monastery.coordinates.lng,

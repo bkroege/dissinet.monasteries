@@ -135,7 +135,7 @@ export default class ContainerMap extends React.Component<any, any> {
       orderNames.forEach(oName => {
         if (
           !ordersInCluster[oName] &&
-          this.props.store.activeMonasteryNames.includes(oName)
+          this.props.store.activeOrdersNames.includes(oName)
         ) {
           ordersInCluster[oName] = true;
         }

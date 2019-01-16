@@ -18,6 +18,9 @@ export default class ContainerPanel extends React.Component<any, any> {
 
   render() {
     const store = this.props.store;
+    console.log("activeRecordsCount", store.activeRecordsCount);
+    const active = store.activeMonasteries;
+    console.log(store.data.filter(d => !active.map(a => a.id).includes(d.id)));
     return (
       <div className="panel">
         <h1 className="title">Monasteries in France</h1>
