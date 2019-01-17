@@ -21,6 +21,10 @@ export default class AppStore {
     return toJS(this._orders);
   }
 
+  @computed get allOrdersActive() {
+    return this.orders.every(o => o.active);
+  }
+
   @computed
   get extent(): Array<number> {
     return toJS(this._extent);
@@ -37,16 +41,16 @@ export default class AppStore {
   }
 
   @computed get activeOrders() {
-    return this.orders.filter(o => o.active;
+    return this.orders.filter(o => o.active);
   }
   @computed get activeOrdersNames() {
-    const orderNames = []
+    const orderNames = [];
     this.activeOrders.forEach(order => {
       order.names.forEach(name => {
-        orderNames.push(name)
-      })
+        orderNames.push(name);
+      });
     });
-    return orderNames
+    return orderNames;
   }
 
   @computed get activeMonasteries() {
@@ -69,13 +73,13 @@ export default class AppStore {
   @computed
   get activeData() {
     return this.activeMonasteries.map(monastery => {
-        const coordinates = monastery.point.geometry.coordinates;
-        return {
-          id: monastery.id,
-          geo: [coordinates[1], coordinates[0]],
-          data: monastery
-        };
-      });
+      const coordinates = monastery.point.geometry.coordinates;
+      return {
+        id: monastery.id,
+        geo: [coordinates[1], coordinates[0]],
+        data: monastery
+      };
+    });
   }
 
   @action activateOrder(orderName) {
@@ -103,6 +107,16 @@ export default class AppStore {
         ? this.deactivateOrder(orderName)
         : this.activateOrder(orderName);
     }
+  }
+
+  @action toggleAllOrder() {
+    const newValue = !this.allOrdersActive;
+    this._orders.replace(
+      this.orders.map(o => {
+        o.active = newValue;
+        return o;
+      })
+    );
   }
 
   @action
