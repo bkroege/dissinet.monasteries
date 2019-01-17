@@ -34,8 +34,27 @@ var colors = [
 orders.forEach((order, oi) => {
   order.color = colors[oi];
   order.active = true;
+  order.names = [order.name];
 });
 
+const unknownOrder = orders.find(o => o.name === "unknown");
+unknownOrder.names.push("?");
+const othersOrder = orders.find(o => o.name === "others");
+const orderNamesInDict = [];
+
+orders.forEach(order => {
+  order.names.forEach(name => orderNamesInDict.push(name));
+});
+
+data.forEach(monastery => {
+  monastery.orders.forEach(order => {
+    if (!orderNamesInDict.includes(order.name)) {
+      othersOrder.names.push(order.name);
+    }
+  });
+});
+
+othersOrder.names = othersOrder.names.filter((v, i, a) => a.indexOf(v) === i);
 const store = new AppStore(data, orders);
 
 if (document.body) {

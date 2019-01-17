@@ -10,7 +10,6 @@ export default class AppStore {
 
   constructor(data, orders) {
     this.data = data;
-    console.log(orders);
     this._orders = observable.array(orders, { deep: true });
 
     this._center = observable.box([48, 2]);
@@ -41,7 +40,13 @@ export default class AppStore {
     return this.orders.filter(o => o.active;
   }
   @computed get activeOrdersNames() {
-    return this.activeOrders.map(o => o.name);
+    const orderNames = []
+    this.activeOrders.forEach(order => {
+      order.names.forEach(name => {
+        orderNames.push(name)
+      })
+    });
+    return orderNames
   }
 
   @computed get activeMonasteries() {
