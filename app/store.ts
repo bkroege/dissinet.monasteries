@@ -1,4 +1,5 @@
 import { keys, toJS, observable, action, computed } from "mobx";
+var JSZip = require("jszip");
 
 export default class AppStore {
   data;
@@ -129,5 +130,22 @@ export default class AppStore {
     this._zoom.set(newZoom);
     this._extent.set(newExtent);
     //window["stores"].selection.updateSpace(newExtent);
+  }
+
+  download() {
+    const monasteriesToDownload = this.activeMonasteries;
+
+    var anchor = document.createElement("a");
+
+    const zip = new JSZip();
+    const text = encodeURIComponent(JSON.stringify(monasteriesToDownload));
+    zip.file('monasteries.json', text)
+    zip.generateAsync({type:"base64"}).then((base64) => {
+      console.log(base64)
+      anchor.href = "data:application/zip;base64," + base64;
+      anchor.target = "_blank";
+      anchor.download = "test.zip";
+      anchor.click();
+    }
   }
 }

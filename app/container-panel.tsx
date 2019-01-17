@@ -20,6 +20,10 @@ export default class ContainerPanel extends React.Component<any, any> {
     this.props.store.toggleAllOrder();
   }
 
+  handleDownloadClick() {
+    this.props.store.download();
+  }
+
   render() {
     const store = this.props.store;
     console.log("activeRecordsCount", store.activeRecordsCount);
@@ -36,25 +40,24 @@ export default class ContainerPanel extends React.Component<any, any> {
           Showing {store.activeRecordsCount} / {store.recordsCountAll} records
         </h2>
         <p />
+        <div className="field checkbox only-label" key={0}>
+          <input
+            className="is-checkradio is-black no-borders"
+            type="checkbox"
+            name="all"
+            onChange={this.handleAllCheckboxClick.bind(this)}
+            checked={store.allOrdersActive}
+            value="all"
+            id="all"
+            style={{}}
+          />
+          <label htmlFor="all">
+            <span className="legend-color" />
+            <span className="legend-name">{allLabel}</span>
+          </label>
+        </div>
         <h3 className="subtitle section-label">Monastic orders</h3>
         <div className="panel-control">
-          <div className="field checkbox only-label" key={0}>
-            <input
-              className="is-checkradio is-black no-borders"
-              type="checkbox"
-              name="all"
-              onChange={this.handleAllCheckboxClick.bind(this)}
-              checked={store.allOrdersActive}
-              value="all"
-              id="all"
-              style={{}}
-            />
-            <label htmlFor="all">
-              <span className="legend-color" />
-              <span className="legend-name">{allLabel}</span>
-            </label>
-          </div>
-
           {store.orders.map((order, oi) => {
             return (
               <div className="field checkbox only-label" key={oi}>
@@ -82,6 +85,13 @@ export default class ContainerPanel extends React.Component<any, any> {
               </div>
             );
           })}
+          <hr />
+          <div
+            className="button-bar"
+            onClick={this.handleDownloadClick.bind(this)}
+          >
+            <a className="button is-black">Downlaod</a>
+          </div>
         </div>
       </div>
     );
