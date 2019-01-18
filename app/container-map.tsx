@@ -48,6 +48,9 @@ export default class ContainerMap extends React.Component<any, any> {
   mapEl;
   markerClusterEl;
   markerClusters;
+  t1;
+  t2;
+  t;
 
   processed;
 
@@ -97,6 +100,8 @@ export default class ContainerMap extends React.Component<any, any> {
   componentDidUpdate() {
     this.update();
     this.loadClusters();
+    this.t2 = now();
+    console.log("rendered in ", this.t2 - this.t1, "ms");
   }
 
   loadClusters() {
@@ -107,14 +112,13 @@ export default class ContainerMap extends React.Component<any, any> {
   }
 
   points() {
-    console.log(this.props.activeData.length);
     return this.props.activeData.map((feature, ri) => {
       return L.marker(feature.geo, {
         fillOpacity: 1,
         weight: 0,
         radius: 10,
         data: feature
-      });
+      }).bindPopup("<p>" + feature.data.name + "</p>");
     });
   }
 
@@ -126,9 +130,7 @@ export default class ContainerMap extends React.Component<any, any> {
     this.processed = this.processed + 1;
     const markers = cluster.getAllChildMarkers();
     const orders = this.props.store.orders;
-    //console.log(this.processed, cluster);
     const single = markers.length === 1;
-
     const ordersInCluster = {};
 
     markers.forEach(marker => {
@@ -148,14 +150,12 @@ export default class ContainerMap extends React.Component<any, any> {
 
     const arcs = pie(
       Object.keys(ordersInCluster).map(order => {
-        return { name: order, number: 1 };
+        return { name: order.toLowerCase(), number: 1 };
       })
     );
 
-    const wrapperEl = document.getElementById("pie");
     const svgEl = document.createElement("svg");
     svgEl.setAttribute("id", "pie" + cluster._leaflet_id);
-    //wrapperEl.appendChild(svgEl);
 
     const svg = d3
       .select(svgEl)
@@ -166,20 +166,13 @@ export default class ContainerMap extends React.Component<any, any> {
 
     svg.append("circle").attr("r", radius + m);
 
-    const unknownOrder = orders.find(o => o.name === "unknown");
-    const othersOrder = orders.find(o => o.name === "others");
     const g = svg
       .selectAll("arc")
       .data(arcs)
       .enter()
       .append("g")
       .style("fill", d => {
-        let order = orders.find(o =>
-          o.names.includes(d.data.name.toLowerCase())
-        );
-        if (!order) {
-          order = d.data.name === "?" ? unknownOrder : othersOrder;
-        }
+        const order = orders.find(o => o.names.includes(d.data.name));
         return order ? order.color : "grey";
       })
       .style("stroke", "black")
@@ -188,6 +181,7 @@ export default class ContainerMap extends React.Component<any, any> {
     svg.append("circle").attr("r", 2 + (radius + m) / 2);
 
     g.append("path").attr("d", arc(radius));
+
     svg
       .append("text")
       .text(markers.length)
@@ -211,6 +205,7 @@ export default class ContainerMap extends React.Component<any, any> {
   }
 
   render() {
+    this.t1 = now();
     this.processed = 0;
     const store = this.props.store;
     return (
