@@ -4,15 +4,17 @@ var csv = require("ya-csv");
 var csvtojson = require("csvtojson");
 var fs = require("fs");
 import Base from "./base";
+var france = require("./france.json");
 
 import orders from "./util/orders";
 
 var turf = require("turf");
 import truncate from "@turf/truncate";
 
-var extentPolygon = turf.polygon([
-  [[-6, 41], [11, 41], [11, 52], [-6, 52], [-6, 41]]
-]);
+console.log(france);
+var extentPolygon = turf.polygon(france.features[0].geometry.coordinates[1]);
+
+console.log(JSON.stringify(extentPolygon));
 
 var outputPath = "./scrapping/data/";
 
@@ -89,15 +91,25 @@ export class Store {
   }
 
   validate() {
+    console.log("validating");
     // check valid
     const monasteriesChecked = this.monasteriesRaw.filter(monastery => {
       const checkFns = Object.keys(this.checks).map(checkKey => {
         return this.checks[checkKey];
       });
+
+      /*
+      Object.keys(this.checks).map(checkKey => {
+        console.log(checkKey, this.checks[checkKey](monastery));
+      });
+*/
+
       return checkFns.every(fn => {
         return fn(monastery);
       });
     });
+
+    console.log(monasteriesChecked);
 
     // correct
     const monasteriesCorrected = monasteriesChecked.map(monastery => {

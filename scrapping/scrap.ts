@@ -23,6 +23,7 @@ console.log(
 );
 */
 
+/*
 store.truncate();
 
 const parse = (source, next) => {
@@ -35,3 +36,7 @@ const parse = (source, next) => {
 async.eachLimit(sources.filter(s => s.parse), 1, parse, (e, r) => {
   store.saveToFile();
 });
+*/
+
+store.validate();
+store.findDuplicates();
