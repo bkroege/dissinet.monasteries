@@ -1,36 +1,36 @@
 var orders: any = [
   {
-    name: "franciscan"
+    name: "Franciscan"
   },
   {
-    name: "benedictines"
+    name: "Benedictines"
   },
   {
-    name: "praemonstratensians"
+    name: "Praemonstratensians"
   },
   {
-    name: "cluniac"
+    name: "Cluniac"
   },
   {
-    name: "dominican"
+    name: "Dominican"
   },
   {
-    name: "cisterciennes"
+    name: "Cistercians"
   },
   {
-    name: "trappistes"
+    name: "Trappists"
   },
   {
-    name: "augustins"
+    name: "Augustinians"
   },
   {
-    name: "collegiales"
+    name: "collegiate churches"
   },
   {
     name: "others"
   },
   {
-    name: "unknown"
+    name: "Uunknown"
   }
 ];
 
