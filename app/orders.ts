@@ -41,7 +41,7 @@ var orders: any = [
   },
   {
     name: "unknown",
-    names: ["?"]
+    names: ["?", ""]
   }
 ];
 

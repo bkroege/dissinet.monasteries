@@ -125,6 +125,7 @@ export default class ContainerMap extends React.Component<any, any> {
   clusterMarkerIcon(cluster) {
     this.processed = this.processed + 1;
     const markers = cluster.getAllChildMarkers();
+    const orders = this.props.store.orders;
     //console.log(this.processed, cluster);
     const single = markers.length === 1;
 
@@ -133,11 +134,14 @@ export default class ContainerMap extends React.Component<any, any> {
     markers.forEach(marker => {
       const orderNames = marker.options.data.data.orders.map(o => o.name);
       orderNames.forEach(oName => {
+        const orderName = orders.find(o =>
+          o.names.includes(oName.toLowerCase())
+        ).name;
         if (
-          !ordersInCluster[oName] &&
-          this.props.store.activeOrdersNames.includes(oName.toLowerCase())
+          !ordersInCluster[orderName] &&
+          this.props.store.activeOrdersNames.includes(orderName.toLowerCase())
         ) {
-          ordersInCluster[oName] = true;
+          ordersInCluster[orderName] = true;
         }
       });
     });
@@ -161,7 +165,6 @@ export default class ContainerMap extends React.Component<any, any> {
       .attr("transform", "translate(" + svgSize / 2 + ", " + svgSize / 2 + ")");
 
     svg.append("circle").attr("r", radius + m);
-    const orders = this.props.store.orders;
 
     const unknownOrder = orders.find(o => o.name === "unknown");
     const othersOrder = orders.find(o => o.name === "others");
@@ -175,7 +178,7 @@ export default class ContainerMap extends React.Component<any, any> {
           o.names.includes(d.data.name.toLowerCase())
         );
         if (!order) {
-          order = d.data === "?" ? unknownOrder : othersOrder;
+          order = d.data.name === "?" ? unknownOrder : othersOrder;
         }
         return order ? order.color : "grey";
       })
