@@ -135,7 +135,7 @@ export default class ContainerMap extends React.Component<any, any> {
       orderNames.forEach(oName => {
         if (
           !ordersInCluster[oName] &&
-          this.props.store.activeOrdersNames.includes(oName)
+          this.props.store.activeOrdersNames.includes(oName.toLowerCase())
         ) {
           ordersInCluster[oName] = true;
         }
@@ -171,7 +171,9 @@ export default class ContainerMap extends React.Component<any, any> {
       .enter()
       .append("g")
       .style("fill", d => {
-        let order = orders.find(o => o.name === d.data.name);
+        let order = orders.find(o =>
+          o.names.includes(d.data.name.toLowerCase())
+        );
         if (!order) {
           order = d.data === "?" ? unknownOrder : othersOrder;
         }

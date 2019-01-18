@@ -1,36 +1,47 @@
 var orders: any = [
   {
-    name: "Franciscan"
+    name: "Franciscan",
+    names: ["franciscan"]
   },
   {
-    name: "Benedictines"
+    name: "Benedictines",
+    names: ["benedictines"]
   },
   {
-    name: "Praemonstratensians"
+    name: "Praemonstratensians",
+    names: ["prémontrés"]
   },
   {
-    name: "Cluniac"
+    name: "Cluniac",
+    names: ["cluniac"]
   },
   {
-    name: "Dominican"
+    name: "Dominican",
+    names: ["dominican", "dominicains"]
   },
   {
-    name: "Cistercians"
+    name: "Cistercians",
+    names: ["cisterciens", "cisterciennes"]
   },
   {
-    name: "Trappists"
+    name: "Trappists",
+    names: ["trappistines", "trappistes"]
   },
   {
-    name: "Augustinians"
+    name: "Augustinians",
+    names: ["augustins"]
   },
   {
-    name: "collegiate churches"
+    name: "collegiate churches",
+    names: ["collegiales"]
   },
   {
-    name: "others"
+    name: "others",
+    names: []
   },
   {
-    name: "Uunknown"
+    name: "unknown",
+    names: ["?"]
   }
 ];
 

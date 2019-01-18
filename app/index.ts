@@ -34,11 +34,12 @@ var colors = [
 orders.forEach((order, oi) => {
   order.color = colors[oi];
   order.active = true;
-  order.names = [order.name];
+  order.names.push(order.name.toLowerCase());
 });
 
+console.log(orders);
+
 const unknownOrder = orders.find(o => o.name === "unknown");
-unknownOrder.names.push("?");
 const othersOrder = orders.find(o => o.name === "others");
 const orderNamesInDict = [];
 
