@@ -48,9 +48,6 @@ export default class ContainerMap extends React.Component<any, any> {
   mapEl;
   markerClusterEl;
   markerClusters;
-  t1;
-  t2;
-  t;
 
   processed;
 
@@ -100,8 +97,6 @@ export default class ContainerMap extends React.Component<any, any> {
   componentDidUpdate() {
     this.update();
     this.loadClusters();
-    this.t2 = now();
-    console.log("rendered in ", this.t2 - this.t1, "ms");
   }
 
   loadClusters() {

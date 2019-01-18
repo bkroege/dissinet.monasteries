@@ -37,9 +37,6 @@ orders.forEach((order, oi) => {
   order.names.push(order.name.toLowerCase());
 });
 
-console.log(orders);
-
-const unknownOrder = orders.find(o => o.name === "unknown");
 const othersOrder = orders.find(o => o.name === "others");
 const orderNamesInDict = [];
 
