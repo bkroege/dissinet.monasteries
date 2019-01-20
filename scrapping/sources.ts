@@ -62,7 +62,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: collegialesVaflParser,
     meta: {
       id: "vafl-benedictines",
