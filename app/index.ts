@@ -13,8 +13,6 @@ import AppContainer from "./app";
 
 const data = require("./monasteries.json");
 
-console.log(data);
-
 var version = "0.0.1 (experimental version)";
 var colors = [
   "#8dd3c7",
@@ -51,6 +49,8 @@ data.forEach(monastery => {
     }
   });
 });
+
+console.log(othersOrder);
 
 othersOrder.names = othersOrder.names.filter((v, i, a) => a.indexOf(v) === i);
 const store = new AppStore(data, orders);

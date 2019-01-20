@@ -12,11 +12,11 @@ var orders: any = [
     names: ["prémontrés"]
   },
   {
-    name: "Cluniac",
+    name: "Cluniacs",
     names: ["cluniac"]
   },
   {
-    name: "Dominican",
+    name: "Dominicans",
     names: ["dominican", "dominicains"]
   },
   {
@@ -32,16 +32,8 @@ var orders: any = [
     names: ["augustins"]
   },
   {
-    name: "collegiate churches",
-    names: ["collegiales"]
-  },
-  {
     name: "others",
     names: []
-  },
-  {
-    name: "unknown",
-    names: ["?", ""]
   }
 ];
 

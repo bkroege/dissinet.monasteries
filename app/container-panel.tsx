@@ -35,7 +35,7 @@ export default class ContainerPanel extends React.Component<any, any> {
       : "check all orders";
     return (
       <div className="panel">
-        <h1 className="title">Monasteries in France</h1>
+        <h1 className="title">Monasteries and convents in France</h1>
         <h2 className="subtitle">
           Showing {store.activeRecordsCount} / {store.recordsCountAll} records
         </h2>
@@ -90,7 +90,7 @@ export default class ContainerPanel extends React.Component<any, any> {
             className="button-bar"
             onClick={this.handleDownloadClick.bind(this)}
           >
-            <a className="button is-black">Downlaod</a>
+            <a className="button is-black">Download</a>
           </div>
         </div>
       </div>
