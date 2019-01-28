@@ -6,15 +6,10 @@ var fs = require("fs");
 import Base from "./base";
 var france = require("./france.json");
 
-import orders from "./util/orders";
-
 var turf = require("turf");
 import truncate from "@turf/truncate";
 
-console.log(france);
 var extentPolygon = turf.polygon(france.features[0].geometry.coordinates[1]);
-
-console.log(JSON.stringify(extentPolygon));
 
 var outputPath = "./scrapping/data/";
 
@@ -29,8 +24,10 @@ export class Store {
   private autoSave = true;
   private saving = false;
   private savingTimeout = 5000;
+  public orders = [];
 
-  constructor() {
+  constructor(orders) {
+    this.orders = orders;
     // loading previously stored records
     var monasteriesRaw = fs.readFileSync(this.filePathRaw, "utf8") || "[]";
     this.monasteriesRaw = JSON.parse(monasteriesRaw);
@@ -251,12 +248,12 @@ export class Store {
     orderNames: monastery => {
       monastery.orders.map(mOrder => {
         const mOrderName = mOrder.name;
-        const officialNames = orders.map(o => o.name);
+        const officialNames = this.orders.map(o => o.name);
         //console.log(officialNames);
         if (!officialNames.includes(mOrderName)) {
           //console.log("incorrect name", mOrderName);
           let correctName = mOrderName;
-          orders.forEach(order => {
+          this.orders.forEach(order => {
             if (order.alternativeNames.includes(mOrderName)) {
               // console.log("name changed", mOrderName, "->", order.name);
               correctName = order.name;

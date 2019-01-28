@@ -3,7 +3,6 @@ import { timingSafeEqual } from "crypto";
 
 export class Monastery {
   data: any = {};
-  store: false;
   meta: any = {};
 
   parsed = false;
