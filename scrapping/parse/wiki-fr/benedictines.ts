@@ -37,36 +37,26 @@ export class benedictinesWikiFrParser extends WikiFrParser {
       }
 
       // gender
+      let gender: any = false;
       if (ci === 1) {
         const genderText = Base.cleanText(
           $(column)
             .not("sup > *")
-            .text(),
-          {
-            chars: ["\n"],
-            trim: true
-          }
+            .text()
         );
 
-        let gender = "";
-        let genderNote = "";
         if (genderText) {
           if (
             genderText.includes("moines") &&
             genderText.includes("moniales")
           ) {
-            genderNote = genderText;
             gender = "d";
           } else if (genderText === "moines") {
             gender = "m";
           } else if (genderText === "moniales") {
             gender = "f";
-          } else {
-            genderNote = genderText;
           }
         }
-
-        monastery.setGender(genderNote, gender);
       }
 
       // orders

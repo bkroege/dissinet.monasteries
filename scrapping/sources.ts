@@ -71,28 +71,6 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
-    parser: franciscanDarmcParser,
-    meta: {
-      id: "darmc-franciscan",
-      type: "darmc",
-      order: "franciscan",
-      url: darmcUrl(49)
-    }
-  },
-  {
-    parse: false,
-    parser: collegialesVaflParser,
-    meta: {
-      id: "vafl-benedictines",
-      type: "web",
-      order: "collegiales",
-      rootUrl: "http://vafl-s-applirecherche.unilim.fr/collegiales/?i=fiche&j=",
-      url:
-        "http://vafl-s-applirecherche.unilim.fr/collegiales/cartes/current.geojson.php?type=gen"
-    }
-  },
-  {
     parse: false,
     parser: benedictinesWikiFrParser,
     meta: {
@@ -126,6 +104,28 @@ var sources: Array<{
       rootUrl: "https://fr.wikipedia.org",
       url:
         "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_cisterciennes_de_France"
+    }
+  },
+  {
+    parse: true,
+    parser: franciscanDarmcParser,
+    meta: {
+      id: "darmc-franciscan",
+      type: "darmc",
+      order: "franciscan",
+      url: darmcUrl(49)
+    }
+  },
+  {
+    parse: false,
+    parser: collegialesVaflParser,
+    meta: {
+      id: "vafl-benedictines",
+      type: "web",
+      order: "collegiales",
+      rootUrl: "http://vafl-s-applirecherche.unilim.fr/collegiales/?i=fiche&j=",
+      url:
+        "http://vafl-s-applirecherche.unilim.fr/collegiales/cartes/current.geojson.php?type=gen"
     }
   }
 ];
