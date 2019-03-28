@@ -5,6 +5,33 @@ import Base from "../../base";
 import { Parser } from "./../parser";
 
 export class WikiFrParser extends Parser {
+  getLocalityGeo(monastery, next) {
+    if (monastery && monastery.data && monastery.data.localityLink) {
+      request(monastery.data.localityLink, (err, resp, html) => {
+        if (!err) {
+          const $ = cheerio.load(html);
+
+          // lat lng
+          monastery.setGeo({
+            lng: $("#coordinates")
+              .find("a")
+              .data("lon"),
+            lat: $("#coordinates")
+              .find("a")
+              .data("lat")
+          });
+
+          next();
+        } else {
+          console.log(err);
+          next();
+        }
+      });
+    } else {
+      next();
+    }
+  }
+
   inspectWikiPage(monastery, next) {
     next();
 

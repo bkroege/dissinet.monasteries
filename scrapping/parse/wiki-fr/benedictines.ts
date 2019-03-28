@@ -22,6 +22,7 @@ export class benedictinesWikiFrParser extends WikiFrParser {
 
   parseMonastery(monastery, next) {
     const $ = cheerio.load(monastery.html);
+
     $("td").map((ci, column) => {
       if (ci === 0) {
         // name
@@ -74,12 +75,24 @@ export class benedictinesWikiFrParser extends WikiFrParser {
           monastery.addOrder({ gender: gender }, time);
         });
       }
+
+      if (ci === 4) {
+        const link = $(column).find("a");
+        if (link.length) {
+          monastery.setParam(
+            "localityLink",
+            this.meta.rootUrl + link.attr("href")
+          );
+        }
+      }
     });
 
-    this.inspectWikiPage(monastery, () => {
-      monastery.finishParsing();
-      monastery.save(this.store);
-      next();
+    this.getLocalityGeo(monastery, () => {
+      this.inspectWikiPage(monastery, () => {
+        monastery.finishParsing();
+        monastery.save(this.store);
+        next();
+      });
     });
   }
 }

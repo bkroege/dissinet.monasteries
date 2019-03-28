@@ -67,7 +67,9 @@ export class GeoI {
     this.lat = values.lat ? Base.cleanCoordinates(values.lat) : false;
     this.lng = values.lng ? Base.cleanCoordinates(values.lng) : false;
 
-    this.note = Base.cleanText(values.note);
+    if (values.note) {
+      this.note = Base.cleanText(values.note);
+    }
     this.precision =
       values.precision && [1, 2, 3, 4].includes(values.precision)
         ? values.precision

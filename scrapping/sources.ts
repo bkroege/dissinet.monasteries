@@ -24,7 +24,7 @@ var darmcUrl = id => {
     'spatialReference"%3A%7B"wkid"%3A4326%2C"latestWkid"%3A4326%7D%7D%7D'
   );
 };
-console.log(darmcUrl(46));
+
 var sources: Array<{
   parse: boolean;
   parser: any;

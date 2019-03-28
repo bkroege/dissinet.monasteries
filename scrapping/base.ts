@@ -89,8 +89,7 @@ var Base: any = {
 
       const dictionary = {
         vers: { post: v, ante: false },
-        "v ": { post: v, ante: false },
-        "v. ": { post: v, ante: false },
+        "v.": { post: v, ante: false },
         puis: { ante: v, post: false },
         début: { post: v, ante: false },
         Révolution: { ante: 1789, post: false },
