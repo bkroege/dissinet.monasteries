@@ -91,7 +91,10 @@ export class Monastery {
   }
 
   setParam(paramName, value): void {
-    this.data[paramName] = value;
+    const cleaned = Base.cleanText(value);
+    if (cleaned) {
+      this.data[paramName] = cleaned;
+    }
   }
 
   setLink(link): void {
@@ -125,13 +128,13 @@ export class Monastery {
   }
 
   addName(value, primary = true): void {
-    this.data.names.push({
-      value: Base.cleanText(value, {
-        trim: true,
-        chars: ["\n", ":", "[", "("]
-      }),
-      priority: primary
-    });
+    const cleanedValue = Base.cleanText(value);
+    if (cleanedValue) {
+      this.data.names.push({
+        value: cleanedValue,
+        priority: primary
+      });
+    }
   }
 
   finishParsing(): void {

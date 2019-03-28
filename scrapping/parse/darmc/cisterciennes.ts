@@ -1,20 +1,24 @@
 import { DarmcParser } from "./parser";
 
-export class praemonstratensiansDarmcParser extends DarmcParser {
+export class cisterciennesDarmcParser extends DarmcParser {
   parseMonastery(monastery, next) {
     const html = monastery.html;
+
     monastery.addName(monastery.html.DISP_NAME);
+    monastery.addName(monastery.html.ALT_NAME, false);
+    monastery.addName(monastery.html.ALT_NAME_2, false);
+    monastery.addName(monastery.html.LATIN_NAME, false);
 
     const time = {
-      from: { post: html.FOUNDED, ante: html.BEGIN_ },
-      to: { ante: html.END_ }
+      from: { post: html.F_DATE },
+      to: { post: html.D_DATE }
     };
 
-    monastery.setParam("note", monastery.html.DESCR);
+    monastery.setParam("note", html.NOTES);
 
     monastery.setGeo({
-      lat: monastery.html.DEC_LAT,
-      lng: monastery.html.DEC_LONG
+      lat: html.LATITUDE,
+      lng: html.LONGITUDE
     });
 
     monastery.addEmptyOrder(time);

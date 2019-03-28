@@ -15,23 +15,27 @@ var Base: any = {
   cleanCoordinates: coord => {
     return parseFloat(parseFloat(coord).toFixed(4));
   },
-  cleanText: (text, rules) => {
+  cleanText: (
+    text,
+    rules = {
+      trim: true,
+      chars: ["\n", ":", "[", "("]
+    }
+  ) => {
     let newText = text;
-    if (rules.chars && rules.chars.length) {
-      rules.chars.forEach(char => {
-        newText.split(char)[0];
-      });
+    if (text) {
+      if (rules.chars && rules.chars.length) {
+        rules.chars.forEach(char => {
+          newText.split(char)[0];
+        });
+      }
+
+      if (rules["trim"]) {
+        newText.trim();
+      }
     }
 
-    if (rules["trim"]) {
-      newText.trim();
-    }
-
-    return newText
-      .split("[")[0]
-      .split("(")[0]
-      .split("\n")[0]
-      .trim();
+    return newText;
   },
 
   splitColumn: (html, $) => {

@@ -7,6 +7,7 @@ import { collegialesVaflParser } from "./parse/other/vafl-collegiales";
 import { cluniacDarmcParser } from "./parse/darmc/cluniac";
 import { dominicanDarmcParser } from "./parse/darmc/dominican";
 import { franciscanDarmcParser } from "./parse/darmc/franciscan";
+import { cisterciennesDarmcParser } from "./parse/darmc/cisterciennes";
 import { praemonstratensiansDarmcParser } from "./parse/darmc/praemonstratensians";
 
 /*
@@ -51,22 +52,22 @@ var sources: Array<{
   },
   {
     parse: true,
+    parser: cisterciennesDarmcParser,
+    meta: {
+      id: "darmc-cisterciennes",
+      type: "darmc",
+      order: "cisterciennes",
+      url: darmcUrl(44)
+    }
+  },
+  {
+    parse: true,
     parser: dominicanDarmcParser,
     meta: {
       id: "darmc-dominican",
       type: "darmc",
       order: "dominican",
       url: darmcUrl(48)
-    }
-  },
-  {
-    parse: true,
-    parser: franciscanDarmcParser,
-    meta: {
-      id: "darmc-franciscan",
-      type: "darmc",
-      order: "franciscan",
-      url: darmcUrl(49)
     }
   },
   {
