@@ -27,7 +27,7 @@ csv()
     store.truncate();
 
     const parse = (source, next) => {
-      console.log("going to parse", source);
+      console.log("going to parse", source.id);
       const parser = new source.parser(store, source.meta, () => {
         console.log(source.meta.id, "finished");
       });

@@ -7,7 +7,6 @@ import { Parser } from "./../parser";
 export class DarmcParser extends Parser {
   initialiseRecords(next) {
     request(this.meta.url, (err, resp, html) => {
-      console.log("initial", html);
       if (!err) {
         const json = JSON.parse(html);
         json.features.map(feat => this.addMonastery(feat.attributes));
@@ -17,26 +16,31 @@ export class DarmcParser extends Parser {
   }
 
   parseMonastery(monastery, next) {
-    monastery.setName(monastery.html.NAME);
-    const timeText = monastery.html.Founded;
+    const html = monastery.html;
+    monastery.setName(html.NAME);
+    const timeText = html.Founded;
 
     const time = {
       from: { post: timeText.split("-")[0] },
       to: { post: timeText.split("-")[1] }
     };
 
-    monastery.addType(
-      {
-        name: monastery.html.Type
-      },
-      time
-    );
+    if (html.Type) {
+      monastery.addType(
+        {
+          name: html.Type
+        },
+        time
+      );
+    }
 
-    monastery.setParam("note", monastery.html.DESCR);
+    if (html.DESCR) {
+      monastery.setParam("note", html.DESCR);
+    }
 
     monastery.setGeo({
-      lat: monastery.html.Lat,
-      lng: monastery.html.Long
+      lat: html.Lat,
+      lng: html.Long
     });
 
     monastery.addEmptyOrder();

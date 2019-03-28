@@ -50,13 +50,13 @@ var sources: Array<{
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: dominicanDarmcParser,
     meta: {
       id: "darmc-dominican",
       type: "darmc",
       order: "dominican",
-      url: darmcUrl + "88"
+      url: darmcUrl(48)
     }
   },
   {

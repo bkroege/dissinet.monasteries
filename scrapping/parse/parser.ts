@@ -22,7 +22,6 @@ export class Parser {
   }
 
   parse(resolve) {
-    console.log("parsing");
     this.resolve = resolve;
 
     this.initialiseRecords(() => {
@@ -63,7 +62,6 @@ export class Parser {
   track(): void {
     setTimeout(() => {
       if (this.checkFinished()) {
-        console.log(this.meta.id, "finished");
         this.resolve();
       } else {
         this.report();
