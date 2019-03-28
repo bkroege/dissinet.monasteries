@@ -62,10 +62,16 @@ export class GeoI {
   lat;
   lng;
   note?;
-  constructor(values: { lat?; lng?; note? }) {
+  precision;
+  constructor(values: { lat?; lng?; note?; precision? }) {
     this.lat = values.lat ? Base.cleanCoordinates(values.lat) : false;
     this.lng = values.lng ? Base.cleanCoordinates(values.lng) : false;
-    this.note = values.note;
+
+    this.note = Base.cleanText(values.note);
+    this.precision =
+      values.precision && [1, 2, 3, 4].includes(values.precision)
+        ? values.precision
+        : 1;
   }
 }
 
@@ -123,7 +129,7 @@ export class Monastery {
     this.data.source = source;
   }
 
-  setGeo(values: { lat; lng; note? }): void {
+  setGeo(values: { lat; lng; note?; precision? }): void {
     this.data.geo = new GeoI(values);
   }
 
