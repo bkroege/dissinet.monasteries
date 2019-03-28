@@ -2,12 +2,17 @@ import { DarmcParser } from "./parser";
 
 export class praemonstratensiansDarmcParser extends DarmcParser {
   parseMonastery(monastery, next) {
+    const html = monastery.html;
     monastery.setName(monastery.html.NAME);
-    monastery.setType(monastery.html.Type);
-    monastery.setParam("establishment", monastery.html.FOUNDED);
-    monastery.setParam("closing", monastery.html.END);
 
-    monastery.setCoordinates({
+    const time = {
+      from: { post: html.FOUNDED, ante: html.BEGIN_ },
+      to: { ante: html.END_ }
+    };
+
+    monastery.setParam("note", monastery.html.DESCR);
+
+    monastery.setGeo({
       lat: monastery.html.DEC_LAT,
       lng: monastery.html.DEC_LONG
     });

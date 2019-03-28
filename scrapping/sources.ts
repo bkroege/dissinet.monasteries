@@ -17,14 +17,13 @@ var darmcUrl = id => {
   return (
     "https://services1.arcgis.com/qN3V93cYGMKQCOxL/arcgis/rest/services/DARMC_Medieval_World/FeatureServer/" +
     id +
-    "/query?f=json&where=1%3D1&spatialRel=esriSpatialRelIntersects&outFields=*" +
-    "&outSR=4326" +
-    "&resultOffset=0" +
-    "&resultRecordCount=8000" +
-    "&resultType=tile" +
-    "&quantizationParameters=%7B%22mode%22%3A%22view%22%2C%22originPosition%22%3A%22upperLeft%22%2C%22tolerance%22%3A100%2C%22extent%22%3A%7B%22xmin%22%3A-954403%2C%22ymin%22%3A4617649%2C%22xmax%22%3A1389523%2C%22ymax%22%3A6973700%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%2C%22latestWkid%22%3A4326%7D%7D%7D"
+    "/query?f=json&where=1%3D1&outFields=*&outSR=4326&resultOffset=0&resultRecordCount=100000" +
+    '&resultType=tile&quantizationParameters=%7B"mode"%3A"view"%2C"' +
+    'originPosition"%3A"upperLeft"%2C"tolerance"%3A100%2C"extent"%3A%7B"xmin"%3A-1000000%2C"ymin"%3A4000000%2C"xmax"%3A1000000%2C"ymax"%3A7900000%2C"' +
+    'spatialReference"%3A%7B"wkid"%3A4326%2C"latestWkid"%3A4326%7D%7D%7D'
   );
 };
+console.log(darmcUrl(46));
 var sources: Array<{
   parse: boolean;
   parser: any;
@@ -39,8 +38,18 @@ var sources: Array<{
       order: "cluniac",
       url: darmcUrl("45")
     }
-  }
-  /* {
+  },
+  {
+    parse: true,
+    parser: praemonstratensiansDarmcParser,
+    meta: {
+      id: "darmc-praemonstratensians",
+      type: "darmc",
+      order: "praemonstratensians",
+      url: darmcUrl(46)
+    }
+  },
+  {
     parse: false,
     parser: dominicanDarmcParser,
     meta: {
@@ -62,16 +71,6 @@ var sources: Array<{
   },
   {
     parse: false,
-    parser: praemonstratensiansDarmcParser,
-    meta: {
-      id: "darmc-praemonstratensians",
-      type: "darmc",
-      order: "praemonstratensians",
-      url: darmcUrl + "90"
-    }
-  },
-  {
-    parse: false,
     parser: collegialesVaflParser,
     meta: {
       id: "vafl-benedictines",
@@ -83,7 +82,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: benedictinesWikiFrParser,
     meta: {
       id: "wiki-fr-benedictines",
@@ -95,7 +94,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: praemonstratensiansWikiFrParser,
     meta: {
       id: "wiki-fr-praemonstratensians",
@@ -107,7 +106,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: cisteciennesWikiFrParser,
     meta: {
       id: "wiki-fr-cisterciennes",
@@ -118,7 +117,6 @@ var sources: Array<{
         "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_cisterciennes_de_France"
     }
   }
-  */
 ];
 
 export default sources;
