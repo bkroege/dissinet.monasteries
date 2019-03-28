@@ -23,7 +23,7 @@ time: <Time>
 }
 
 Order = {
-name: <orderId>,
+id: <orderId>,
 gender: <gender>,
 note: <text>,
 time: <Time>

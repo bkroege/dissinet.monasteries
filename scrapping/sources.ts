@@ -13,9 +13,18 @@ import { praemonstratensiansDarmcParser } from "./parse/darmc/praemonstratensian
  list of sources to parse
 */
 
-var darmcUrl =
-  "http://ags.cga.harvard.edu/arcgis/rest/services/darmc/roman/MapServer/identify?f=json&geometry=%7B%22x%22%3A10%2C%22y%22%3A40%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%2C%22&tolerance=100000&returnGeometry=true&mapExtent=%7B%22xmin%22%3A-40%2C%22ymin%22%3A-40%2C%22xmax%22%3A80%2C%22ymax%22%3A100%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%2C%22&imageDisplay=713%2C826%2C96&geometryType=esriGeometryPoint&sr=4326&layers=all%3A";
-
+var darmcUrl = id => {
+  return (
+    "https://services1.arcgis.com/qN3V93cYGMKQCOxL/arcgis/rest/services/DARMC_Medieval_World/FeatureServer/" +
+    id +
+    "/query?f=json&where=1%3D1&spatialRel=esriSpatialRelIntersects&outFields=*" +
+    "&outSR=4326" +
+    "&resultOffset=0" +
+    "&resultRecordCount=8000" +
+    "&resultType=tile" +
+    "&quantizationParameters=%7B%22mode%22%3A%22view%22%2C%22originPosition%22%3A%22upperLeft%22%2C%22tolerance%22%3A100%2C%22extent%22%3A%7B%22xmin%22%3A-954403%2C%22ymin%22%3A4617649%2C%22xmax%22%3A1389523%2C%22ymax%22%3A6973700%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%2C%22latestWkid%22%3A4326%7D%7D%7D"
+  );
+};
 var sources: Array<{
   parse: boolean;
   parser: any;
@@ -28,11 +37,11 @@ var sources: Array<{
       id: "darmc-cluniac",
       type: "darmc",
       order: "cluniac",
-      url: darmcUrl + "87"
+      url: darmcUrl("45")
     }
-  },
-  {
-    parse: true,
+  }
+  /* {
+    parse: false,
     parser: dominicanDarmcParser,
     meta: {
       id: "darmc-dominican",
@@ -42,7 +51,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: franciscanDarmcParser,
     meta: {
       id: "darmc-franciscan",
@@ -52,7 +61,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: praemonstratensiansDarmcParser,
     meta: {
       id: "darmc-praemonstratensians",
@@ -109,6 +118,7 @@ var sources: Array<{
         "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_cisterciennes_de_France"
     }
   }
+  */
 ];
 
 export default sources;

@@ -16,12 +16,13 @@ export class Parser {
   next: Function = () => {};
 
   constructor(store, meta, next: Function) {
-    this.meta = meta;
     this.store = store;
+    this.meta = meta;
     this.next = next;
   }
 
   parse(resolve) {
+    console.log("parsing");
     this.resolve = resolve;
 
     this.initialiseRecords(() => {
@@ -44,7 +45,7 @@ export class Parser {
   }
 
   addMonastery(monasteryHtml) {
-    this.monasteries.push(new Monastery(monasteryHtml, this.meta));
+    this.monasteries.push(new Monastery(this.meta, monasteryHtml));
   }
 
   initialiseRecords(next) {

@@ -10,24 +10,31 @@ import sources from "./sources";
 
 import { Store } from "./store";
 
+// parsing order table
 csv()
   .fromFile("./data/orders.csv")
   .then(orders => {
-    var store = new Store(
-      orders.map(order => {
-        order.alternativeNames = order["alternative names"];
-        order.alternativeNames.push(order.label);
-        return order;
-      })
-    );
+    const orderData = orders.map(order => {
+      order.names = order["alternative names"].split(", ");
+      order.names.push(order.label);
+      order.names = order.names
+        .filter(n => n && n.length)
+        .map(n => n.toLowerCase(n));
+      return order;
+    });
+
+    var store = new Store(orderData);
     store.truncate();
 
     const parse = (source, next) => {
+      console.log("going to parse", source);
       const parser = new source.parser(store, source.meta, () => {
         console.log(source.meta.id, "finished");
       });
       parser.parse(next);
     };
+
+    console.log("sources", sources);
 
     async.eachLimit(sources.filter(s => s.parse), 1, parse, (e, r) => {
       store.saveToFile();

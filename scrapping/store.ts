@@ -17,6 +17,7 @@ export class Store {
   monasteries = [];
   monasteriesRaw = [];
   monasteriesValidated = [];
+
   private filePathRaw = outputPath + "monasteries_raw.json";
   private filePathValidated = outputPath + "monasteries_validated.json";
   private filePath = outputPath + "monasteries.json";
@@ -28,6 +29,7 @@ export class Store {
 
   constructor(orders) {
     this.orders = orders;
+
     // loading previously stored records
     var monasteriesRaw = fs.readFileSync(this.filePathRaw, "utf8") || "[]";
     this.monasteriesRaw = JSON.parse(monasteriesRaw);
@@ -45,6 +47,20 @@ export class Store {
     return this.monasteriesRaw.find(monastery => {
       return checkMonastery.name === monastery.name;
     });
+  }
+
+  /* orders */
+  orderById(id) {
+    return this.orders.find(o => o.id === id);
+  }
+
+  orderIdByName(name) {
+    const order = this.orderByName(name);
+    return order ? order.id : false;
+  }
+
+  orderByName(name) {
+    return this.orders.find(o => o.name === name);
   }
 
   add(monastery) {
@@ -99,7 +115,7 @@ export class Store {
       Object.keys(this.checks).map(checkKey => {
         console.log(checkKey, this.checks[checkKey](monastery));
       });
-*/
+      */
 
       return checkFns.every(fn => {
         return fn(monastery);
@@ -243,26 +259,6 @@ export class Store {
         monastery.coordinates.lng,
         monastery.coordinates.lat
       ]);
-      return monastery;
-    },
-    orderNames: monastery => {
-      monastery.orders.map(mOrder => {
-        const mOrderName = mOrder.name;
-        const officialNames = this.orders.map(o => o.name);
-        //console.log(officialNames);
-        if (!officialNames.includes(mOrderName)) {
-          //console.log("incorrect name", mOrderName);
-          let correctName = mOrderName;
-          this.orders.forEach(order => {
-            if (order.alternativeNames.includes(mOrderName)) {
-              // console.log("name changed", mOrderName, "->", order.name);
-              correctName = order.name;
-            }
-          });
-          mOrder.name = correctName;
-        }
-        return mOrder;
-      });
       return monastery;
     }
   };

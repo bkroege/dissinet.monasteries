@@ -1,31 +1,91 @@
 import Base from "../base";
 import { timingSafeEqual } from "crypto";
 
+export class TimeI {
+  from: { ante; post };
+  to: { ante; post };
+  note?;
+
+  constructor(values) {
+    const validateDate = (fromTo, antePost) => {
+      if (values[fromTo] && values[fromTo][antePost]) {
+        return parseInt(values[fromTo][antePost], 10);
+      } else {
+        return false;
+      }
+    };
+
+    this.from = {
+      ante: validateDate("from", "ante"),
+      post: validateDate("from", "post")
+    };
+    this.to = {
+      ante: validateDate("to", "ante"),
+      post: validateDate("to", "post")
+    };
+
+    if (values.note) {
+      this.note = values.note;
+    }
+  }
+}
+
+export class TypeI {
+  time: TimeI;
+  id;
+  note?;
+  constructor(values, timeValues) {
+    this.time = new TimeI(timeValues);
+    this.id = values.id;
+    if (this.note) {
+      this.note = values.note;
+    }
+  }
+}
+
+export class OrderI {
+  time: TimeI;
+  id;
+  note?;
+  gender;
+  constructor(values, timeValues) {
+    this.time = new TimeI(timeValues);
+    this.id = values.id;
+    if (this.note) {
+      this.note = values.note;
+    }
+    this.gender = values.gender ? values.gender : false;
+  }
+}
+
+export class GeoI {
+  lat;
+  lng;
+  note?;
+  constructor(values: { lat?; lng?; note? }) {
+    this.lat = values.lat ? Base.cleanCoordinates(values.lat) : false;
+    this.lng = values.lng ? Base.cleanCoordinates(values.lng) : false;
+    this.note = values.note;
+  }
+}
+
 export class Monastery {
-  data: any = {};
-  meta: any = {};
-
-  parsed = false;
+  data: any;
+  html;
+  meta: { id; type; order?; url? };
   saved = false;
-  html = "";
+  parsed = false;
 
-  constructor(html, meta) {
+  constructor(meta: { id; type; order?; url? }, html) {
     this.meta = meta;
     this.html = html;
     this.data = {
       id: Base.generateUuid(),
+      name: false,
       source: meta.id,
-      type: "",
-      name: "",
       link: false,
-      coordinates: {
-        lat: false,
-        lng: false
-      },
-      gender: {
-        value: false,
-        note: ""
-      },
+      types: [],
+      geo: new GeoI({}),
       orders: []
     };
   }
@@ -37,26 +97,31 @@ export class Monastery {
   setLink(link): void {
     this.data.link = link;
   }
-  setType(newType): void {
-    this.data.type = newType;
+
+  addType(values, timeValues): void {
+    const newType = new TypeI(values, timeValues);
+    this.data.types.push(newType);
+  }
+
+  addOrder(orderValues, timeValues): void {
+    if (!orderValues.id) {
+      orderValues.id = this.meta.order;
+    }
+    const newOrder = new OrderI(orderValues, timeValues);
+    this.data.orders.push(newOrder);
+  }
+
+  addEmptyOrder(): void {
+    const newEmptyOrder = new OrderI({ id: this.meta.order }, {});
+    this.data.orders.push(newEmptyOrder);
   }
 
   setSource(source): void {
     this.data.source = source;
   }
 
-  setGender(note, value): void {
-    this.data.gender = {
-      note: Base.cleanText(note, { trim: true, chars: ["\n", ":", "[", "("] }),
-      value: value
-    };
-  }
-
-  setCoordinates(values: { lat; lng }): void {
-    this.data.coordinates = {
-      lat: Base.cleanCoordinates(values.lat),
-      lng: Base.cleanCoordinates(values.lng)
-    };
+  setGeo(values: { lat; lng; note? }): void {
+    this.data.geo = new GeoI(values);
   }
 
   setName(value): void {
@@ -64,49 +129,6 @@ export class Monastery {
       trim: true,
       chars: ["\n", ":", "[", "("]
     });
-  }
-
-  addOrder(newOrder): void {
-    if (!newOrder.name && this.meta.order) {
-      newOrder.name = this.meta.order;
-    } else {
-      newOrder.name = Base.cleanText(newOrder.name, {
-        truncate: true,
-        chars: ["["]
-      });
-    }
-    this.data.orders.push(newOrder);
-  }
-
-  parseAndAddOrder(newOrder): void {
-    const parsedFrom = parseInt(newOrder.from) || false;
-    const parsedTo = parseInt(newOrder.to) || false;
-
-    this.addOrder({
-      from: parsedFrom,
-      to: parsedTo,
-      fromNote:
-        newOrder.from == parsedFrom
-          ? ""
-          : Base.cleanText(newOrder.from, { trim: false }),
-      toNote:
-        newOrder.to == parsedTo
-          ? ""
-          : Base.cleanText(newOrder.to, { trim: false }),
-      note: newOrder.note
-    });
-  }
-
-  addEmptyOrder(note = ""): void {
-    const emptyOrder = {
-      name: this.meta.order,
-      from: false,
-      to: false,
-      fromNote: "",
-      toNote: "",
-      note: note
-    };
-    this.addOrder(emptyOrder);
   }
 
   finishParsing(): void {

@@ -7,21 +7,34 @@ import { Parser } from "./../parser";
 export class DarmcParser extends Parser {
   initialiseRecords(next) {
     request(this.meta.url, (err, resp, html) => {
+      console.log("initial", html);
       if (!err) {
         const json = JSON.parse(html);
-        json.results.map(feat => this.addMonastery(feat.attributes));
+        json.features.map(feat => this.addMonastery(feat.attributes));
       }
       next();
     });
   }
 
   parseMonastery(monastery, next) {
-    monastery.setName(monastery.html.Name);
-    monastery.setType(monastery.html.Type);
-    monastery.setParam("establishment", monastery.html.Founded);
-    monastery.setParam("note", monastery.html.Notes);
+    monastery.setName(monastery.html.NAME);
+    const timeText = monastery.html.Founded;
 
-    monastery.setCoordinates({
+    const time = {
+      from: { post: timeText.split("-")[0] },
+      to: { post: timeText.split("-")[1] }
+    };
+
+    monastery.addType(
+      {
+        name: monastery.html.Type
+      },
+      time
+    );
+
+    monastery.setParam("note", monastery.html.DESCR);
+
+    monastery.setGeo({
       lat: monastery.html.Lat,
       lng: monastery.html.Long
     });
