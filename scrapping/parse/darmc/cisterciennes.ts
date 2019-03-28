@@ -3,10 +3,7 @@ import { DarmcParser } from "./parser";
 export class praemonstratensiansDarmcParser extends DarmcParser {
   parseMonastery(monastery, next) {
     const html = monastery.html;
-    monastery.addName(monastery.html.NAME);
-    if (monastery.html.ALTERN !== " ") {
-      monastery.addName(monastery.html.ALTERN, false);
-    }
+    monastery.addName(monastery.html.DISP_NAME);
 
     const time = {
       from: { post: html.FOUNDED, ante: html.BEGIN_ },

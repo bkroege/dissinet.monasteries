@@ -17,7 +17,7 @@ export class DarmcParser extends Parser {
 
   parseMonastery(monastery, next) {
     const html = monastery.html;
-    monastery.setName(html.NAME);
+    monastery.addName(html.NAME);
     const timeText = html.Founded;
 
     const time = timeText

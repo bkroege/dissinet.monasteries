@@ -81,7 +81,7 @@ export class Monastery {
     this.html = html;
     this.data = {
       id: Base.generateUuid(),
-      name: false,
+      names: [],
       source: meta.id,
       link: false,
       types: [],
@@ -124,10 +124,13 @@ export class Monastery {
     this.data.geo = new GeoI(values);
   }
 
-  setName(value): void {
-    this.data.name = Base.cleanText(value, {
-      trim: true,
-      chars: ["\n", ":", "[", "("]
+  addName(value, primary = true): void {
+    this.data.names.push({
+      value: Base.cleanText(value, {
+        trim: true,
+        chars: ["\n", ":", "[", "("]
+      }),
+      priority: primary
     });
   }
 

@@ -36,7 +36,7 @@ var sources: Array<{
       id: "darmc-cluniac",
       type: "darmc",
       order: "cluniac",
-      url: darmcUrl("45")
+      url: darmcUrl(45)
     }
   },
   {
@@ -57,6 +57,16 @@ var sources: Array<{
       type: "darmc",
       order: "dominican",
       url: darmcUrl(48)
+    }
+  },
+  {
+    parse: true,
+    parser: franciscanDarmcParser,
+    meta: {
+      id: "darmc-franciscan",
+      type: "darmc",
+      order: "franciscan",
+      url: darmcUrl(49)
     }
   },
   {
