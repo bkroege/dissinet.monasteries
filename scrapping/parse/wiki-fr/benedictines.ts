@@ -21,12 +21,15 @@ export class benedictinesWikiFrParser extends WikiFrParser {
   }
 
   parseMonastery(monastery, next) {
-    monastery.setType("abbey");
     const $ = cheerio.load(monastery.html);
     $("td").map((ci, column) => {
       if (ci === 0) {
         // name
-        monastery.setName($(column).text());
+        const names = Base.cleanText($(column).text()).split("ou ");
+
+        names.forEach((name, ni) => {
+          monastery.addName(name, ni === 0);
+        });
 
         // link
         const aEl = $(column).find("a");
@@ -61,36 +64,16 @@ export class benedictinesWikiFrParser extends WikiFrParser {
 
       // orders
       if (ci === 3) {
-        const dateText = Base.cleanText($(column).text(), {
-          chars: ["\n"],
-          trim: true
-        });
+        const dateText = Base.cleanText($(column).text());
 
         const occurences = dateText.split(", puis");
 
         occurences.map(occurence => {
-          const parts = occurence.split("-");
-
-          if (parts.length === 2) {
-            const parsedFrom = parseInt(parts[0]) || false;
-            const parsedTo = parseInt(parts[1]) || false;
-            monastery.addOrder({
-              name: "benedictines",
-              from: parsedFrom,
-              to: parsedTo,
-              fromNote:
-                parts[0] == parsedFrom
-                  ? ""
-                  : Base.cleanText(parts[0], { trim: false }),
-              toNote:
-                parts[1] == parsedTo
-                  ? ""
-                  : Base.cleanText(parts[1], { trim: false }),
-              note: ""
-            });
-          } else {
-            monastery.addEmptyOrder(occurence);
-          }
+          const time = Base.prepareTime(occurence);
+          console.log("");
+          console.log(occurence, time);
+          monastery.addType("abbey", time);
+          monastery.addOrder({ gender: gender }, time);
         });
       }
     });
