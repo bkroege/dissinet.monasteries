@@ -6,12 +6,16 @@ import { Parser } from "./../parser";
 
 export class WikiFrParser extends Parser {
   inspectWikiPage(monastery, next) {
+    next();
+
+    // todo
+    /*
     if (monastery.data.link) {
       const infoLabels = {
         "Début de la construction": "construction",
-        "Fondation": "establishment",
+        Fondation: "establishment",
         "Fin des travaux": "closing",
-        "Fermeture": "closing"
+        Fermeture: "closing"
       };
       request(monastery.data.link, (err, resp, ahtml) => {
         //console.log(resp);
@@ -58,5 +62,6 @@ export class WikiFrParser extends Parser {
     } else {
       next();
     }
+    */
   }
 }

@@ -31,7 +31,7 @@ var sources: Array<{
   meta: { id: string; type: string; url: string; order?; rootUrl? };
 }> = [
   {
-    parse: true,
+    parse: false,
     parser: cluniacDarmcParser,
     meta: {
       id: "darmc-cluniac",
@@ -41,7 +41,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: praemonstratensiansDarmcParser,
     meta: {
       id: "darmc-praemonstratensians",
@@ -51,7 +51,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: cisterciennesDarmcParser,
     meta: {
       id: "darmc-cisterciennes",
@@ -61,7 +61,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: dominicanDarmcParser,
     meta: {
       id: "darmc-dominican",
@@ -71,7 +71,7 @@ var sources: Array<{
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: benedictinesWikiFrParser,
     meta: {
       id: "wiki-fr-benedictines",

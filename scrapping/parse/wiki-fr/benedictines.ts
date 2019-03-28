@@ -70,8 +70,6 @@ export class benedictinesWikiFrParser extends WikiFrParser {
 
         occurences.map(occurence => {
           const time = Base.prepareTime(occurence);
-          console.log("");
-          console.log(occurence, time);
           monastery.addType("abbey", time);
           monastery.addOrder({ gender: gender }, time);
         });
