@@ -60,13 +60,13 @@ var sources: Array<{
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: franciscanDarmcParser,
     meta: {
       id: "darmc-franciscan",
       type: "darmc",
       order: "franciscan",
-      url: darmcUrl + "89"
+      url: darmcUrl(49)
     }
   },
   {

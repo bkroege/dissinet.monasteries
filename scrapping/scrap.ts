@@ -27,14 +27,12 @@ csv()
     store.truncate();
 
     const parse = (source, next) => {
-      console.log("going to parse", source.id);
+      console.log("going to parse", source.meta.id);
       const parser = new source.parser(store, source.meta, () => {
         console.log(source.meta.id, "finished");
       });
       parser.parse(next);
     };
-
-    console.log("sources", sources);
 
     async.eachLimit(sources.filter(s => s.parse), 1, parse, (e, r) => {
       store.saveToFile();

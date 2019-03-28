@@ -20,10 +20,12 @@ export class DarmcParser extends Parser {
     monastery.setName(html.NAME);
     const timeText = html.Founded;
 
-    const time = {
-      from: { post: timeText.split("-")[0] },
-      to: { post: timeText.split("-")[1] }
-    };
+    const time = timeText
+      ? {
+          from: { post: timeText.split("-")[0] },
+          to: { post: timeText.split("-")[1] }
+        }
+      : {};
 
     if (html.Type) {
       monastery.addType(
