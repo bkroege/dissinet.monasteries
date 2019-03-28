@@ -46,24 +46,38 @@ var Base: any = {
     });
   },
 
-  prepareDate: value => {
-    const date = {
+  prepareDate: rawValue => {
+    const date: { from: { post; ante }; to: { post; ante }; note? } = {
       from: { post: false, ante: false },
       to: { post: false, ante: false }
     };
+    const value = Base.cleanText(rawValue, {
+      chars: ["\n"],
+      trim: true
+    });
     if (value.indexOf("-")) {
-      date.from = this.timeTranslate(value.split("-")[0]);
-      date.to = this.timeTranslate(value.split("-")[1]);
+      const translatedFrom = this.timeTranslate(value.split("-")[0]);
+      const translatedTo = this.timeTranslate(value.split("-")[1]);
+
+      date.from = { post: translatedFrom.post, ante: translatedFrom.ante };
+      date.to = { post: translatedTo.post, ante: translatedTo.ante };
+
+      if (translatedFrom.note || translatedFrom.note) {
+        date.note = translatedFrom.note + "-" + translatedTo.note;
+      }
     } else {
       const translated = this.timeTranslate(value);
       date.from.post = translated.post;
       date.to.ante = translated.ante;
+      if (translated.note) {
+        date.note = translated.note;
+      }
     }
 
     return date;
   },
 
-  timeTranslate: (v): { ante; post } => {
+  timeTranslate: (v): { ante; post; note? } => {
     if (v && parseInt(v.trim(), 10) == v.trim()) {
       return { post: v, ante: v };
     }
@@ -90,7 +104,7 @@ var Base: any = {
       }
     });
 
-    return { post: false, ante: false };
+    return { post: false, ante: false, note: v };
   }
 };
 
