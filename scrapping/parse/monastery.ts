@@ -50,7 +50,7 @@ export class OrderI {
   gender;
   constructor(values, timeValues) {
     this.time = new TimeI(timeValues);
-    this.id = values.id;
+    this.id = values.id.toLowerCase();
     if (this.note) {
       this.note = values.note;
     }

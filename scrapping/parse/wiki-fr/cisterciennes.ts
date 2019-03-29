@@ -17,7 +17,6 @@ export class cisteciennesWikiFrParser extends WikiFrParser {
     });
   }
   parseMonastery(monastery, next) {
-    monastery.setType("abbey");
     const $ = cheerio.load(monastery.html);
 
     // gender
@@ -30,13 +29,16 @@ export class cisteciennesWikiFrParser extends WikiFrParser {
         gender = "m";
       }
     }
-    monastery.setGender("", gender);
 
     const columns = $("td");
     columns.map((ci, column) => {
       // name and link
       if (ci === 1) {
-        monastery.setName($(column).text());
+        const names = Base.cleanText($(column).text()).split("ou ");
+
+        names.forEach((name, ni) => {
+          monastery.addName(name, ni === 0);
+        });
 
         // link
         if (
@@ -52,7 +54,7 @@ export class cisteciennesWikiFrParser extends WikiFrParser {
           );
         }
       } else if (ci === 2) {
-        monastery.setCoordinates({
+        monastery.setGeo({
           lng: $(column)
             .find("a")
             .data("lon"),
@@ -82,23 +84,13 @@ export class cisteciennesWikiFrParser extends WikiFrParser {
       }
 
       orderNames.map((orderName, oi) => {
-        const partFrom = Base.cleanText(yearsFrom[oi], { trim: true });
-        const partTo = Base.cleanText(yearsTo[oi], { trim: true });
-
-        const fromClean = parseInt(partFrom) == partFrom;
-        const toClean = parseInt(partTo) == partTo;
-
-        monastery.addOrder({
-          name: orderName.toLowerCase(),
-          from: fromClean ? parseInt(partFrom) : false,
-          to: toClean ? parseInt(partTo) : false,
-          fromNote: fromClean ? "" : partFrom,
-          toNote: toClean ? "" : partTo,
-          note: ""
-        });
+        const time = Base.prepareTime(yearsFrom[oi] + "-" + yearsTo[oi]);
+        monastery.addOrder({ id: orderName, gender: gender }, time);
+        monastery.addType("abbey", time);
       });
     } else {
       monastery.addEmptyOrder("");
+      monastery.addType("abbey", {});
     }
 
     this.inspectWikiPage(monastery, () => {

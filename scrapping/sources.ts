@@ -71,7 +71,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: benedictinesWikiFrParser,
     meta: {
       id: "wiki-fr-benedictines",
@@ -80,6 +80,18 @@ var sources: Array<{
       rootUrl: "https://fr.wikipedia.org",
       url:
         "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_b%C3%A9n%C3%A9dictines_de_France"
+    }
+  },
+  {
+    parse: true,
+    parser: cisteciennesWikiFrParser,
+    meta: {
+      id: "wiki-fr-cisterciennes",
+      type: "wiki",
+      order: "cisterciennes",
+      rootUrl: "https://fr.wikipedia.org",
+      url:
+        "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_cisterciennes_de_France"
     }
   },
   {
@@ -92,18 +104,6 @@ var sources: Array<{
       rootUrl: "https://fr.wikipedia.org",
       url:
         "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_pr%C3%A9montr%C3%A9es_de_France"
-    }
-  },
-  {
-    parse: false,
-    parser: cisteciennesWikiFrParser,
-    meta: {
-      id: "wiki-fr-cisterciennes",
-      type: "wiki",
-      order: "cisterciennes",
-      rootUrl: "https://fr.wikipedia.org",
-      url:
-        "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_cisterciennes_de_France"
     }
   },
   {
