@@ -1,6 +1,7 @@
 import { benedictinesWikiFrParser } from "./parse/wiki-fr/benedictines";
 import { cisteciennesWikiFrParser } from "./parse/wiki-fr/cisterciennes";
 import { praemonstratensiansWikiFrParser } from "./parse/wiki-fr/praemonstratensians";
+import { templarsWikiFrParser } from "./parse/wiki-fr/templars";
 
 import { collegialesVaflParser } from "./parse/other/vafl-collegiales";
 
@@ -83,7 +84,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: cisteciennesWikiFrParser,
     meta: {
       id: "wiki-fr-cisterciennes",
@@ -92,6 +93,18 @@ var sources: Array<{
       rootUrl: "https://fr.wikipedia.org",
       url:
         "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_cisterciennes_de_France"
+    }
+  },
+  {
+    parse: true,
+    parser: templarsWikiFrParser,
+    meta: {
+      id: "wiki-fr-templars",
+      type: "wiki",
+      order: "templars",
+      rootUrl: "https://fr.wikipedia.org",
+      url:
+        "https://fr.wikipedia.org/wiki/Liste_des_commanderies_templi%C3%A8res"
     }
   },
   {

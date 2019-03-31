@@ -93,7 +93,7 @@ export class Monastery {
       source: meta.id,
       link: false,
       types: [],
-      geo: new GeoI({}),
+      geo: new GeoI({ precision: 4 }),
       orders: []
     };
   }

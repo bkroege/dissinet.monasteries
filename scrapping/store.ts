@@ -253,6 +253,7 @@ export class Store {
     });
   }
 
+  /* changing values of monastery entries */
   fixes = {
     makePoints: monastery => {
       monastery.point = turf.point([
@@ -260,9 +261,20 @@ export class Store {
         monastery.coordinates.lat
       ]);
       return monastery;
+    },
+    // check if the order id is valid and if the gender is right
+    checkOrderId: monastery => {
+      return monastery;
+    },
+    checkOrderGender: monastery => {
+      return monastery;
+    },
+    checkOrderDate: monastery => {
+      return monastery;
     }
   };
 
+  /* filtering valid monastery entries */
   checks = {
     validCoordinates: monastery => {
       const coords = monastery.coordinates;

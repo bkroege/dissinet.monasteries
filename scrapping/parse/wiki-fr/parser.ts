@@ -12,14 +12,17 @@ export class WikiFrParser extends Parser {
           const $ = cheerio.load(html);
 
           // lat lng
-          monastery.setGeo({
-            lng: $("#coordinates")
-              .find("a")
-              .data("lon"),
-            lat: $("#coordinates")
-              .find("a")
-              .data("lat")
-          });
+          monastery.setGeo(
+            {
+              lng: $("#coordinates")
+                .find("a")
+                .data("lon"),
+              lat: $("#coordinates")
+                .find("a")
+                .data("lat")
+            },
+            2
+          );
 
           next();
         } else {
