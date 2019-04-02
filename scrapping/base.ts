@@ -54,6 +54,7 @@ var Base: any = {
       from: { post: false, ante: false },
       to: { post: false, ante: false }
     };
+
     const value = Base.cleanText(rawValue);
 
     if (value) {
@@ -109,7 +110,7 @@ var Base: any = {
         "14. Jahrhundert": { post: 1301, ante: 1400 },
         "15. Jahrhundert": { post: 1401, ante: 1500 },
         "16. Jahrhundert": { post: 1501, ante: 1600 },
-        "17. Jahrhundert": { post: 1601, ante: 1700 },
+        "17. Jahrhundert": { post: 1601, ante: 1700 }
       };
 
       const key = Object.keys(dictionary).find(key => v.includes(key));
