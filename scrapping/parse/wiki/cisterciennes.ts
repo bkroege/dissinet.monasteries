@@ -84,7 +84,10 @@ export class cisteciennesWikiFrParser extends WikiParser {
       }
 
       orderNames.map((orderName, oi) => {
-        const time = Base.prepareTime(yearsFrom[oi] + "-" + yearsTo[oi]);
+        const time = Base.timeParse(
+          { from: yearsFrom[oi], to: yearsTo[oi] },
+          { lang: "fr" }
+        );
         monastery.addOrder({ id: orderName, gender: gender }, time);
         monastery.addType("abbey", time);
       });

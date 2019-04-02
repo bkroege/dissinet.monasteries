@@ -75,9 +75,9 @@ export class teutonsWikiDeParser extends WikiParser {
             monastery.setParam("image", "https:" + src);
           }
         }
-        const rawTime = fromTime + "-" + toTime;
-        const time = Base.prepareTime(rawTime);
-        console.log(rawTime, "->", time);
+        const timeInput = { from: fromTime, to: toTime };
+        const time = Base.timeParse(timeInput, { lang: "de" });
+        console.log(timeInput, "->", time);
         monastery.addOrder({}, time);
       }
     });
