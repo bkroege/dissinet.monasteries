@@ -4,7 +4,7 @@ import Base from "../../base";
 
 import { Parser } from "./../parser";
 
-export class WikiFrParser extends Parser {
+export class WikiParser extends Parser {
   getLocalityGeo(monastery, next) {
     if (monastery && monastery.data && monastery.data.localityLink) {
       request(monastery.data.localityLink, (err, resp, html) => {

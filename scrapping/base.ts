@@ -101,7 +101,15 @@ var Base: any = {
         Xe: { post: 901, ante: 1000 },
         XIe: { post: 1001, ante: 1100 },
         XIIe: { post: 1101, ante: 1200 },
-        XIIIe: { post: 1201, ante: 1300 }
+        XIIIe: { post: 1201, ante: 1300 },
+        "10. Jahrhundert": { post: 901, ante: 1000 },
+        "11. Jahrhundert": { post: 1001, ante: 1100 },
+        "12. Jahrhundert": { post: 1101, ante: 1200 },
+        "13. Jahrhundert": { post: 1201, ante: 1300 },
+        "14. Jahrhundert": { post: 1301, ante: 1400 },
+        "15. Jahrhundert": { post: 1401, ante: 1500 },
+        "16. Jahrhundert": { post: 1501, ante: 1600 },
+        "17. Jahrhundert": { post: 1601, ante: 1700 },
       };
 
       const key = Object.keys(dictionary).find(key => v.includes(key));

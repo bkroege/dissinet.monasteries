@@ -1,10 +1,10 @@
 var request = require("request");
 var cheerio = require("cheerio");
 var fs = require("fs");
-import { WikiFrParser } from "./parser";
+import { WikiParser } from "./parser";
 import Base from "../../base";
 
-export class templarsWikiFrParser extends WikiFrParser {
+export class templarsWikiFrParser extends WikiParser {
   initialiseRecords(next) {
     const parsingMethods = {
       name: (val, html) => {

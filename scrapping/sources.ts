@@ -1,7 +1,8 @@
-import { benedictinesWikiFrParser } from "./parse/wiki-fr/benedictines";
-import { cisteciennesWikiFrParser } from "./parse/wiki-fr/cisterciennes";
-import { praemonstratensiansWikiFrParser } from "./parse/wiki-fr/praemonstratensians";
-import { templarsWikiFrParser } from "./parse/wiki-fr/templars";
+import { benedictinesWikiFrParser } from "./parse/wiki/benedictines";
+import { cisteciennesWikiFrParser } from "./parse/wiki/cisterciennes";
+import { praemonstratensiansWikiFrParser } from "./parse/wiki/praemonstratensians";
+import { templarsWikiFrParser } from "./parse/wiki/templars";
+import { teutonsWikiDeParser } from "./parse/wiki/teutons";
 
 import { collegialesVaflParser } from "./parse/other/vafl-collegiales";
 
@@ -31,6 +32,7 @@ var sources: Array<{
   parser: any;
   meta: { id: string; type: string; url: string; order?; rootUrl? };
 }> = [
+  /* DARMC */
   {
     parse: false,
     parser: cluniacDarmcParser,
@@ -73,6 +75,18 @@ var sources: Array<{
   },
   {
     parse: false,
+    parser: franciscanDarmcParser,
+    meta: {
+      id: "darmc-franciscan",
+      type: "darmc",
+      order: "franciscan",
+      url: darmcUrl(49)
+    }
+  },
+
+  /* WIKIPEDIA */
+  {
+    parse: false,
     parser: benedictinesWikiFrParser,
     meta: {
       id: "wiki-fr-benedictines",
@@ -96,7 +110,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: templarsWikiFrParser,
     meta: {
       id: "wiki-fr-templars",
@@ -108,6 +122,22 @@ var sources: Array<{
     }
   },
   {
+    parse: true,
+    parser: teutonsWikiDeParser,
+    meta: {
+      id: "wiki-de-teutons",
+      type: "wiki",
+      order: "teutonic knights",
+      rootUrl: "https://de.wikipedia.org",
+      url:
+        "https://de.wikipedia.org/wiki/Liste_der_Kommenden_des_Deutschen_Ordens"
+    }
+  },
+
+
+
+  /* NOT FINISHED */
+  {
     parse: false,
     parser: praemonstratensiansWikiFrParser,
     meta: {
@@ -117,16 +147,6 @@ var sources: Array<{
       rootUrl: "https://fr.wikipedia.org",
       url:
         "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_pr%C3%A9montr%C3%A9es_de_France"
-    }
-  },
-  {
-    parse: true,
-    parser: franciscanDarmcParser,
-    meta: {
-      id: "darmc-franciscan",
-      type: "darmc",
-      order: "franciscan",
-      url: darmcUrl(49)
     }
   },
   {

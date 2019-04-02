@@ -1,10 +1,10 @@
 var request = require("request");
 var cheerio = require("cheerio");
 var fs = require("fs");
-import { WikiFrParser } from "./parser";
+import { WikiParser } from "./parser";
 import Base from "../../base";
 
-export class cisteciennesWikiFrParser extends WikiFrParser {
+export class cisteciennesWikiFrParser extends WikiParser {
   initialiseRecords(next) {
     request(this.meta.url, (err, resp, html) => {
       if (!err) {
