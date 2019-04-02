@@ -49,40 +49,69 @@ var Base: any = {
     });
   },
 
-  prepareTime: rawValue => {
-    const time: { from: { post; ante }; to: { post; ante }; note? } = {
-      from: { post: false, ante: false },
-      to: { post: false, ante: false }
+  // manage input time values and prepare time object
+  timeParse: (rawTime, opts = {}) => {
+    const time = {
+      from: { ante: false, post: false },
+      to: { ante: false, post: false },
+      notes: ""
     };
-
-    const value = Base.cleanText(rawValue);
-
-    if (value) {
-      if (value.indexOf("-")) {
-        const translatedFrom = Base.timeTranslate(value.split("-")[0]);
-        const translatedTo = Base.timeTranslate(value.split("-")[1]);
-
-        time.from = { post: translatedFrom.post, ante: translatedFrom.ante };
-        time.to = { post: translatedTo.post, ante: translatedTo.ante };
-
-        if (translatedFrom.note || translatedFrom.note) {
-          time.note = value;
-        }
-      } else {
-        const translated = Base.timeTranslate(value);
-        time.from.post = translated.post;
-        time.to.ante = translated.ante;
-
-        if (translated.note) {
-          time.note = value;
-        }
-      }
+    if (rawTime.all) {
+      const parsedPart = Base.timePartParse(rawTime.all, opts);
+      time.from.post = parsedPart.post;
+      time.to.ante = parsedPart.ante;
+      time.notes += "| all: " + rawTime.all;
     }
-
+    if (rawTime.from) {
+      const parsedPart = Base.timePartParse(rawTime.from, opts);
+      time.from.post = parsedPart.post;
+      time.from.ante = parsedPart.ante;
+      time.notes += "| from: " + rawTime.from;
+    }
+    if (rawTime.to) {
+      const parsedPart = Base.timePartParse(rawTime.to, opts);
+      time.to.post = parsedPart.post;
+      time.to.ante = parsedPart.ante;
+      time.notes += "| from: " + rawTime.to;
+    }
     return time;
   },
 
-  timeTranslate: (v): { ante; post; note? } => {
+  // parse one part of time value
+  timePartParse: (rawTime, opts = {}) => {
+    const timeValue = Base.cleanText(rawTime);
+
+    // check if rawTime is just one point or a duration span
+    const spanDelimiters = ["-", "–", " to "];
+    let delimiter: string | boolean = false;
+    spanDelimiters.forEach(d => {
+      if (timeValue.includes(d)) {
+        delimiter = d;
+      }
+    });
+
+    if (delimiter) {
+      // duration
+      const values = timeValue.split(delimiter);
+      const value1 = Base.timeValueTranslate(values[0], opts);
+      const value2 = Base.timeValueTranslate(values[1], opts);
+
+      return Base.timeValuesIntersect(value1, value2);
+    } else {
+      return Base.timeValueTranslate(timeValue, opts);
+    }
+  },
+
+  // takes two time objects and returns one intersected object
+  timeValuesIntersect(v1, v2) {
+    return {
+      post: v1.post,
+      ante: v2.ante
+    };
+  },
+
+  // translate time value into time object
+  timeValueTranslate: (v, opts = {}): { ante; post; note? } => {
     if (v) {
       if (parseInt(v.trim(), 10) == v.trim()) {
         return { post: parseInt(v.trim(), 10), ante: parseInt(v.trim(), 10) };
