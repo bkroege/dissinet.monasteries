@@ -3,6 +3,7 @@ import { cisteciennesWikiFrParser } from "./parse/wiki/cisterciennes";
 import { praemonstratensiansWikiFrParser } from "./parse/wiki/praemonstratensians";
 import { templarsWikiFrParser } from "./parse/wiki/templars";
 import { teutonsWikiDeParser } from "./parse/wiki/teutons";
+import { augustiniansWikiEnParser } from "./parse/wiki/en-augustinians";
 
 import { collegialesVaflParser } from "./parse/other/vafl-collegiales";
 
@@ -30,7 +31,14 @@ var darmcUrl = id => {
 var sources: Array<{
   parse: boolean;
   parser: any;
-  meta: { id: string; type: string; url: string; order?; rootUrl? };
+  meta: {
+    id: string;
+    type: string;
+    lang?: String;
+    url: string;
+    order?;
+    rootUrl?;
+  };
 }> = [
   /* DARMC */
   {
@@ -59,7 +67,7 @@ var sources: Array<{
     meta: {
       id: "darmc-cisterciennes",
       type: "darmc",
-      order: "cisterciennes",
+      order: "cistercians",
       url: darmcUrl(44)
     }
   },
@@ -86,6 +94,19 @@ var sources: Array<{
 
   /* WIKIPEDIA */
   {
+    parse: true,
+    parser: augustiniansWikiEnParser,
+    meta: {
+      id: "wiki-en-augustinians",
+      lang: "en",
+      type: "wiki",
+      order: "augustinians",
+      rootUrl: "https://en.wikipedia.org",
+      url:
+        "https://en.wikipedia.org/wiki/Category:Augustinian_monasteries_in_France"
+    }
+  },
+  {
     parse: false,
     parser: benedictinesWikiFrParser,
     meta: {
@@ -103,7 +124,7 @@ var sources: Array<{
     meta: {
       id: "wiki-fr-cisterciennes",
       type: "wiki",
-      order: "cisterciennes",
+      order: "cistercians",
       rootUrl: "https://fr.wikipedia.org",
       url:
         "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_cisterciennes_de_France"
@@ -122,7 +143,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: teutonsWikiDeParser,
     meta: {
       id: "wiki-de-teutons",
@@ -133,8 +154,6 @@ var sources: Array<{
         "https://de.wikipedia.org/wiki/Liste_der_Kommenden_des_Deutschen_Ordens"
     }
   },
-
-
 
   /* NOT FINISHED */
   {

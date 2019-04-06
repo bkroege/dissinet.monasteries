@@ -77,7 +77,6 @@ export class teutonsWikiDeParser extends WikiParser {
         }
         const timeInput = { from: fromTime, to: toTime };
         const time = Base.timeParse(timeInput, { lang: "de" });
-        console.log(timeInput, "->", time);
         monastery.addOrder({}, time);
       }
     });
