@@ -29,7 +29,7 @@ export class benedictinesWikiFrParser extends WikiParser {
         const names = Base.cleanText($(column).text()).split("ou ");
 
         names.forEach((name, ni) => {
-          monastery.addName(name, ni === 0);
+          monastery.addName(name, { primary: ni === 0 });
         });
 
         // link

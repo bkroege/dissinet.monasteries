@@ -37,7 +37,8 @@ export class teutonsWikiDeParser extends WikiParser {
             $(column)
               .text()
               .replace("Kommende", "")
-          )
+          ),
+          { primary: true }
         );
 
         // link

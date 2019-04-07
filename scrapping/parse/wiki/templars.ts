@@ -119,7 +119,7 @@ export class templarsWikiFrParser extends WikiParser {
     console.log(monastery);
     const html = monastery.html;
 
-    monastery.addName(html.name);
+    monastery.addName(html.name, { primary: true });
     if (html.locality) {
       monastery.setParam("localityLink", this.meta.rootUrl + html.locality);
     }

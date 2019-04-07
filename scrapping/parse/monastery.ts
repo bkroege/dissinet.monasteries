@@ -135,12 +135,14 @@ export class Monastery {
     this.data.geo = new GeoI(values);
   }
 
-  addName(value, primary = true): void {
+  addName(value, data = { primary: true, long: false, lang: "" }): void {
     const cleanedValue = Base.cleanText(value);
     if (cleanedValue) {
       this.data.names.push({
         value: cleanedValue,
-        priority: primary
+        priority: data.primary || true,
+        long: data.long || false,
+        lang: data.lang || false
       });
     }
   }

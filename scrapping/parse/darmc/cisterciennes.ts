@@ -5,9 +5,12 @@ export class cisterciennesDarmcParser extends DarmcParser {
     const html = monastery.html;
 
     monastery.addName(monastery.html.DISP_NAME);
-    monastery.addName(monastery.html.ALT_NAME, false);
-    monastery.addName(monastery.html.ALT_NAME_2, false);
-    monastery.addName(monastery.html.LATIN_NAME, false);
+    monastery.addName(monastery.html.ALT_NAME, { primary: false });
+    monastery.addName(monastery.html.ALT_NAME_2, { primary: false });
+    monastery.addName(monastery.html.LATIN_NAME, {
+      primary: false,
+      lang: "latin"
+    });
 
     const time = {
       from: { post: html.F_DATE },
