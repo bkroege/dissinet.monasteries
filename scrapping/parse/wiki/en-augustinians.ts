@@ -26,16 +26,11 @@ export class augustiniansWikiEnParser extends WikiParser {
         };
 
         const checkEnd = () => {
-          console.log(
-            "monastery processed",
-            recordsProcessed + "/" + noRecords
-          );
           if (recordsProcessed === noRecords) {
             next();
           }
         };
 
-        console.log($(linkSelector).length);
         $(linkSelector).map((ai, alink) => {
           const link = $(alink).attr("href");
           inspectMonastery(link, () => {
@@ -53,6 +48,9 @@ export class augustiniansWikiEnParser extends WikiParser {
     const geo = $("span.geo")
       .text()
       .split(";");
+
+    const time = {};
+
     monastery.setGeo(
       {
         lng: geo[0],
@@ -60,6 +58,9 @@ export class augustiniansWikiEnParser extends WikiParser {
       },
       1
     );
+
+    monastery.addEmptyOrder({});
+    monastery.addName($("#firstHeading").text(), { primary: true, lang: "en" });
 
     monastery.finishParsing();
     monastery.save(this.store);

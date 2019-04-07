@@ -9,7 +9,7 @@ export class cisterciennesDarmcParser extends DarmcParser {
     monastery.addName(monastery.html.ALT_NAME_2, { primary: false });
     monastery.addName(monastery.html.LATIN_NAME, {
       primary: false,
-      lang: "latin"
+      lang: "la"
     });
 
     const time = {
