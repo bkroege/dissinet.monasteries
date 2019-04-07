@@ -7,6 +7,7 @@ import { augustiniansWikiEnParser } from "./parse/wiki/en-augustinians";
 
 import { collegialesVaflParser } from "./parse/other/vafl-collegiales";
 
+import { earlyFoundationsDarmcParser } from "./parse/darmc/earlyfoundations";
 import { cluniacDarmcParser } from "./parse/darmc/cluniac";
 import { dominicanDarmcParser } from "./parse/darmc/dominican";
 import { franciscanDarmcParser } from "./parse/darmc/franciscan";
@@ -42,6 +43,26 @@ var sources: Array<{
 }> = [
   /* DARMC */
   {
+    parse: true,
+    parser: earlyFoundationsDarmcParser,
+    meta: {
+      id: "darmc-early",
+      type: "darmc",
+      order: false,
+      url: darmcUrl(44)
+    }
+  },
+  {
+    parse: false,
+    parser: cisterciennesDarmcParser,
+    meta: {
+      id: "darmc-cisterciennes",
+      type: "darmc",
+      order: "cistercians",
+      url: darmcUrl(44)
+    }
+  },
+  {
     parse: false,
     parser: cluniacDarmcParser,
     meta: {
@@ -59,16 +80,6 @@ var sources: Array<{
       type: "darmc",
       order: "praemonstratensians",
       url: darmcUrl(46)
-    }
-  },
-  {
-    parse: false,
-    parser: cisterciennesDarmcParser,
-    meta: {
-      id: "darmc-cisterciennes",
-      type: "darmc",
-      order: "cistercians",
-      url: darmcUrl(44)
     }
   },
   {
@@ -94,7 +105,7 @@ var sources: Array<{
 
   /* WIKIPEDIA */
   {
-    parse: true,
+    parse: false,
     parser: augustiniansWikiEnParser,
     meta: {
       id: "wiki-en-augustinians",
