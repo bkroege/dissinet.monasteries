@@ -3,7 +3,6 @@ var cheerio = require("cheerio");
 import { Parser } from "./../parser";
 
 var GoogleSpreadsheet = require("google-spreadsheet");
-var async = require("async");
 
 export class SpreadsheetParser extends Parser {
   initialiseRecords(next) {

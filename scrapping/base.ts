@@ -1,4 +1,6 @@
-var Base: any = {
+var GoogleSpreadsheet = require("google-spreadsheet");
+
+var BASE = {
   generateUuid: (): string => {
     const now = new Date();
     return (
@@ -16,6 +18,23 @@ var Base: any = {
 
   cleanCoordinates: coord => {
     return parseFloat(parseFloat(coord).toFixed(4));
+  },
+
+  readSpreadsheet: (key, next) => {
+    var doc = new GoogleSpreadsheet(key);
+
+    doc.getInfo((e, info) => {
+      if (e) {
+        next([]);
+      }
+      const worksheet = info.worksheets[0];
+      worksheet.getRows((e, rows) => {
+        if (e) {
+          next([]);
+        }
+        next(rows);
+      });
+    });
   },
 
   cleanText: (
@@ -69,19 +88,19 @@ var Base: any = {
       notes: ""
     };
     if (rawTime.all) {
-      const parsedPart = Base.timePartParse(rawTime.all, opts);
+      const parsedPart = BASE.timePartParse(rawTime.all, opts);
       time.from.post = parsedPart.post;
       time.to.ante = parsedPart.ante;
       time.notes += "| all: " + rawTime.all;
     }
     if (rawTime.from) {
-      const parsedPart = Base.timePartParse(rawTime.from, opts);
+      const parsedPart = BASE.timePartParse(rawTime.from, opts);
       time.from.post = parsedPart.post;
       time.from.ante = parsedPart.ante;
       time.notes += "| from: " + rawTime.from;
     }
     if (rawTime.to) {
-      const parsedPart = Base.timePartParse(rawTime.to, opts);
+      const parsedPart = BASE.timePartParse(rawTime.to, opts);
       time.to.post = parsedPart.post;
       time.to.ante = parsedPart.ante;
       time.notes += "| from: " + rawTime.to;
@@ -91,7 +110,7 @@ var Base: any = {
 
   // parse one part of time value
   timePartParse: (rawTime, opts = {}) => {
-    const timeValue = Base.cleanText(rawTime);
+    const timeValue = BASE.cleanText(rawTime);
 
     // check if rawTime is just one point or a duration span
     const spanDelimiters = ["-", "–", " to ", "&#x"];
@@ -105,12 +124,12 @@ var Base: any = {
     if (delimiter) {
       // duration
       const values = timeValue.split(delimiter);
-      const value1 = Base.timeValueTranslate(values[0], opts);
-      const value2 = Base.timeValueTranslate(values[1], opts);
+      const value1 = BASE.timeValueTranslate(values[0], opts);
+      const value2 = BASE.timeValueTranslate(values[1], opts);
 
-      return Base.timeValuesIntersect(value1, value2);
+      return BASE.timeValuesIntersect(value1, value2);
     } else {
-      return Base.timeValueTranslate(timeValue, opts);
+      return BASE.timeValueTranslate(timeValue, opts);
     }
   },
 
@@ -164,4 +183,4 @@ var Base: any = {
   }
 };
 
-export default Base;
+export default BASE;
