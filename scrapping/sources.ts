@@ -49,7 +49,7 @@ var sources: Array<{
     meta: {
       id: "darmc-early",
       type: "darmc",
-      status: false;
+      status: false,
       order: false,
       url: darmcUrl(42)
     }
@@ -60,7 +60,7 @@ var sources: Array<{
     meta: {
       id: "darmc-cisterciennes",
       type: "darmc",
-      status: false;
+      status: false,
       order: "cistercians",
       url: darmcUrl(44)
     }
@@ -71,7 +71,7 @@ var sources: Array<{
     meta: {
       id: "darmc-cluniac",
       type: "darmc",
-      status: false;
+      status: false,
       order: "cluniac",
       url: darmcUrl(45)
     }
@@ -82,7 +82,7 @@ var sources: Array<{
     meta: {
       id: "darmc-praemonstratensians",
       type: "darmc",
-      status: false;
+      status: false,
       order: "praemonstratensians",
       url: darmcUrl(46)
     }
@@ -93,7 +93,7 @@ var sources: Array<{
     meta: {
       id: "darmc-dominican",
       type: "darmc",
-      status: false;
+      status: false,
       order: "dominican",
       url: darmcUrl(48)
     }
@@ -104,7 +104,7 @@ var sources: Array<{
     meta: {
       id: "darmc-franciscan",
       type: "darmc",
-      status: false;
+      status: false,
       order: "franciscan",
       url: darmcUrl(49)
     }
@@ -118,7 +118,7 @@ var sources: Array<{
       id: "wiki-en-augustinians",
       lang: "en",
       type: "wiki",
-      status: false;
+      status: false,
       order: "augustinians",
       rootUrl: "https://en.wikipedia.org",
       url:
@@ -132,7 +132,7 @@ var sources: Array<{
       id: "wiki-fr-benedictines",
       type: "wiki",
       order: "benedictines",
-      status: false;
+      status: false,
       rootUrl: "https://fr.wikipedia.org",
       url:
         "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_b%C3%A9n%C3%A9dictines_de_France"
@@ -145,7 +145,7 @@ var sources: Array<{
       id: "wiki-fr-cisterciennes",
       type: "wiki",
       order: "cistercians",
-      status: false;
+      status: false,
       rootUrl: "https://fr.wikipedia.org",
       url:
         "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_cisterciennes_de_France"
@@ -158,7 +158,7 @@ var sources: Array<{
       id: "wiki-fr-templars",
       type: "wiki",
       order: "templars",
-      status: false;
+      status: false,
       rootUrl: "https://fr.wikipedia.org",
       url:
         "https://fr.wikipedia.org/wiki/Liste_des_commanderies_templi%C3%A8res"
@@ -171,7 +171,7 @@ var sources: Array<{
       id: "wiki-de-teutons",
       type: "wiki",
       order: "teutonic knights",
-      status: false;
+      status: false,
       rootUrl: "https://de.wikipedia.org",
       url:
         "https://de.wikipedia.org/wiki/Liste_der_Kommenden_des_Deutschen_Ordens"
@@ -186,7 +186,7 @@ var sources: Array<{
       id: "wiki-fr-praemonstratensians",
       type: "wiki",
       order: "praemonstratensians",
-      status: false;
+      status: false,
       rootUrl: "https://fr.wikipedia.org",
       url:
         "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_pr%C3%A9montr%C3%A9es_de_France"
@@ -199,7 +199,7 @@ var sources: Array<{
       id: "vafl-benedictines",
       type: "web",
       order: "collegiales",
-      status: false;
+      status: false,
       rootUrl: "http://vafl-s-applirecherche.unilim.fr/collegiales/?i=fiche&j=",
       url:
         "http://vafl-s-applirecherche.unilim.fr/collegiales/cartes/current.geojson.php?type=gen"

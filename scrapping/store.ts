@@ -42,13 +42,6 @@ export class Store {
     this.monasteries = JSON.parse(monasteriesFixed);
   }
 
-  // if already stored, returns that monastery, otherwise returns false
-  alreadyStored(checkMonastery) {
-    return this.monasteriesRaw.find(monastery => {
-      return checkMonastery.name === monastery.name;
-    });
-  }
-
   /* orders */
   orderById(id) {
     return this.orders.find(o => o.id === id);
@@ -149,6 +142,7 @@ export class Store {
     );
   }
 
+  // todo
   findDuplicates() {
     const fixed = [];
     const monasteriesToProccess = JSON.parse(
@@ -256,10 +250,9 @@ export class Store {
   /* changing values of monastery entries */
   fixes = {
     makePoints: monastery => {
-      monastery.point = turf.point([
-        monastery.coordinates.lng,
-        monastery.coordinates.lat
-      ]);
+      if (monastery.geo && monastery.geo.lng && monastery.geo.lat) {
+        monastery.point = turf.point([monastery.geo.lng, monastery.geo.lat]);
+      }
       return monastery;
     },
     // check if the order id is valid and if the gender is right
@@ -277,25 +270,33 @@ export class Store {
   /* filtering valid monastery entries */
   checks = {
     validCoordinates: monastery => {
-      const coords = monastery.coordinates;
+      const geo = monastery.geo;
       return (
-        coords &&
-        coords.lng &&
-        coords.lat &&
-        Base.isNumeric(coords.lng) &&
-        Base.isNumeric(coords.lat)
+        geo &&
+        geo.lng &&
+        geo.lat &&
+        Base.isNumeric(geo.lng) &&
+        Base.isNumeric(geo.lat)
       );
     },
-    atLeastOneOrder: monastery => {
-      return monastery.orders.length > 0;
-    },
-    extent: monastery => {
-      const point = turf.point([
-        monastery.coordinates.lng,
-        monastery.coordinates.lat
-      ]);
 
-      return turf.inside(point, extentPolygon);
+    extent: monastery => {
+      const geo = monastery.geo;
+      if (geo && geo.lng && geo.lat) {
+        const point = turf.point([geo.lng, geo.lat]);
+
+        return turf.inside(point, extentPolygon);
+      }
+      return false;
+    },
+
+    // todo
+    middleage: monastery => {
+      return true;
+    },
+    // todo
+    isLateAndWithNoOrder: monastery => {
+      return true;
     }
   };
 }

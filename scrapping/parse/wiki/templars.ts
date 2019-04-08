@@ -116,7 +116,6 @@ export class templarsWikiFrParser extends WikiParser {
   }
 
   parseMonastery(monastery, next) {
-    console.log(monastery);
     const html = monastery.html;
 
     monastery.addName(html.name, { primary: true });

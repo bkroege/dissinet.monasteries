@@ -8,7 +8,7 @@ export class TimeI {
 
   constructor(values) {
     const validateDate = (fromTo, antePost) => {
-      if (values[fromTo] && values[fromTo][antePost]) {
+      if (values && values[fromTo] && values[fromTo][antePost]) {
         return parseInt(values[fromTo][antePost], 10);
       } else {
         return false;
@@ -24,7 +24,7 @@ export class TimeI {
       post: validateDate("to", "post")
     };
 
-    if (values.note) {
+    if (values && values.note) {
       this.note = values.note;
     }
   }
@@ -50,7 +50,6 @@ export class OrderI {
   gender;
   constructor(values, timeValues) {
     this.time = new TimeI(timeValues);
-    console.log(values.id);
     this.id = values.id.toLowerCase();
     if (this.note) {
       this.note = values.note;
@@ -110,7 +109,7 @@ export class Monastery {
     this.data.link = link;
   }
 
-  addStatus(values, timeValues): void {
+  addStatus(values, timeValues = {}): void {
     if (!values.id && this.meta.status) {
       values.id = this.meta.status;
     }

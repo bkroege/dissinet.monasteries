@@ -37,17 +37,9 @@ csv()
     async.eachLimit(sources.filter(s => s.parse), 1, parse, (e, r) => {
       store.saveToFile();
       store.validate();
-      store.findDuplicates();
+      //store.findDuplicates();
+      console.log("raw", store.monasteriesRaw.length);
+      console.log("validated", store.monasteriesValidated.length);
+      console.log("final", store.monasteries.length);
     });
   });
-
-/*
-console.log(
-  store
-    .data()
-    .filter(monastery => {
-      return monastery.orders.length > 1;
-    })
-    .map(monastery => monastery.orders.map(o => o.name))
-);
-*/
