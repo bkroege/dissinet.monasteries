@@ -2,7 +2,7 @@ var request = require("request");
 var cheerio = require("cheerio");
 var fs = require("fs");
 import { WikiParser } from "./parser";
-import Base from "../../base";
+import BASE from "../../base";
 
 export class benedictinesWikiFrParser extends WikiParser {
   initialiseRecords(next) {
@@ -26,7 +26,7 @@ export class benedictinesWikiFrParser extends WikiParser {
     $("td").map((ci, column) => {
       if (ci === 0) {
         // name
-        const names = Base.cleanText($(column).text()).split("ou ");
+        const names = BASE.cleanText($(column).text()).split("ou ");
 
         names.forEach((name, ni) => {
           monastery.addName(name, { primary: ni === 0 });
@@ -43,7 +43,7 @@ export class benedictinesWikiFrParser extends WikiParser {
       // gender
       let gender: any = false;
       if (ci === 1) {
-        const genderText = Base.cleanText(
+        const genderText = BASE.cleanText(
           $(column)
             .not("sup > *")
             .text()
@@ -65,12 +65,12 @@ export class benedictinesWikiFrParser extends WikiParser {
 
       // orders
       if (ci === 3) {
-        const dateText = Base.cleanText($(column).text());
+        const dateText = BASE.cleanText($(column).text());
 
         const occurences = dateText.split(", puis");
 
         occurences.map(occurence => {
-          const time = Base.timeParse({ all: occurence }, { lang: "fr" });
+          const time = BASE.timeParse({ all: occurence }, { lang: "fr" });
           monastery.addStatus({ id: "abbey" }, time);
           monastery.addOrder({ gender: gender }, time);
         });

@@ -5,6 +5,7 @@ import { templarsWikiFrParser } from "./parse/wiki/templars";
 import { teutonsWikiDeParser } from "./parse/wiki/teutons";
 import { augustiniansWikiEnParser } from "./parse/wiki/en-augustinians";
 
+import { cisteciennesSpreadsheetParser } from "./parse/spreadsheet/cisteciennes";
 import { collegialesVaflParser } from "./parse/other/vafl-collegiales";
 
 import { earlyFoundationsDarmcParser } from "./parse/darmc/earlyfoundations";
@@ -42,20 +43,34 @@ var sources: Array<{
     rootUrl?;
   };
 }> = [
-  /* DARMC */
+  /* OTHER */
+
   {
     parse: true,
+    parser: cisteciennesSpreadsheetParser,
+    meta: {
+      id: "spreadsheet-cisteciennes",
+      type: "spreadsheet",
+      status: false,
+      order: "cisterciennes",
+      url: "1NoF9TVOQmqQuEsiGpYjFHPlfHSIiF7v3SzYhcdZjwpg"
+    }
+  },
+
+  /* DARMC */
+  {
+    parse: false,
     parser: earlyFoundationsDarmcParser,
     meta: {
       id: "darmc-early",
       type: "darmc",
       status: false,
-      order: false,
+      order: "",
       url: darmcUrl(42)
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: cisterciennesDarmcParser,
     meta: {
       id: "darmc-cisterciennes",
@@ -66,7 +81,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: cluniacDarmcParser,
     meta: {
       id: "darmc-cluniac",
@@ -77,7 +92,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: praemonstratensiansDarmcParser,
     meta: {
       id: "darmc-praemonstratensians",
@@ -88,7 +103,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: dominicanDarmcParser,
     meta: {
       id: "darmc-dominican",
@@ -99,7 +114,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: franciscanDarmcParser,
     meta: {
       id: "darmc-franciscan",
@@ -112,7 +127,7 @@ var sources: Array<{
 
   /* WIKIPEDIA */
   {
-    parse: true,
+    parse: false,
     parser: augustiniansWikiEnParser,
     meta: {
       id: "wiki-en-augustinians",
@@ -126,7 +141,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: benedictinesWikiFrParser,
     meta: {
       id: "wiki-fr-benedictines",
@@ -139,7 +154,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: cisteciennesWikiFrParser,
     meta: {
       id: "wiki-fr-cisterciennes",
@@ -152,7 +167,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: templarsWikiFrParser,
     meta: {
       id: "wiki-fr-templars",
@@ -165,7 +180,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: teutonsWikiDeParser,
     meta: {
       id: "wiki-de-teutons",

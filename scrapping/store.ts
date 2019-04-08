@@ -115,8 +115,6 @@ export class Store {
       });
     });
 
-    console.log(monasteriesChecked);
-
     // correct
     const monasteriesCorrected = monasteriesChecked.map(monastery => {
       const fixFns = Object.keys(this.fixes).map(fixKey => {
