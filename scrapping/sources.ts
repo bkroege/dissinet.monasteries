@@ -4,6 +4,7 @@ import { praemonstratensiansWikiFrParser } from "./parse/wiki/praemonstratensian
 import { templarsWikiFrParser } from "./parse/wiki/templars";
 import { teutonsWikiDeParser } from "./parse/wiki/teutons";
 import { augustiniansWikiEnParser } from "./parse/wiki/en-augustinians";
+import { carthusiansWikiEnParser } from "./parse/wiki/en-carthusians";
 
 import { cisteciennesSpreadsheetParser } from "./parse/spreadsheet/cisteciennes";
 import { collegialesVaflParser } from "./parse/other/vafl-collegiales";
@@ -44,9 +45,8 @@ var sources: Array<{
   };
 }> = [
   /* OTHER */
-
   {
-    parse: true,
+    parse: false,
     parser: cisteciennesSpreadsheetParser,
     meta: {
       id: "spreadsheet-cisteciennes",
@@ -126,6 +126,19 @@ var sources: Array<{
   },
 
   /* WIKIPEDIA */
+  {
+    parse: true,
+    parser: carthusiansWikiEnParser,
+    meta: {
+      id: "wiki-en-carthusians",
+      lang: "en",
+      type: "wiki",
+      status: false,
+      order: "carthusians",
+      rootUrl: "https://en.wikipedia.org",
+      url: "https://en.wikipedia.org/wiki/List_of_Carthusian_monasteries"
+    }
+  },
   {
     parse: false,
     parser: augustiniansWikiEnParser,

@@ -49,6 +49,18 @@ var Base: any = {
     });
   },
 
+  timeNonEmpty: timeValue => {
+    return (
+      timeValue &&
+      timeValue.to &&
+      timeValue.from &&
+      (timeValue.from.ante ||
+        timeValue.from.post ||
+        timeValue.to.ante ||
+        timeValue.to.post)
+    );
+  },
+
   // manage input time values and prepare time object
   timeParse: (rawTime, opts = {}) => {
     const time = {
@@ -82,7 +94,7 @@ var Base: any = {
     const timeValue = Base.cleanText(rawTime);
 
     // check if rawTime is just one point or a duration span
-    const spanDelimiters = ["-", "–", " to "];
+    const spanDelimiters = ["-", "–", " to ", "&#x"];
     let delimiter: string | boolean = false;
     spanDelimiters.forEach(d => {
       if (timeValue.includes(d)) {
