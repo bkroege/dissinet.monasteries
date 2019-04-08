@@ -48,7 +48,7 @@ export default class AppStore {
     const orderNames = [];
     this.activeOrders.forEach(order => {
       order.names.forEach(name => {
-        orderNames.push(name);
+        orderNames.push(name.toLowerCase());
       });
     });
     return orderNames;
@@ -83,9 +83,13 @@ export default class AppStore {
     });
   }
 
+  orderByName(orders, orderName) {
+    return orders.find(o => o.names.includes(orderName.toLowerCase()));
+  }
+
   @action activateOrder(orderName) {
     const newOrders = this.orders;
-    const orderToActivate = newOrders.find(o => o.name === orderName);
+    const orderToActivate = this.orderByName(newOrders, orderName);
     if (orderToActivate) {
       orderToActivate.active = true;
     }
@@ -94,7 +98,7 @@ export default class AppStore {
 
   @action deactivateOrder(orderName) {
     const newOrders = this.orders;
-    const orderToDeactivate = newOrders.find(o => o.name === orderName);
+    const orderToDeactivate = this.orderByName(newOrders, orderName);
     if (orderToDeactivate) {
       orderToDeactivate.active = false;
     }
@@ -102,7 +106,8 @@ export default class AppStore {
   }
 
   @action toggleOrder(orderName) {
-    const orderToToggle = this.orders.find(o => o.name === orderName);
+    const orderToToggle = this.orderByName(this.orders, orderName);
+    console.log(orderToToggle);
     if (orderToToggle) {
       orderToToggle.active
         ? this.deactivateOrder(orderName)
@@ -135,17 +140,37 @@ export default class AppStore {
   download() {
     const monasteriesToDownload = this.activeMonasteries;
 
+    const geojsonMonasteries = monasteriesToDownload.map(monastery => {
+      monastery.point.properties.name = monastery.name;
+      monastery.point.properties.orders = monastery.orders;
+      monastery.point.properties.id = monastery.id;
+      return monastery.point;
+    });
+
     var anchor = document.createElement("a");
 
     const zip = new JSZip();
-    const text = encodeURIComponent(JSON.stringify(monasteriesToDownload));
-    zip.file('monasteries.json', text)
-    zip.generateAsync({type:"base64"}).then((base64) => {
-      console.log(base64)
+    const text = encodeURIComponent(
+      JSON.stringify({
+        type: "FeatureCollection",
+        features: geojsonMonasteries
+      })
+    );
+
+    anchor.href = "data:text/html," + JSON.stringify(text);
+    anchor.target = "_blank";
+    anchor.download = "test.geojson";
+    anchor.click();
+
+    /*
+    zip.file("monasteries.json", text);
+    zip.generateAsync({ type: "base64" }).then(base64 => {
+      console.log(base64);
       anchor.href = "data:application/zip;base64," + base64;
       anchor.target = "_blank";
       anchor.download = "test.zip";
       anchor.click();
-    }
+    });
+    */
   }
 }

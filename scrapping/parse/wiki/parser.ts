@@ -4,14 +4,48 @@ import Base from "../../base";
 
 import { Parser } from "./../parser";
 
-export class WikiFrParser extends Parser {
+export class WikiParser extends Parser {
+  getLocalityGeo(monastery, next) {
+    if (monastery && monastery.data && monastery.data.localityLink) {
+      request(monastery.data.localityLink, (err, resp, html) => {
+        if (!err) {
+          const $ = cheerio.load(html);
+
+          // lat lng
+          monastery.setGeo(
+            {
+              lng: $("#coordinates")
+                .find("a")
+                .data("lon"),
+              lat: $("#coordinates")
+                .find("a")
+                .data("lat")
+            },
+            2
+          );
+
+          next();
+        } else {
+          console.log(err);
+          next();
+        }
+      });
+    } else {
+      next();
+    }
+  }
+
   inspectWikiPage(monastery, next) {
+    next();
+
+    // todo
+    /*
     if (monastery.data.link) {
       const infoLabels = {
         "Début de la construction": "construction",
-        "Fondation": "establishment",
+        Fondation: "establishment",
         "Fin des travaux": "closing",
-        "Fermeture": "closing"
+        Fermeture: "closing"
       };
       request(monastery.data.link, (err, resp, ahtml) => {
         //console.log(resp);
@@ -58,5 +92,6 @@ export class WikiFrParser extends Parser {
     } else {
       next();
     }
+    */
   }
 }

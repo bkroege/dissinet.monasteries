@@ -16,8 +16,8 @@ export class Parser {
   next: Function = () => {};
 
   constructor(store, meta, next: Function) {
-    this.meta = meta;
     this.store = store;
+    this.meta = meta;
     this.next = next;
   }
 
@@ -44,7 +44,7 @@ export class Parser {
   }
 
   addMonastery(monasteryHtml) {
-    this.monasteries.push(new Monastery(monasteryHtml, this.meta));
+    this.monasteries.push(new Monastery(this.meta, monasteryHtml));
   }
 
   initialiseRecords(next) {
@@ -62,7 +62,6 @@ export class Parser {
   track(): void {
     setTimeout(() => {
       if (this.checkFinished()) {
-        console.log(this.meta.id, "finished");
         this.resolve();
       } else {
         this.report();

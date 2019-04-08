@@ -9,21 +9,40 @@ export class DarmcParser extends Parser {
     request(this.meta.url, (err, resp, html) => {
       if (!err) {
         const json = JSON.parse(html);
-        json.results.map(feat => this.addMonastery(feat.attributes));
+        json.features.map(feat => this.addMonastery(feat.attributes));
       }
       next();
     });
   }
 
   parseMonastery(monastery, next) {
-    monastery.setName(monastery.html.Name);
-    monastery.setType(monastery.html.Type);
-    monastery.setParam("establishment", monastery.html.Founded);
-    monastery.setParam("note", monastery.html.Notes);
+    const html = monastery.html;
+    monastery.addName(html.NAME, { primary: true });
+    const timeText = html.Founded;
 
-    monastery.setCoordinates({
-      lat: monastery.html.Lat,
-      lng: monastery.html.Long
+    const time = timeText
+      ? {
+          from: { post: timeText.split("-")[0] },
+          to: { post: timeText.split("-")[1] }
+        }
+      : {};
+
+    if (html.Type) {
+      monastery.addStatus(
+        {
+          id: html.Type
+        },
+        time
+      );
+    }
+
+    if (html.DESCR) {
+      monastery.setParam("note", html.DESCR);
+    }
+
+    monastery.setGeo({
+      lat: html.Lat,
+      lng: html.Long
     });
 
     monastery.addEmptyOrder();

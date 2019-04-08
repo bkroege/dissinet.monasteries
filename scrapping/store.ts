@@ -6,15 +6,10 @@ var fs = require("fs");
 import Base from "./base";
 var france = require("./france.json");
 
-import orders from "./util/orders";
-
 var turf = require("turf");
 import truncate from "@turf/truncate";
 
-console.log(france);
 var extentPolygon = turf.polygon(france.features[0].geometry.coordinates[1]);
-
-console.log(JSON.stringify(extentPolygon));
 
 var outputPath = "./scrapping/data/";
 
@@ -22,6 +17,7 @@ export class Store {
   monasteries = [];
   monasteriesRaw = [];
   monasteriesValidated = [];
+
   private filePathRaw = outputPath + "monasteries_raw.json";
   private filePathValidated = outputPath + "monasteries_validated.json";
   private filePath = outputPath + "monasteries.json";
@@ -29,8 +25,11 @@ export class Store {
   private autoSave = true;
   private saving = false;
   private savingTimeout = 5000;
+  public orders = [];
 
-  constructor() {
+  constructor(orders) {
+    this.orders = orders;
+
     // loading previously stored records
     var monasteriesRaw = fs.readFileSync(this.filePathRaw, "utf8") || "[]";
     this.monasteriesRaw = JSON.parse(monasteriesRaw);
@@ -43,11 +42,18 @@ export class Store {
     this.monasteries = JSON.parse(monasteriesFixed);
   }
 
-  // if already stored, returns that monastery, otherwise returns false
-  alreadyStored(checkMonastery) {
-    return this.monasteriesRaw.find(monastery => {
-      return checkMonastery.name === monastery.name;
-    });
+  /* orders */
+  orderById(id) {
+    return this.orders.find(o => o.id === id);
+  }
+
+  orderIdByName(name) {
+    const order = this.orderByName(name);
+    return order ? order.id : false;
+  }
+
+  orderByName(name) {
+    return this.orders.find(o => o.name === name);
   }
 
   add(monastery) {
@@ -102,14 +108,12 @@ export class Store {
       Object.keys(this.checks).map(checkKey => {
         console.log(checkKey, this.checks[checkKey](monastery));
       });
-*/
+      */
 
       return checkFns.every(fn => {
         return fn(monastery);
       });
     });
-
-    console.log(monasteriesChecked);
 
     // correct
     const monasteriesCorrected = monasteriesChecked.map(monastery => {
@@ -136,6 +140,7 @@ export class Store {
     );
   }
 
+  // todo
   findDuplicates() {
     const fixed = [];
     const monasteriesToProccess = JSON.parse(
@@ -240,57 +245,56 @@ export class Store {
     });
   }
 
+  /* changing values of monastery entries */
   fixes = {
     makePoints: monastery => {
-      monastery.point = turf.point([
-        monastery.coordinates.lng,
-        monastery.coordinates.lat
-      ]);
+      if (monastery.geo && monastery.geo.lng && monastery.geo.lat) {
+        monastery.point = turf.point([monastery.geo.lng, monastery.geo.lat]);
+      }
       return monastery;
     },
-    orderNames: monastery => {
-      monastery.orders.map(mOrder => {
-        const mOrderName = mOrder.name;
-        const officialNames = orders.map(o => o.name);
-        //console.log(officialNames);
-        if (!officialNames.includes(mOrderName)) {
-          //console.log("incorrect name", mOrderName);
-          let correctName = mOrderName;
-          orders.forEach(order => {
-            if (order.alternativeNames.includes(mOrderName)) {
-              // console.log("name changed", mOrderName, "->", order.name);
-              correctName = order.name;
-            }
-          });
-          mOrder.name = correctName;
-        }
-        return mOrder;
-      });
+    // check if the order id is valid and if the gender is right
+    checkOrderId: monastery => {
+      return monastery;
+    },
+    checkOrderGender: monastery => {
+      return monastery;
+    },
+    checkOrderDate: monastery => {
       return monastery;
     }
   };
 
+  /* filtering valid monastery entries */
   checks = {
     validCoordinates: monastery => {
-      const coords = monastery.coordinates;
+      const geo = monastery.geo;
       return (
-        coords &&
-        coords.lng &&
-        coords.lat &&
-        Base.isNumeric(coords.lng) &&
-        Base.isNumeric(coords.lat)
+        geo &&
+        geo.lng &&
+        geo.lat &&
+        Base.isNumeric(geo.lng) &&
+        Base.isNumeric(geo.lat)
       );
     },
-    atLeastOneOrder: monastery => {
-      return monastery.orders.length > 0;
-    },
-    extent: monastery => {
-      const point = turf.point([
-        monastery.coordinates.lng,
-        monastery.coordinates.lat
-      ]);
 
-      return turf.inside(point, extentPolygon);
+    extent: monastery => {
+      const geo = monastery.geo;
+      if (geo && geo.lng && geo.lat) {
+        const point = turf.point([geo.lng, geo.lat]);
+
+        return turf.inside(point, extentPolygon);
+      }
+      return false;
+    },
+
+    // todo
+    middleage: monastery => {
+      return true;
+    },
+    // todo
+    isLateAndWithNoOrder: monastery => {
+      return true;
     }
   };
 }
