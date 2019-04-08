@@ -30,7 +30,7 @@ export class TimeI {
   }
 }
 
-export class TypeI {
+export class StatusI {
   time: TimeI;
   id;
   note?;
@@ -81,11 +81,11 @@ export class GeoI {
 export class Monastery {
   data: any;
   html;
-  meta: { id; type; order?; url? };
+  meta: { id; type; order?; url?; status? };
   saved = false;
   parsed = false;
 
-  constructor(meta: { id; type; order?; url? }, html) {
+  constructor(meta: { id; type; status; order?; url? }, html) {
     this.meta = meta;
     this.html = html;
     this.data = {
@@ -93,7 +93,7 @@ export class Monastery {
       names: [],
       source: meta.id,
       link: false,
-      types: [],
+      statuses: [],
       geo: new GeoI({ precision: 4 }),
       orders: []
     };
@@ -110,9 +110,12 @@ export class Monastery {
     this.data.link = link;
   }
 
-  addType(values, timeValues): void {
-    const newType = new TypeI(values, timeValues);
-    this.data.types.push(newType);
+  addStatus(values, timeValues): void {
+    if (!values.id && this.meta.status) {
+      values.id = this.meta.status;
+    }
+    const newStatus = new StatusI(values, timeValues);
+    this.data.statuses.push(newStatus);
   }
 
   addOrder(orderValues, timeValues): void {

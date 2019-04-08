@@ -1,6 +1,5 @@
 /* DEPRECATED */
 
-
 var request = require("request");
 var cheerio = require("cheerio");
 var fs = require("fs");
@@ -21,7 +20,7 @@ export class praemonstratensiansWikiFrParser extends WikiParser {
   }
 
   parseMonastery(monastery, next) {
-    monastery.setType("abbey");
+    monastery.addStatus({});
     const $ = cheerio.load(monastery.html);
     const recordText = $("li").text();
 

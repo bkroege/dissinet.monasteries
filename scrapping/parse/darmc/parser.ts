@@ -28,9 +28,9 @@ export class DarmcParser extends Parser {
       : {};
 
     if (html.Type) {
-      monastery.addType(
+      monastery.addStatus(
         {
-          name: html.Type
+          id: html.Type
         },
         time
       );

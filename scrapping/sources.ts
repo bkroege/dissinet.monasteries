@@ -35,6 +35,7 @@ var sources: Array<{
   meta: {
     id: string;
     type: string;
+    status: false | string;
     lang?: String;
     url: string;
     order?;
@@ -48,56 +49,62 @@ var sources: Array<{
     meta: {
       id: "darmc-early",
       type: "darmc",
+      status: false;
       order: false,
-      url: darmcUrl(44)
+      url: darmcUrl(42)
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: cisterciennesDarmcParser,
     meta: {
       id: "darmc-cisterciennes",
       type: "darmc",
+      status: false;
       order: "cistercians",
       url: darmcUrl(44)
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: cluniacDarmcParser,
     meta: {
       id: "darmc-cluniac",
       type: "darmc",
+      status: false;
       order: "cluniac",
       url: darmcUrl(45)
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: praemonstratensiansDarmcParser,
     meta: {
       id: "darmc-praemonstratensians",
       type: "darmc",
+      status: false;
       order: "praemonstratensians",
       url: darmcUrl(46)
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: dominicanDarmcParser,
     meta: {
       id: "darmc-dominican",
       type: "darmc",
+      status: false;
       order: "dominican",
       url: darmcUrl(48)
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: franciscanDarmcParser,
     meta: {
       id: "darmc-franciscan",
       type: "darmc",
+      status: false;
       order: "franciscan",
       url: darmcUrl(49)
     }
@@ -105,12 +112,13 @@ var sources: Array<{
 
   /* WIKIPEDIA */
   {
-    parse: false,
+    parse: true,
     parser: augustiniansWikiEnParser,
     meta: {
       id: "wiki-en-augustinians",
       lang: "en",
       type: "wiki",
+      status: false;
       order: "augustinians",
       rootUrl: "https://en.wikipedia.org",
       url:
@@ -118,48 +126,52 @@ var sources: Array<{
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: benedictinesWikiFrParser,
     meta: {
       id: "wiki-fr-benedictines",
       type: "wiki",
       order: "benedictines",
+      status: false;
       rootUrl: "https://fr.wikipedia.org",
       url:
         "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_b%C3%A9n%C3%A9dictines_de_France"
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: cisteciennesWikiFrParser,
     meta: {
       id: "wiki-fr-cisterciennes",
       type: "wiki",
       order: "cistercians",
+      status: false;
       rootUrl: "https://fr.wikipedia.org",
       url:
         "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_cisterciennes_de_France"
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: templarsWikiFrParser,
     meta: {
       id: "wiki-fr-templars",
       type: "wiki",
       order: "templars",
+      status: false;
       rootUrl: "https://fr.wikipedia.org",
       url:
         "https://fr.wikipedia.org/wiki/Liste_des_commanderies_templi%C3%A8res"
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: teutonsWikiDeParser,
     meta: {
       id: "wiki-de-teutons",
       type: "wiki",
       order: "teutonic knights",
+      status: false;
       rootUrl: "https://de.wikipedia.org",
       url:
         "https://de.wikipedia.org/wiki/Liste_der_Kommenden_des_Deutschen_Ordens"
@@ -174,6 +186,7 @@ var sources: Array<{
       id: "wiki-fr-praemonstratensians",
       type: "wiki",
       order: "praemonstratensians",
+      status: false;
       rootUrl: "https://fr.wikipedia.org",
       url:
         "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_pr%C3%A9montr%C3%A9es_de_France"
@@ -186,6 +199,7 @@ var sources: Array<{
       id: "vafl-benedictines",
       type: "web",
       order: "collegiales",
+      status: false;
       rootUrl: "http://vafl-s-applirecherche.unilim.fr/collegiales/?i=fiche&j=",
       url:
         "http://vafl-s-applirecherche.unilim.fr/collegiales/cartes/current.geojson.php?type=gen"

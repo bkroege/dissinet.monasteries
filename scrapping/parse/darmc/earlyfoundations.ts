@@ -21,7 +21,11 @@ export class earlyFoundationsDarmcParser extends DarmcParser {
       lng: html.Long_
     });
 
-    monastery.addOrder({ id: html.Affiliation || "" }, time);
+    monastery.addStatus({});
+
+    if (html.Affiliation) {
+      monastery.addOrder({ id: html.Affiliation || "" }, time);
+    }
 
     monastery.finishParsing();
     monastery.save(this.store);

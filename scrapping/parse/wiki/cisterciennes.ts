@@ -89,11 +89,11 @@ export class cisteciennesWikiFrParser extends WikiParser {
           { lang: "fr" }
         );
         monastery.addOrder({ id: orderName, gender: gender }, time);
-        monastery.addType("abbey", time);
+        monastery.addStatus({}, time);
       });
     } else {
       monastery.addEmptyOrder("");
-      monastery.addType("abbey", {});
+      monastery.addStatus({}, {});
     }
 
     this.inspectWikiPage(monastery, () => {
