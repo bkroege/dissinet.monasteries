@@ -1,4 +1,5 @@
 import { DarmcParser } from "./parser";
+import BASE from "./../../base";
 
 export class cisterciennesDarmcParser extends DarmcParser {
   parseMonastery(monastery, next) {
@@ -12,19 +13,25 @@ export class cisterciennesDarmcParser extends DarmcParser {
       lang: "la"
     });
 
-    const time = {
-      from: { post: html.F_DATE },
-      to: { post: html.D_DATE }
-    };
+    const time = BASE.timeParse({
+      from: html.F_DATE,
+      to: html.D_DATE
+    });
 
-    monastery.setParam("note", html.NOTES);
+    monastery.addStatus({}, time);
+    monastery.addOrder({ gender: monastery.html.GENDER }, time);
+
+    if (html.CITATION) {
+      monastery.setParam("sourceliterature", html.CITATIOn);
+    }
+    monastery.setParam("mother", html.MOTHER);
+    monastery.setParam("family", html.FAMILY);
+    monastery.setParam("diocese", html.DIOCESE);
 
     monastery.setGeo({
       lat: html.LATITUDE,
       lng: html.LONGITUDE
     });
-
-    monastery.addEmptyOrder(time);
 
     monastery.finishParsing();
     monastery.save(this.store);

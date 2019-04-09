@@ -60,7 +60,7 @@ var sources: Array<{
 
   /* DARMC */
   {
-    parse: true,
+    parse: false,
     parser: earlyFoundationsDarmcParser,
     id: 14,
     meta: {
@@ -69,7 +69,7 @@ var sources: Array<{
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: cisterciennesDarmcParser,
     id: 2,
     meta: {

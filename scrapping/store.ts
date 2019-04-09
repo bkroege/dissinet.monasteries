@@ -253,6 +253,9 @@ export class Store {
       }
       return monastery;
     },
+    validateGenderValues: monastery => {
+      return monastery;
+    },
     // check if the order id is valid and if the gender is right
     checkOrderId: monastery => {
       return monastery;

@@ -44,8 +44,8 @@ var BASE = {
       chars: ["\n", "\r", ":", "[", "("]
     }
   ) => {
-    let newText = text;
     if (text) {
+      let newText = text.toString();
       if (rules.chars && rules.chars.length) {
         rules.chars.forEach(char => {
           newText.split(char)[0];
@@ -55,9 +55,9 @@ var BASE = {
       if (rules.trim) {
         newText = newText.trim();
       }
+      return newText;
     }
-
-    return newText;
+    return "";
   },
 
   splitColumn: (html, $) => {
