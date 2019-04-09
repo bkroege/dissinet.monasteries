@@ -65,8 +65,6 @@ orders.forEach(order => {
 
 console.log(filters["orders"]);
 
-orders.forEach();
-
 const categories = orders.map(o => o.category).filter(onlyUnique);
 categories.forEach(c => (filters["category"][c] = true));
 
@@ -83,7 +81,7 @@ statuses.forEach(s => (filters["status"][s] = true));
 
 console.log(filters);
 
-const store = new AppStore(data, orders);
+const store = new AppStore(data, filters);
 
 if (document.body) {
   document.body.innerHTML = "";

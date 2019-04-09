@@ -24,11 +24,34 @@ export default class ContainerPanel extends React.Component<any, any> {
     this.props.store.download();
   }
 
+  renderCheckbox(key, label, checked, opts = {}) {
+    return (
+      <div className="field checkbox only-label is-small" key={key}>
+        <input
+          className="is-checkradio is-black no-borders is-small"
+          type="checkbox"
+          name="all"
+          onChange={this.handleAllCheckboxClick.bind(this)}
+          checked={checked}
+          value="all"
+          id="all"
+          style={{}}
+        />
+        <label htmlFor="all">
+          <span className="legend-color" />
+          <span className="legend-name is-small">{label}</span>
+        </label>
+      </div>
+    );
+  }
+
   render() {
     const store = this.props.store;
     console.log("activeRecordsCount", store.activeRecordsCount);
     const active = store.activeMonasteries;
     console.log(store.data.filter(d => !active.map(a => a.id).includes(d.id)));
+
+    const filters = store.filters;
 
     const allLabel = store.allOrdersActive
       ? "uncheck all orders"
@@ -56,6 +79,30 @@ export default class ContainerPanel extends React.Component<any, any> {
             <span className="legend-name">{allLabel}</span>
           </label>
         </div>
+
+        {/* status */}
+        <h3 className="is-6 subtitle section-label">Status</h3>
+        {Object.keys(filters.status).map((status, si) => {
+          return this.renderCheckbox(si, status, filters.status[status], {});
+        })}
+
+        {/* gender */}
+        <h3 className="is-6 subtitle section-label">Gender</h3>
+        {Object.keys(filters.gender).map((gender, gi) => {
+          return this.renderCheckbox(gi, gender, filters.gender[gender], {});
+        })}
+
+        {/* category */}
+        <h3 className="is-6 subtitle section-label">Category</h3>
+        {Object.keys(filters.category).map((category, ci) => {
+          return this.renderCheckbox(
+            ci,
+            category,
+            filters.category[category],
+            {}
+          );
+        })}
+
         <h3 className="subtitle section-label">Monastic orders</h3>
         <div className="panel-control">
           {store.orders.map((order, oi) => {

@@ -3,19 +3,25 @@ var JSZip = require("jszip");
 
 export default class AppStore {
   data;
+  _filters;
   _orders;
 
   _center;
   _zoom;
   _extent;
 
-  constructor(data, orders) {
+  constructor(data, filters) {
     this.data = data;
-    this._orders = observable.array(orders, { deep: true });
+    this._orders = observable.array([], { deep: true });
+    this._filters = observable.map(filters, { deep: true });
 
     this._center = observable.box([48, 2]);
     this._zoom = observable.box(6);
     this._extent = observable.box([[10, 10], [20, 20]]);
+  }
+
+  @computed get filters() {
+    return toJS(this._filters);
   }
 
   @computed get orders() {
