@@ -29,14 +29,28 @@ export class Parser {
       this.startTracking();
       async.eachLimit(
         this.monasteries,
-        50,
-        this.parseMonastery.bind(this),
+        10,
+        this._parseMonastery.bind(this),
         () => {}
       );
     });
   }
 
-  // will be extended
+  _parseMonastery(monastery, next) {
+    const maxTimeForParsing = 10000;
+    const timeout = setTimeout(() => {
+      console.log("max time for parsing exceeded");
+      monastery.finishParsing();
+      next();
+    }, maxTimeForParsing);
+
+    this.parseMonastery(monastery, () => {
+      clearTimeout(timeout);
+      next();
+    });
+  }
+
+  // is extended
   parseMonastery(monastery, next) {
     // parsing monastery html to monastery data
     monastery.finishParsing();
