@@ -3,7 +3,7 @@ var cheerio = require("cheerio");
 var csv = require("ya-csv");
 var csvtojson = require("csvtojson");
 var fs = require("fs");
-import Base from "./base";
+import BASE from "./base";
 var france = require("./france.json");
 
 var turf = require("turf");
@@ -235,6 +235,45 @@ export class Store {
       }
       return monastery;
     },
+
+    validateOrderValues: monastery => {
+      // filling order dict
+      const orderDict = [];
+
+      const add = (value, alternatives) => {
+        orderDict.push({
+          value: value,
+          alternatives: alternatives.filter(a => a).map(a => a.toLowerCase())
+        });
+      };
+
+      this.orders.forEach(order => {
+        const allPossibleNames = [order.label];
+        order["alternativenamesbothgenders"]
+          .split()
+          .forEach(n => allPossibleNames.push(n));
+        order["alternativenamesfemale"]
+          .split()
+          .forEach(n => allPossibleNames.push(n));
+        order["alternativenamesmale"]
+          .split()
+          .forEach(n => allPossibleNames.push(n));
+        add(parseInt(order.id, 10), allPossibleNames);
+      });
+
+      console.log(orderDict);
+
+      monastery.orders.forEach(o => {
+        const order = orderDict.find(v => v.alternatives.includes(o.id));
+        if (order) {
+          o.id = order.value;
+        } else {
+          o.gender = "";
+        }
+      });
+
+      return monastery;
+    },
     validateGenderValues: monastery => {
       const genderDict = [
         { value: "m", alternatives: ["m", "male"] },
@@ -242,7 +281,6 @@ export class Store {
         { value: "d", alternatives: ["d", "t", "double"] },
         { value: "", alternatives: ["", "unknown"] }
       ];
-
       monastery.orders.forEach(o => {
         const gender = genderDict.find(v => v.alternatives.includes(o.gender));
         if (gender) {
@@ -273,8 +311,8 @@ export class Store {
         geo &&
         geo.lng &&
         geo.lat &&
-        Base.isNumeric(geo.lng) &&
-        Base.isNumeric(geo.lat)
+        BASE.isNumeric(geo.lng) &&
+        BASE.isNumeric(geo.lat)
       );
     },
 
