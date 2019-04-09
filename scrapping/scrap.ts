@@ -23,7 +23,7 @@ BASE.readSpreadsheet(sourceKey, sourceRows => {
       meta.id = sourceRow.sourceid;
 
       // gender
-      if (["f", "m"].includes(sourceRow.gender)) {
+      if (["f", "m", "d"].includes(sourceRow.gender)) {
         meta.gender = sourceRow.gender;
       }
 

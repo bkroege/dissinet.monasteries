@@ -87,7 +87,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: praemonstratensiansDarmcParser,
     id: 7,
     meta: {

@@ -1,6 +1,7 @@
 var request = require("request");
 var cheerio = require("cheerio");
 var async = require("async");
+import BASE from "./../base";
 
 import { Monastery } from "./monastery";
 

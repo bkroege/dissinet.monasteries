@@ -1,4 +1,5 @@
 import { DarmcParser } from "./parser";
+import BASE from "../../base";
 
 export class praemonstratensiansDarmcParser extends DarmcParser {
   parseMonastery(monastery, next) {
@@ -6,19 +7,18 @@ export class praemonstratensiansDarmcParser extends DarmcParser {
     monastery.addName(monastery.html.NAME, { primary: true });
     monastery.addName(monastery.html.ALTERN, { primary: false });
 
-    const time = {
-      from: { post: html.FOUNDED, ante: html.BEGIN_ },
-      to: { ante: html.END_ }
-    };
-
-    monastery.setParam("note", monastery.html.DESCR);
+    const time = BASE.timeParse({
+      from: html.BEGIN_,
+      to: html.END_
+    });
 
     monastery.setGeo({
       lat: monastery.html.DEC_LAT,
       lng: monastery.html.DEC_LONG
     });
 
-    monastery.addEmptyOrder(time);
+    monastery.addOrder({}, time);
+    monastery.addStatus({}, time);
 
     monastery.finishParsing();
     monastery.save(this.store);
