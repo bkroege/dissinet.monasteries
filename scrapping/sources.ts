@@ -116,7 +116,7 @@ var sources: Array<{
 
   /* WIKIPEDIA */
   {
-    parse: false,
+    parse: true,
     parser: carthusiansWikiEnParser,
     id: 11,
     meta: {

@@ -66,9 +66,15 @@ export class carthusiansWikiEnParser extends WikiParser {
   }
 
   parseMonastery(monastery, next) {
-    const html = monastery.html;
+    const html = "<li>" + monastery.html + "</li>";
     const $ = cheerio.load(html);
-    const li = $("li");
+
+    // name
+    const name = $(html)
+      .text()
+      .split(",")[0]
+      .split("(")[0];
+    monastery.addName(name, { primary: true });
 
     var brackets = html.match(/[^(\)]+(?=\))/g);
     const timeBracket = brackets[brackets.length - 1];
@@ -78,7 +84,7 @@ export class carthusiansWikiEnParser extends WikiParser {
       timeBracket.split(";").map(timeValue => {
         const time = BASE.timeParse({ all: timeValue });
         if (BASE.timeNonEmpty(time)) {
-          monastery.addEmptyOrder(time);
+          monastery.addOrder({}, time);
           monastery.addStatus({}, time);
         }
       });
@@ -86,7 +92,7 @@ export class carthusiansWikiEnParser extends WikiParser {
 
     // locality link
     let firstLink;
-    $("<li>" + html + "</li>")
+    $(html)
       .find('a:not(.new):not([href*="cite"])')
       .map((ai, a) => {
         if (ai === 0) {
