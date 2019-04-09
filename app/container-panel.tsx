@@ -24,6 +24,21 @@ export default class ContainerPanel extends React.Component<any, any> {
     this.props.store.download();
   }
 
+  renderHeading1(content) {
+    return (
+      <p key={content} className="is-4 title section-label">
+        {content}
+      </p>
+    );
+  }
+  renderHeading2(content) {
+    return (
+      <p key={content} className="is-6 subtitle section-label">
+        {content}
+      </p>
+    );
+  }
+
   renderCheckbox(key, label, checked, opts = {}) {
     return (
       <div className="field checkbox only-label is-small" key={key}>
@@ -62,76 +77,62 @@ export default class ContainerPanel extends React.Component<any, any> {
         <h2 className="subtitle">
           Showing {store.activeRecordsCount} / {store.recordsCountAll} records
         </h2>
-        <p />
-        <div className="field checkbox only-label" key={0}>
-          <input
-            className="is-checkradio is-black no-borders"
-            type="checkbox"
-            name="all"
-            onChange={this.handleAllCheckboxClick.bind(this)}
-            checked={store.allOrdersActive}
-            value="all"
-            id="all"
-            style={{}}
-          />
-          <label htmlFor="all">
-            <span className="legend-color" />
-            <span className="legend-name">{allLabel}</span>
-          </label>
-        </div>
 
-        {/* status */}
-        <h3 className="is-6 subtitle section-label">Status</h3>
-        {Object.keys(filters.status).map((status, si) => {
-          return this.renderCheckbox(si, status, filters.status[status], {});
-        })}
-
-        {/* gender */}
-        <h3 className="is-6 subtitle section-label">Gender</h3>
-        {Object.keys(filters.gender).map((gender, gi) => {
-          return this.renderCheckbox(gi, gender, filters.gender[gender], {});
-        })}
-
-        {/* category */}
-        <h3 className="is-6 subtitle section-label">Category</h3>
-        {Object.keys(filters.category).map((category, ci) => {
-          return this.renderCheckbox(
-            ci,
-            category,
-            filters.category[category],
-            {}
-          );
-        })}
-
-        <h3 className="subtitle section-label">Monastic orders</h3>
-        <div className="panel-control">
-          {store.orders.map((order, oi) => {
+        {/* order */}
+        <div key="orders" className="panel-section orders">
+          {this.renderHeading1("orders")}
+          {Object.keys(filters.orders).map((orderName, oi) => {
+            const order = filters.orders[orderName];
             return (
-              <div className="field checkbox only-label" key={oi}>
-                <input
-                  className="is-checkradio is-black no-borders"
-                  id={oi}
-                  type="checkbox"
-                  name={order.name}
-                  onChange={this.handleCheckboxClick.bind(this)}
-                  checked={order.active}
-                  value={order.name}
-                  style={{
-                    backgroundColor: order.color
-                  }}
-                />
-                <label htmlFor={oi}>
-                  <span
-                    className="legend-color"
-                    style={{
-                      backgroundColor: order.color
-                    }}
-                  />
-                  <span className="legend-name">{order.name}</span>
-                </label>
+              <div key={oi}>
+                {this.renderHeading2(orderName)}
+                {Object.keys(order.branches).map((branchName, bi) => {
+                  return this.renderCheckbox(
+                    bi,
+                    branchName,
+                    order.branches[branchName],
+                    {}
+                  );
+                })}
               </div>
             );
           })}
+          <hr />
+        </div>
+
+        <div key="status" className="panel-section status">
+          {/* status */}
+          {this.renderHeading1("status")}
+          {Object.keys(filters.status).map((status, si) => {
+            return this.renderCheckbox(si, status, filters.status[status], {});
+          })}
+          <hr />
+        </div>
+
+        <div key="gender" className="panel-section gender">
+          {/* gender */}
+          {this.renderHeading1("gender")}
+          {Object.keys(filters.gender).map((gender, gi) => {
+            return this.renderCheckbox(gi, gender, filters.gender[gender], {});
+          })}
+          <hr />
+        </div>
+
+        <div key="category" className="panel-section category">
+          {/* category */}
+          {this.renderHeading1("category")}
+          {Object.keys(filters.category).map((category, ci) => {
+            return this.renderCheckbox(
+              ci,
+              category,
+              filters.category[category],
+              {}
+            );
+          })}
+          <hr />
+        </div>
+
+        <div>
           <hr />
           <div
             className="button-bar"

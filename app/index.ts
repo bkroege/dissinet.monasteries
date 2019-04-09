@@ -56,7 +56,7 @@ filters["gender"] = {
 const orderGroups = orders.map(o => o.ordergroup).filter(onlyUnique);
 orderGroups.forEach(
   (o, oi) =>
-    (filters["orders"][o] = { label: o, color: colors[oi], branches: [] })
+    (filters["orders"][o] = { label: o, color: colors[oi], branches: {} })
 );
 
 orders.forEach(order => {

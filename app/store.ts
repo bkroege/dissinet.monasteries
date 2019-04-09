@@ -4,7 +4,6 @@ var JSZip = require("jszip");
 export default class AppStore {
   data;
   _filters;
-  _orders;
 
   _center;
   _zoom;
@@ -12,7 +11,6 @@ export default class AppStore {
 
   constructor(data, filters) {
     this.data = data;
-    this._orders = observable.array([], { deep: true });
     this._filters = observable.map(filters, { deep: true });
 
     this._center = observable.box([48, 2]);
@@ -23,13 +21,8 @@ export default class AppStore {
   @computed get filters() {
     return toJS(this._filters);
   }
-
-  @computed get orders() {
-    return toJS(this._orders);
-  }
-
-  @computed get allOrdersActive() {
-    return this.orders.every(o => o.active);
+  @computed get branchNames() {
+    return [];
   }
 
   @computed
@@ -47,26 +40,8 @@ export default class AppStore {
     return this._zoom.get();
   }
 
-  @computed get activeOrders() {
-    return this.orders.filter(o => o.active);
-  }
-  @computed get activeOrdersNames() {
-    const orderNames = [];
-    this.activeOrders.forEach(order => {
-      order.names.forEach(name => {
-        orderNames.push(name.toLowerCase());
-      });
-    });
-    return orderNames;
-  }
-
   @computed get activeMonasteries() {
-    return this.data.filter(monastery => {
-      const monasteryOrders = monastery.orders.map(o => o.name);
-      return monasteryOrders.some(orderName =>
-        this.activeOrdersNames.includes(orderName)
-      );
-    });
+    return this.data;
   }
 
   @computed get activeRecordsCount() {
@@ -75,60 +50,6 @@ export default class AppStore {
 
   @computed get recordsCountAll() {
     return this.data.length;
-  }
-
-  @computed
-  get activeData() {
-    return this.activeMonasteries.map(monastery => {
-      const coordinates = monastery.point.geometry.coordinates;
-      return {
-        id: monastery.id,
-        geo: [coordinates[1], coordinates[0]],
-        data: monastery
-      };
-    });
-  }
-
-  orderByName(orders, orderName) {
-    return orders.find(o => o.names.includes(orderName.toLowerCase()));
-  }
-
-  @action activateOrder(orderName) {
-    const newOrders = this.orders;
-    const orderToActivate = this.orderByName(newOrders, orderName);
-    if (orderToActivate) {
-      orderToActivate.active = true;
-    }
-    this._orders.replace(newOrders);
-  }
-
-  @action deactivateOrder(orderName) {
-    const newOrders = this.orders;
-    const orderToDeactivate = this.orderByName(newOrders, orderName);
-    if (orderToDeactivate) {
-      orderToDeactivate.active = false;
-    }
-    this._orders.replace(newOrders);
-  }
-
-  @action toggleOrder(orderName) {
-    const orderToToggle = this.orderByName(this.orders, orderName);
-    console.log(orderToToggle);
-    if (orderToToggle) {
-      orderToToggle.active
-        ? this.deactivateOrder(orderName)
-        : this.activateOrder(orderName);
-    }
-  }
-
-  @action toggleAllOrder() {
-    const newValue = !this.allOrdersActive;
-    this._orders.replace(
-      this.orders.map(o => {
-        o.active = newValue;
-        return o;
-      })
-    );
   }
 
   @action

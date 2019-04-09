@@ -107,13 +107,14 @@ export default class ContainerMap extends React.Component<any, any> {
   }
 
   points() {
-    return this.props.activeData.map((feature, ri) => {
+    return [];
+    return this.props.store.activeMonasteries.map((feature, ri) => {
       return L.marker(feature.geo, {
         fillOpacity: 1,
         weight: 0,
         radius: 10,
         data: feature
-      }).bindPopup("<p>" + feature.data.name + "</p>");
+      }).bindPopup("<p>" + "</p>");
     });
   }
 
@@ -129,7 +130,7 @@ export default class ContainerMap extends React.Component<any, any> {
     const ordersInCluster = {};
 
     markers.forEach(marker => {
-      const orderNames = marker.options.data.data.orders.map(o => o.name);
+      const orderNames = this.props.store.branchNames;
       orderNames.forEach(oName => {
         const orderName = orders.find(o =>
           o.names.includes(oName.toLowerCase())
@@ -200,8 +201,6 @@ export default class ContainerMap extends React.Component<any, any> {
   }
 
   render() {
-    this.t1 = now();
-    this.processed = 0;
     const store = this.props.store;
     return (
       <div className="map">
