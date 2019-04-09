@@ -69,7 +69,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: cisterciennesDarmcParser,
     id: 2,
     meta: {
@@ -87,7 +87,7 @@ var sources: Array<{
     }
   },
   {
-    parse: false,
+    parse: true,
     parser: praemonstratensiansDarmcParser,
     id: 7,
     meta: {
