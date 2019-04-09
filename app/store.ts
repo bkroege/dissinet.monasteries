@@ -67,6 +67,42 @@ export default class AppStore {
     this._filters.replace(newFilters);
   }
 
+  @action toggleStatus(statusNameToToggle) {
+    const newFilters = this.filters;
+
+    Object.keys(newFilters.status).forEach(statusName => {
+      if (statusName === statusNameToToggle) {
+        newFilters.status[statusName] = !newFilters.status[statusName];
+      }
+    });
+
+    this._filters.replace(newFilters);
+  }
+
+  @action toggleGender(genderNameToToggle) {
+    const newFilters = this.filters;
+
+    Object.keys(newFilters.gender).forEach(genderName => {
+      if (genderName === genderNameToToggle) {
+        newFilters.gender[genderName] = !newFilters.gender[genderName];
+      }
+    });
+
+    this._filters.replace(newFilters);
+  }
+
+  @action toggleCategory(categoryNameToToggle) {
+    const newFilters = this.filters;
+
+    Object.keys(newFilters.category).forEach(categoryName => {
+      if (categoryName === categoryNameToToggle) {
+        newFilters.category[categoryName] = !newFilters.category[categoryName];
+      }
+    });
+
+    this._filters.replace(newFilters);
+  }
+
   @action
   mapMoved(
     newCenter: Array<Number>,

@@ -16,11 +16,14 @@ export default class ContainerPanel extends React.Component<any, any> {
   }
 
   handleCategoryFilter(e) {
-    console.log("checkbox clicked", e.target.value);
+    this.props.store.toggleCategory(e.target.value);
   }
 
   handleGenderFilter(e) {
-    console.log("checkbox clicked", e.target.value);
+    this.props.store.toggleGender(e.target.value);
+  }
+  handleStatusFilter(e) {
+    this.props.store.toggleStatus(e.target.value);
   }
 
   handleDownloadClick() {
@@ -112,7 +115,9 @@ export default class ContainerPanel extends React.Component<any, any> {
           {/* status */}
           {this.renderHeading1("status")}
           {Object.keys(filters.status).map((status, si) => {
-            return this.renderCheckbox(si, status, filters.status[status], {});
+            return this.renderCheckbox(si, status, filters.status[status], {
+              event: this.handleStatusFilter
+            });
           })}
           <hr />
         </div>
@@ -121,7 +126,9 @@ export default class ContainerPanel extends React.Component<any, any> {
           {/* gender */}
           {this.renderHeading1("gender")}
           {Object.keys(filters.gender).map((gender, gi) => {
-            return this.renderCheckbox(gi, gender, filters.gender[gender], {});
+            return this.renderCheckbox(gi, gender, filters.gender[gender], {
+              event: this.handleGenderFilter
+            });
           })}
           <hr />
         </div>
@@ -134,7 +141,7 @@ export default class ContainerPanel extends React.Component<any, any> {
               ci,
               category,
               filters.category[category],
-              {}
+              { event: this.handleCategoryFilter }
             );
           })}
           <hr />
