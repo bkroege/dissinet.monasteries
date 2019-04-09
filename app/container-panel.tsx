@@ -11,13 +11,16 @@ export default class ContainerPanel extends React.Component<any, any> {
     super(props);
   }
 
-  handleCheckboxClick(e) {
-    console.log("checkbox clicked", e.target.value);
+  handleOrderFilter(e) {
     this.props.store.toggleOrder(e.target.value);
   }
 
-  handleAllCheckboxClick() {
-    this.props.store.toggleAllOrder();
+  handleCategoryFilter(e) {
+    console.log("checkbox clicked", e.target.value);
+  }
+
+  handleGenderFilter(e) {
+    console.log("checkbox clicked", e.target.value);
   }
 
   handleDownloadClick() {
@@ -39,20 +42,25 @@ export default class ContainerPanel extends React.Component<any, any> {
     );
   }
 
-  renderCheckbox(key, label, checked, opts = {}) {
+  renderCheckbox(
+    key,
+    label,
+    checked,
+    opts: { event?: Function } = { event: () => {} }
+  ) {
     return (
       <div className="field checkbox only-label is-small" key={key}>
         <input
           className="is-checkradio is-black no-borders is-small"
           type="checkbox"
           name="all"
-          onChange={this.handleAllCheckboxClick.bind(this)}
+          onChange={opts.event ? opts.event.bind(this) : () => {}}
           checked={checked}
-          value="all"
-          id="all"
+          value={label}
+          id={label}
           style={{}}
         />
-        <label htmlFor="all">
+        <label htmlFor={label}>
           <span className="legend-color" />
           <span className="legend-name is-small">{label}</span>
         </label>
@@ -91,7 +99,7 @@ export default class ContainerPanel extends React.Component<any, any> {
                     bi,
                     branchName,
                     order.branches[branchName],
-                    {}
+                    { event: this.handleOrderFilter }
                   );
                 })}
               </div>

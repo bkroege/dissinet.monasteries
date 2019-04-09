@@ -52,6 +52,21 @@ export default class AppStore {
     return this.data.length;
   }
 
+  @action toggleOrder(branchNameToToggle) {
+    const newFilters = this.filters;
+
+    Object.keys(newFilters.orders).forEach(orderName => {
+      const order = newFilters.orders[orderName];
+      Object.keys(order.branches).forEach(branchName => {
+        if (branchName === branchNameToToggle) {
+          order.branches[branchName] = !order.branches[branchName];
+        }
+      });
+    });
+
+    this._filters.replace(newFilters);
+  }
+
   @action
   mapMoved(
     newCenter: Array<Number>,
