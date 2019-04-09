@@ -92,7 +92,7 @@ export class cisteciennesWikiFrParser extends WikiParser {
         monastery.addStatus({}, time);
       });
     } else {
-      monastery.addEmptyOrder("");
+      monastery.addOrder({}, {});
       monastery.addStatus({}, {});
     }
 

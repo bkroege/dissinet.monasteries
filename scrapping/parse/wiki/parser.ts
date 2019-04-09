@@ -26,7 +26,11 @@ export class WikiParser extends Parser {
 
           next();
         } else {
-          console.log(err);
+          console.log(
+            "ERR: getting wikipedia locality err",
+            monastery.data.localityLink,
+            err
+          );
           next();
         }
       });

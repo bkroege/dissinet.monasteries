@@ -20,19 +20,22 @@ export class praemonstratensiansWikiFrParser extends WikiParser {
   }
 
   parseMonastery(monastery, next) {
-    monastery.addStatus({});
     const $ = cheerio.load(monastery.html);
     const recordText = $("li").text();
 
     // name
-    monastery.setName(recordText.split(",")[0].split("(")[0]);
+    monastery.addName(recordText.split(",")[0].split("(")[0], {
+      primary: true
+    });
 
     // link
     const potentialLink = $($("a")[0]);
     //console.log(potentialLink.attr("href"));
 
     if (potentialLink.text() === monastery.data.name) {
-      monastery.setLink(this.meta.rootUrl + potentialLink.attr("href"));
+      const link = this.meta.rootUrl + potentialLink.attr("href");
+      monastery.setLink(link);
+      monastery.setParam("localityLink", link);
     }
 
     // orders
@@ -53,28 +56,21 @@ export class praemonstratensiansWikiFrParser extends WikiParser {
             .reduce((max, val) => (val.occurences > max.occurences ? val : max))
         : false;
 
+    let time = {};
+
     if (mostProbableDate && mostProbableDate.occurences > 0) {
-      const parts = mostProbableDate.value.split("-");
-      const partFrom = BASE.cleanText(parts[0], { trim: true });
-      const partTo = BASE.cleanText(parts[1], { trim: true });
-
-      const fromClean = parseInt(partFrom) == partFrom;
-      const toClean = parseInt(partTo) == partTo;
-
-      monastery.addOrder({
-        from: fromClean ? parseInt(partFrom) : false,
-        to: toClean ? parseInt(partTo) : false,
-        fromNote: fromClean ? "" : partFrom,
-        toNote: toClean ? "" : partTo
-      });
-    } else {
-      monastery.addEmptyOrder("");
+      time = BASE.timeParse({ all: mostProbableDate.value });
     }
 
-    this.inspectWikiPage(monastery, () => {
-      monastery.finishParsing();
-      monastery.save(this.store);
-      next();
+    monastery.addOrder({}, time);
+    monastery.addStatus({}, time);
+
+    this.getLocalityGeo(monastery, () => {
+      this.inspectWikiPage(monastery, () => {
+        monastery.finishParsing();
+        monastery.save(this.store);
+        next();
+      });
     });
   }
 }

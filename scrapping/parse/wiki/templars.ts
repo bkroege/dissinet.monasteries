@@ -1,6 +1,7 @@
 var request = require("request");
 var cheerio = require("cheerio");
 var fs = require("fs");
+var async = require("async");
 import { WikiParser } from "./parser";
 import BASE from "../../base";
 
@@ -78,19 +79,13 @@ export class templarsWikiFrParser extends WikiParser {
                   }
                 });
             } else {
-              console.log("err", err);
+              console.log("err", this.meta.rootUrl + linkToRegion, err);
             }
             callback();
           });
         };
 
-        const checkEnd = () => {
-          console.log("table processed", tablesProcessed + "/" + tablesNo);
-          if (tablesProcessed === tablesNo) {
-            next();
-          }
-        };
-
+        const tables = [];
         $("table.wikitable").map((ri, table) => {
           $(table)
             .find("tr")
@@ -98,19 +93,25 @@ export class templarsWikiFrParser extends WikiParser {
               const linkToRegion = $(mainTableRow)
                 .find("a")
                 .attr("href");
-
-              // each region url
-              if (linkToRegion) {
-                inspectTable(linkToRegion, () => {
-                  tablesProcessed = tablesProcessed + 1;
-                  checkEnd();
-                });
-              } else {
-                tablesProcessed = tablesProcessed + 1;
-                checkEnd();
-              }
+              tables.push(linkToRegion);
             });
         });
+
+        const getTable = (table, next) => {
+          if (table) {
+            inspectTable(table, () => {
+              next();
+            });
+          } else {
+            next();
+          }
+        };
+
+        async.eachLimit(tables, 10, getTable.bind(this), () => {
+          next();
+        });
+      } else {
+        console.log("err2", this.meta.url, err);
       }
     });
   }
@@ -122,6 +123,11 @@ export class templarsWikiFrParser extends WikiParser {
     if (html.locality) {
       monastery.setParam("localityLink", this.meta.rootUrl + html.locality);
     }
+
+    const time = {};
+
+    monastery.addStatus({}, time);
+    monastery.addOrder({}, time);
 
     this.getLocalityGeo(monastery, () => {
       this.inspectWikiPage(monastery, () => {

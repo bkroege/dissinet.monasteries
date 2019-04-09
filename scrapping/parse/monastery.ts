@@ -37,7 +37,7 @@ export class StatusI {
   note?;
   constructor(values, timeValues) {
     this.time = new TimeI(timeValues);
-    this.id = values.id || "";
+    this.id = values.id ? values.id.toLowerCase() : "";
     if (this.note) {
       this.note = values.note;
     }

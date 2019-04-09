@@ -42,7 +42,7 @@ export class teutonsWikiDeParser extends WikiParser {
         );
 
         // link
-        const link = $(column)
+        $(column)
           .find("a")
           .map((li, link) => {
             if ($(link).attr("class") !== "new") {
@@ -79,6 +79,7 @@ export class teutonsWikiDeParser extends WikiParser {
         const timeInput = { from: fromTime, to: toTime };
         const time = BASE.timeParse(timeInput, { lang: "de" });
         monastery.addOrder({}, time);
+        monastery.addStatus({}, time);
       }
     });
 

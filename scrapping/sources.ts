@@ -47,14 +47,82 @@ var sources: Array<{
     reliability?;
   };
 }> = [
-  /* OTHER */
+  /* WIKIPEDIA */
   {
     parse: false,
-    parser: cisteciennesSpreadsheetParser,
-    id: 12,
+    parser: carthusiansWikiEnParser,
+    id: 11,
     meta: {
-      id: "spreadsheet-cisteciennes",
-      url: "1NoF9TVOQmqQuEsiGpYjFHPlfHSIiF7v3SzYhcdZjwpg"
+      id: "wiki-en-carthusians",
+      rootUrl: "https://en.wikipedia.org",
+      url: "https://en.wikipedia.org/wiki/List_of_Carthusian_monasteries"
+    }
+  },
+  {
+    parse: false,
+    parser: augustiniansWikiEnParser,
+    id: 10,
+    meta: {
+      id: "wiki-en-augustinians",
+      rootUrl: "https://en.wikipedia.org",
+      url:
+        "https://en.wikipedia.org/wiki/Category:Augustinian_monasteries_in_France"
+    }
+  },
+  {
+    parse: false,
+    parser: benedictinesWikiFrParser,
+    id: 1,
+    meta: {
+      id: "wiki-fr-benedictines",
+      rootUrl: "https://fr.wikipedia.org",
+      url:
+        "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_b%C3%A9n%C3%A9dictines_de_France"
+    }
+  },
+  {
+    parse: false,
+    parser: cisteciennesWikiFrParser,
+    id: 3,
+    meta: {
+      id: "wiki-fr-cisterciennes",
+      rootUrl: "https://fr.wikipedia.org",
+      url:
+        "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_cisterciennes_de_France"
+    }
+  },
+  {
+    parse: true,
+    parser: templarsWikiFrParser,
+    id: 8,
+    meta: {
+      id: "wiki-fr-templars",
+      rootUrl: "https://fr.wikipedia.org",
+      url:
+        "https://fr.wikipedia.org/wiki/Liste_des_commanderies_templi%C3%A8res"
+    }
+  },
+  {
+    parse: false,
+    parser: teutonsWikiDeParser,
+    id: 9,
+    meta: {
+      id: "wiki-de-teutons",
+      rootUrl: "https://de.wikipedia.org",
+      url:
+        "https://de.wikipedia.org/wiki/Liste_der_Kommenden_des_Deutschen_Ordens"
+    }
+  },
+
+  {
+    parse: false,
+    parser: praemonstratensiansWikiFrParser,
+    id: 26,
+    meta: {
+      id: "wiki-fr-praemonstratensians",
+      rootUrl: "https://fr.wikipedia.org",
+      url:
+        "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_pr%C3%A9montr%C3%A9es_de_France"
     }
   },
 
@@ -114,83 +182,14 @@ var sources: Array<{
     }
   },
 
-  /* WIKIPEDIA */
-  {
-    parse: true,
-    parser: carthusiansWikiEnParser,
-    id: 11,
-    meta: {
-      id: "wiki-en-carthusians",
-      rootUrl: "https://en.wikipedia.org",
-      url: "https://en.wikipedia.org/wiki/List_of_Carthusian_monasteries"
-    }
-  },
+  /* OTHER */
   {
     parse: false,
-    parser: augustiniansWikiEnParser,
-    id: 10,
+    parser: cisteciennesSpreadsheetParser,
+    id: 12,
     meta: {
-      id: "wiki-en-augustinians",
-      rootUrl: "https://en.wikipedia.org",
-      url:
-        "https://en.wikipedia.org/wiki/Category:Augustinian_monasteries_in_France"
-    }
-  },
-  {
-    parse: false,
-    parser: benedictinesWikiFrParser,
-    id: 1,
-    meta: {
-      id: "wiki-fr-benedictines",
-      rootUrl: "https://fr.wikipedia.org",
-      url:
-        "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_b%C3%A9n%C3%A9dictines_de_France"
-    }
-  },
-  {
-    parse: false,
-    parser: cisteciennesWikiFrParser,
-    id: 3,
-    meta: {
-      id: "wiki-fr-cisterciennes",
-      rootUrl: "https://fr.wikipedia.org",
-      url:
-        "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_cisterciennes_de_France"
-    }
-  },
-  {
-    parse: false,
-    parser: templarsWikiFrParser,
-    id: 8,
-    meta: {
-      id: "wiki-fr-templars",
-      rootUrl: "https://fr.wikipedia.org",
-      url:
-        "https://fr.wikipedia.org/wiki/Liste_des_commanderies_templi%C3%A8res"
-    }
-  },
-  {
-    parse: false,
-    parser: teutonsWikiDeParser,
-    id: 9,
-    meta: {
-      id: "wiki-de-teutons",
-      rootUrl: "https://de.wikipedia.org",
-      url:
-        "https://de.wikipedia.org/wiki/Liste_der_Kommenden_des_Deutschen_Ordens"
-    }
-  },
-
-  /* NOT FINISHED */
-  {
-    parse: false,
-    parser: praemonstratensiansWikiFrParser,
-    id: 26,
-    meta: {
-      id: "wiki-fr-praemonstratensians",
-      rootUrl: "https://fr.wikipedia.org",
-      url:
-        "https://fr.wikipedia.org/wiki/Liste_d%27abbayes_pr%C3%A9montr%C3%A9es_de_France"
+      id: "spreadsheet-cisteciennes",
+      url: "1NoF9TVOQmqQuEsiGpYjFHPlfHSIiF7v3SzYhcdZjwpg"
     }
   }
 ];

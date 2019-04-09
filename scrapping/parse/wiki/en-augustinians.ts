@@ -59,7 +59,8 @@ export class augustiniansWikiEnParser extends WikiParser {
       1
     );
 
-    monastery.addEmptyOrder({});
+    monastery.addOrder({}, {});
+    monastery.addStatus({}, {});
     monastery.addName($("#firstHeading").text(), { primary: true, lang: "en" });
 
     monastery.finishParsing();
