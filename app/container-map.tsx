@@ -95,19 +95,17 @@ export default class ContainerMap extends React.Component<any, any> {
   }
 
   componentDidUpdate() {
+    console.log("update");
     this.update();
     this.loadClusters();
   }
 
   loadClusters() {
-    const data = this.points();
-
     this.markerClusters.clearLayers();
     this.markerClusters.addLayers(this.points());
   }
 
   points() {
-    return [];
     return this.props.store.activeMonasteries.map((feature, ri) => {
       return L.marker(feature.geo, {
         fillOpacity: 1,
@@ -127,26 +125,27 @@ export default class ContainerMap extends React.Component<any, any> {
     const markers = cluster.getAllChildMarkers();
     const orders = this.props.store.orders;
     const single = markers.length === 1;
-    const ordersInCluster = {};
+    const colors = [];
 
     markers.forEach(marker => {
-      const orderNames = this.props.store.branchNames;
-      orderNames.forEach(oName => {
-        const orderName = orders.find(o =>
-          o.names.includes(oName.toLowerCase())
-        ).name;
-        if (
-          !ordersInCluster[orderName] &&
-          this.props.store.activeOrdersNames.includes(orderName.toLowerCase())
-        ) {
-          ordersInCluster[orderName] = true;
+      const branches = marker.options.data.orders.map(o => o.id);
+      return branches.map(branch => {
+        const order = orders.find(o => {
+          return o.branches.find(b => {
+            return b.value == branch;
+          });
+        });
+        if (order && order.color && !colors.includes(order.color)) {
+          colors.push(order.color);
         }
       });
     });
 
+    //console.log(colors);
+
     const arcs = pie(
-      Object.keys(ordersInCluster).map(order => {
-        return { name: order.toLowerCase(), number: 1 };
+      colors.map(color => {
+        return { color: color, number: 1 };
       })
     );
 
@@ -168,8 +167,7 @@ export default class ContainerMap extends React.Component<any, any> {
       .enter()
       .append("g")
       .style("fill", d => {
-        const order = orders.find(o => o.names.includes(d.data.name));
-        return order ? order.color : "grey";
+        return d.data.color;
       })
       .style("stroke", "black")
       .attr("class", "arc");
@@ -208,6 +206,7 @@ export default class ContainerMap extends React.Component<any, any> {
           style={{ height: "100%" }}
           onViewportChanged={this.handleMapMove.bind(this)}
           ref="map"
+          bla={this.props.store.activeMonasteries.length}
           className="component-map"
           attributionControl={false}
           zoom={store.zoom}

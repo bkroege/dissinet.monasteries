@@ -79,6 +79,10 @@ export default class AppStore {
       .filter(orderOk);
   }
 
+  @computed get orders() {
+    return this.filters.orders;
+  }
+
   @computed get allowedCategories() {
     return this.filters.category.filter(c => c.active).map(c => c.value);
   }
