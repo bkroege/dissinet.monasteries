@@ -1,5 +1,6 @@
 import Base from "../base";
-import { timingSafeEqual } from "crypto";
+
+import { parsingTime } from "./../scrap";
 
 export class TimeI {
   from: { ante; post };
@@ -90,7 +91,6 @@ export class Monastery {
     this.data = {
       id: Base.generateUuid(),
       names: [],
-      source: meta.id,
       link: false,
       statuses: [],
       geo: new GeoI({ precision: 4 }),
@@ -151,6 +151,10 @@ export class Monastery {
   }
 
   finishParsing(): void {
+    this.data.meta = {
+      timestamp: parsingTime,
+      source: this.meta.id
+    };
     this.parsed = true;
   }
 

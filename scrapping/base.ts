@@ -39,7 +39,7 @@ var BASE = {
 
   cleanText: (
     text,
-    rules = {
+    rules: { trim?; chars? } = {
       trim: true,
       chars: ["\n", "\r", ":", "[", "("]
     }

@@ -8,6 +8,9 @@ import BASE from "./base";
 import sources from "./sources";
 import { Store } from "./store";
 
+const now = new Date();
+export const parsingTime = now.toString();
+
 // load source table
 var sourceKey = "1ltj9_nRbQLXYthlXzDOqNK-woQpW7Y0LQFWy0wdqQ7g";
 
@@ -17,6 +20,7 @@ BASE.readSpreadsheet(sourceKey, sourceRows => {
 
     if (source) {
       const meta = source.meta;
+      meta.id = sourceRow.sourceid;
 
       // gender
       if (["f", "m"].includes(sourceRow.gender)) {
