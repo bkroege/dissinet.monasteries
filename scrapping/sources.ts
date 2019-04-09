@@ -49,7 +49,7 @@ var sources: Array<{
 }> = [
   /* OTHER */
   {
-    parse: false,
+    parse: true,
     parser: cisteciennesSpreadsheetParser,
     id: 12,
     meta: {
@@ -116,7 +116,7 @@ var sources: Array<{
 
   /* WIKIPEDIA */
   {
-    parse: true,
+    parse: false,
     parser: carthusiansWikiEnParser,
     id: 11,
     meta: {

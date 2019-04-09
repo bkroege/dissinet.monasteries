@@ -1,6 +1,6 @@
 var request = require("request");
 var cheerio = require("cheerio");
-import Base from "../../base";
+import BASE from "../../base";
 
 import { Parser } from "./../parser";
 
@@ -66,7 +66,7 @@ export class WikiParser extends Parser {
           $("table.infobox_v2")
             .find("tr")
             .map((ri, row) => {
-              const rowLabel = Base.cleanText(
+              const rowLabel = BASE.cleanText(
                 $(row)
                   .find("th")
                   .text(),
@@ -74,7 +74,7 @@ export class WikiParser extends Parser {
               );
 
               if (infoLabels[rowLabel]) {
-                const rowValue = Base.cleanText(
+                const rowValue = BASE.cleanText(
                   $(row)
                     .find("td")
                     .text(),

@@ -2,7 +2,7 @@ var request = require("request");
 var cheerio = require("cheerio");
 var fs = require("fs");
 import { WikiParser } from "./parser";
-import Base from "../../base";
+import BASE from "../../base";
 
 export class teutonsWikiDeParser extends WikiParser {
   initialiseRecords(next) {
@@ -33,7 +33,7 @@ export class teutonsWikiDeParser extends WikiParser {
       if (ci === 0) {
         // name
         monastery.addName(
-          Base.cleanText(
+          BASE.cleanText(
             $(column)
               .text()
               .replace("Kommende", "")
@@ -56,10 +56,10 @@ export class teutonsWikiDeParser extends WikiParser {
 
       // orders
       if (ci === 1) {
-        fromTime = Base.cleanText($(column).text());
+        fromTime = BASE.cleanText($(column).text());
       }
       if (ci === 2) {
-        toTime = Base.cleanText($(column).text());
+        toTime = BASE.cleanText($(column).text());
       }
 
       // note
@@ -77,7 +77,7 @@ export class teutonsWikiDeParser extends WikiParser {
           }
         }
         const timeInput = { from: fromTime, to: toTime };
-        const time = Base.timeParse(timeInput, { lang: "de" });
+        const time = BASE.timeParse(timeInput, { lang: "de" });
         monastery.addOrder({}, time);
       }
     });

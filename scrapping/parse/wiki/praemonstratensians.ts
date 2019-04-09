@@ -4,7 +4,7 @@ var request = require("request");
 var cheerio = require("cheerio");
 var fs = require("fs");
 import { WikiParser } from "./parser";
-import Base from "../../base";
+import BASE from "../../base";
 
 export class praemonstratensiansWikiFrParser extends WikiParser {
   initialiseRecords(next) {
@@ -55,8 +55,8 @@ export class praemonstratensiansWikiFrParser extends WikiParser {
 
     if (mostProbableDate && mostProbableDate.occurences > 0) {
       const parts = mostProbableDate.value.split("-");
-      const partFrom = Base.cleanText(parts[0], { trim: true });
-      const partTo = Base.cleanText(parts[1], { trim: true });
+      const partFrom = BASE.cleanText(parts[0], { trim: true });
+      const partTo = BASE.cleanText(parts[1], { trim: true });
 
       const fromClean = parseInt(partFrom) == partFrom;
       const toClean = parseInt(partTo) == partTo;

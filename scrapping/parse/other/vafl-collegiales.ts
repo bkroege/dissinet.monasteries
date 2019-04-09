@@ -2,7 +2,7 @@ var request = require("request");
 var cheerio = require("cheerio");
 var fs = require("fs");
 import { Parser } from "../parser";
-import Base from "../../base";
+import BASE from "../../base";
 
 var data = require("./vafl-collegiales-data");
 

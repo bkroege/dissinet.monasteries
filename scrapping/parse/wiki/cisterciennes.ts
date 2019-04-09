@@ -2,7 +2,7 @@ var request = require("request");
 var cheerio = require("cheerio");
 var fs = require("fs");
 import { WikiParser } from "./parser";
-import Base from "../../base";
+import BASE from "../../base";
 
 export class cisteciennesWikiFrParser extends WikiParser {
   initialiseRecords(next) {
@@ -34,7 +34,7 @@ export class cisteciennesWikiFrParser extends WikiParser {
     columns.map((ci, column) => {
       // name and link
       if (ci === 1) {
-        const names = Base.cleanText($(column).text()).split("ou ");
+        const names = BASE.cleanText($(column).text()).split("ou ");
 
         names.forEach((name, ni) => {
           monastery.addName(name, { primary: ni === 0 });
@@ -70,9 +70,9 @@ export class cisteciennesWikiFrParser extends WikiParser {
     const yearsToHtml = $(columns[8]).html();
 
     if (ordersHtml && yearsFromHtml && yearsToHtml) {
-      const orderNames = Base.splitColumn(ordersHtml, $);
-      const yearsFrom = Base.splitColumn(yearsFromHtml, $);
-      const yearsTo = Base.splitColumn(yearsToHtml, $);
+      const orderNames = BASE.splitColumn(ordersHtml, $);
+      const yearsFrom = BASE.splitColumn(yearsFromHtml, $);
+      const yearsTo = BASE.splitColumn(yearsToHtml, $);
 
       // cleaning invalid inputs
       if (orderNames.length < yearsFrom.length) {
@@ -84,7 +84,7 @@ export class cisteciennesWikiFrParser extends WikiParser {
       }
 
       orderNames.map((orderName, oi) => {
-        const time = Base.timeParse(
+        const time = BASE.timeParse(
           { from: yearsFrom[oi], to: yearsTo[oi] },
           { lang: "fr" }
         );

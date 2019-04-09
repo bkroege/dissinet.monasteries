@@ -2,13 +2,13 @@ var request = require("request");
 var cheerio = require("cheerio");
 var fs = require("fs");
 import { WikiParser } from "./parser";
-import Base from "../../base";
+import BASE from "../../base";
 
 export class templarsWikiFrParser extends WikiParser {
   initialiseRecords(next) {
     const parsingMethods = {
       name: (val, html) => {
-        html.name = Base.cleanText(val.text());
+        html.name = BASE.cleanText(val.text());
       },
       place: (val, html) => {
         if (val.find("a").attr("class") !== "new") {
@@ -51,7 +51,7 @@ export class templarsWikiFrParser extends WikiParser {
                     $(rRow)
                       .find("th")
                       .each((ti, th) => {
-                        ths.push(Base.cleanText($(th).text()));
+                        ths.push(BASE.cleanText($(th).text()));
                       });
                   } else {
                     const htmlMonastery = {
