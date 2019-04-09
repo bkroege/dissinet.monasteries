@@ -49,7 +49,7 @@ var sources: Array<{
 }> = [
   /* WIKIPEDIA */
   {
-    parse: true,
+    parse: false,
     parser: carthusiansWikiEnParser,
     id: 11,
     meta: {
@@ -59,7 +59,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: augustiniansWikiEnParser,
     id: 10,
     meta: {
@@ -70,7 +70,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: benedictinesWikiFrParser,
     id: 1,
     meta: {
@@ -81,7 +81,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: cisteciennesWikiFrParser,
     id: 3,
     meta: {
@@ -92,7 +92,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: templarsWikiFrParser,
     id: 8,
     meta: {
@@ -103,7 +103,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: teutonsWikiDeParser,
     id: 9,
     meta: {
@@ -115,7 +115,7 @@ var sources: Array<{
   },
 
   {
-    parse: true,
+    parse: false,
     parser: praemonstratensiansWikiFrParser,
     id: 26,
     meta: {
@@ -128,7 +128,7 @@ var sources: Array<{
 
   /* DARMC */
   {
-    parse: true,
+    parse: false,
     parser: earlyFoundationsDarmcParser,
     id: 14,
     meta: {
@@ -137,7 +137,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: cisterciennesDarmcParser,
     id: 2,
     meta: {
@@ -146,7 +146,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: cluniacDarmcParser,
     id: 4,
     meta: {
@@ -155,7 +155,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: praemonstratensiansDarmcParser,
     id: 7,
     meta: {
@@ -164,7 +164,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: dominicanDarmcParser,
     id: 5,
     meta: {
@@ -173,7 +173,7 @@ var sources: Array<{
     }
   },
   {
-    parse: true,
+    parse: false,
     parser: franciscanDarmcParser,
     id: 6,
     meta: {
@@ -184,7 +184,7 @@ var sources: Array<{
 
   /* OTHER */
   {
-    parse: true,
+    parse: false,
     parser: cisteciennesSpreadsheetParser,
     id: 12,
     meta: {

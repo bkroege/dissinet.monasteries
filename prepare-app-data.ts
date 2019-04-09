@@ -22,7 +22,7 @@ BASE.readSpreadsheet(orderTableKey, orderRows => {
 });
 
 fs.copyFile(
-  "./scrapping/data/monasteries_validated.json",
+  "./scrapping/data/monasteries_processed.json",
   "./app/data/monasteries.json",
   () => {}
 );

@@ -67,7 +67,7 @@ BASE.readSpreadsheet(sourceKey, sourceRows => {
       });
 
       var store = new Store(orderData);
-      store.truncate();
+      //store.truncate();
 
       const parse = (source, next) => {
         console.log("going to parse", source.meta.id);

@@ -39,35 +39,48 @@ var onlyUnique = (value, index, self) => {
 console.log(orders);
 
 const filters = {
-  orders: {},
+  orders: [],
   time: { from: 350, to: 1500 },
-  category: {},
-  gender: {},
-  status: {}
+  category: [],
+  gender: [],
+  status: []
 };
 
-filters["gender"] = {
-  male: true,
-  female: true,
-  double: true
-};
+filters["gender"] = [
+  { label: "male", value: "m", active: true },
+  { label: "female", value: "f", active: true },
+  { label: "double", value: "d", active: true },
+  { label: "unknown", value: "", active: true }
+];
 
 // orders
 const orderGroups = orders.map(o => o.ordergroup).filter(onlyUnique);
-orderGroups.forEach(
-  (o, oi) =>
-    (filters["orders"][o] = { label: o, color: colors[oi], branches: {} })
+
+orderGroups.forEach((order, oi) =>
+  filters["orders"].push({ label: order, color: colors[oi], branches: [] })
 );
 
 orders.forEach(order => {
-  filters["orders"][order.ordergroup].branches[order.label] = true;
+  const ordergroup = filters["orders"].find(o => o.label === order.ordergroup);
+  ordergroup.branches.push({
+    label: order.label,
+    value: order.label,
+    active: true
+  });
 });
 
-console.log(filters["orders"]);
-
+// categories
 const categories = orders.map(o => o.category).filter(onlyUnique);
-categories.forEach(c => (filters["category"][c] = true));
 
+categories.forEach(c =>
+  filters["category"].push({
+    label: c,
+    value: c,
+    active: true
+  })
+);
+
+//status
 const statuses = [];
 monasteries.forEach(monastery => {
   monastery.statuses.forEach(status => {
@@ -77,11 +90,13 @@ monasteries.forEach(monastery => {
   });
 });
 
-statuses.forEach(s => (filters["status"][s] = true));
+statuses.forEach(s =>
+  filters["status"].push({ label: s, value: s, active: true })
+);
 
 console.log(filters);
 
-const store = new AppStore(data, filters);
+const store = new AppStore(monasteries, filters);
 
 if (document.body) {
   document.body.innerHTML = "";

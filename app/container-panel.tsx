@@ -45,27 +45,22 @@ export default class ContainerPanel extends React.Component<any, any> {
     );
   }
 
-  renderCheckbox(
-    key,
-    label,
-    checked,
-    opts: { event?: Function } = { event: () => {} }
-  ) {
+  renderCheckbox(data: { key; value; label; checked; event }) {
     return (
-      <div className="field checkbox only-label is-small" key={key}>
+      <div className="field checkbox only-label is-small" key={data.key}>
         <input
           className="is-checkradio is-black no-borders is-small"
           type="checkbox"
           name="all"
-          onChange={opts.event ? opts.event.bind(this) : () => {}}
-          checked={checked}
-          value={label}
-          id={label}
+          onChange={data.event ? data.event.bind(this) : () => {}}
+          checked={data.checked}
+          value={data.value}
+          id={data.label}
           style={{}}
         />
-        <label htmlFor={label}>
+        <label htmlFor={data.label}>
           <span className="legend-color" />
-          <span className="legend-name is-small">{label}</span>
+          <span className="legend-name is-small">{data.label}</span>
         </label>
       </div>
     );
@@ -75,6 +70,8 @@ export default class ContainerPanel extends React.Component<any, any> {
     const store = this.props.store;
     console.log("activeRecordsCount", store.activeRecordsCount);
     const active = store.activeMonasteries;
+    console.log("data active", store.activeMonasteries);
+
     console.log(store.data.filter(d => !active.map(a => a.id).includes(d.id)));
 
     const filters = store.filters;
@@ -92,18 +89,18 @@ export default class ContainerPanel extends React.Component<any, any> {
         {/* order */}
         <div key="orders" className="panel-section orders">
           {this.renderHeading1("orders")}
-          {Object.keys(filters.orders).map((orderName, oi) => {
-            const order = filters.orders[orderName];
+          {filters.orders.map((orderGroup, oi) => {
             return (
               <div key={oi}>
-                {this.renderHeading2(orderName)}
-                {Object.keys(order.branches).map((branchName, bi) => {
-                  return this.renderCheckbox(
-                    bi,
-                    branchName,
-                    order.branches[branchName],
-                    { event: this.handleOrderFilter }
-                  );
+                {this.renderHeading2(orderGroup.label)}
+                {orderGroup.branches.map((branch, bi) => {
+                  return this.renderCheckbox({
+                    key: bi,
+                    label: branch.label,
+                    value: branch.value,
+                    event: this.handleOrderFilter,
+                    checked: branch.active
+                  });
                 })}
               </div>
             );
@@ -114,9 +111,13 @@ export default class ContainerPanel extends React.Component<any, any> {
         <div key="status" className="panel-section status">
           {/* status */}
           {this.renderHeading1("status")}
-          {Object.keys(filters.status).map((status, si) => {
-            return this.renderCheckbox(si, status, filters.status[status], {
-              event: this.handleStatusFilter
+          {filters.status.map((status, si) => {
+            return this.renderCheckbox({
+              key: si,
+              label: status.label,
+              value: status.value,
+              event: this.handleStatusFilter,
+              checked: status.active
             });
           })}
           <hr />
@@ -125,9 +126,13 @@ export default class ContainerPanel extends React.Component<any, any> {
         <div key="gender" className="panel-section gender">
           {/* gender */}
           {this.renderHeading1("gender")}
-          {Object.keys(filters.gender).map((gender, gi) => {
-            return this.renderCheckbox(gi, gender, filters.gender[gender], {
-              event: this.handleGenderFilter
+          {filters.gender.map((gender, gi) => {
+            return this.renderCheckbox({
+              key: gi,
+              label: gender.label,
+              value: gender.value,
+              event: this.handleGenderFilter,
+              checked: gender.active
             });
           })}
           <hr />
@@ -136,13 +141,14 @@ export default class ContainerPanel extends React.Component<any, any> {
         <div key="category" className="panel-section category">
           {/* category */}
           {this.renderHeading1("category")}
-          {Object.keys(filters.category).map((category, ci) => {
-            return this.renderCheckbox(
-              ci,
-              category,
-              filters.category[category],
-              { event: this.handleCategoryFilter }
-            );
+          {filters.category.map((category, ci) => {
+            return this.renderCheckbox({
+              key: ci,
+              label: category.label,
+              value: category.value,
+              event: this.handleCategoryFilter,
+              checked: category.active
+            });
           })}
           <hr />
         </div>

@@ -41,7 +41,20 @@ export default class AppStore {
   }
 
   @computed get activeMonasteries() {
-    return this.data;
+    console.log(this.data);
+
+    const genderOk = m => {
+      const mGenders = m.orders.map(o => o.gender);
+      return mGenders.some(g => this.allowedGenders.includes(g));
+    };
+
+    // gender
+    return this.data.filter(genderOk);
+  }
+
+  @computed get allowedGenders() {
+    const gender = this.filters.gender;
+    return Object.keys(gender).filter(o => gender[o]);
   }
 
   @computed get activeRecordsCount() {
@@ -52,14 +65,13 @@ export default class AppStore {
     return this.data.length;
   }
 
-  @action toggleOrder(branchNameToToggle) {
+  @action toggleOrder(branchValueToToggle) {
     const newFilters = this.filters;
 
-    Object.keys(newFilters.orders).forEach(orderName => {
-      const order = newFilters.orders[orderName];
-      Object.keys(order.branches).forEach(branchName => {
-        if (branchName === branchNameToToggle) {
-          order.branches[branchName] = !order.branches[branchName];
+    newFilters.orders.forEach(order => {
+      order.branches.forEach(branch => {
+        if (branch.value === branchValueToToggle) {
+          branch.active = !branch.active;
         }
       });
     });
@@ -67,36 +79,36 @@ export default class AppStore {
     this._filters.replace(newFilters);
   }
 
-  @action toggleStatus(statusNameToToggle) {
+  @action toggleStatus(statusValueToToggle) {
     const newFilters = this.filters;
 
-    Object.keys(newFilters.status).forEach(statusName => {
-      if (statusName === statusNameToToggle) {
-        newFilters.status[statusName] = !newFilters.status[statusName];
+    newFilters.status.forEach(status => {
+      if (status.value === statusValueToToggle) {
+        status.active = !status.active;
       }
     });
 
     this._filters.replace(newFilters);
   }
 
-  @action toggleGender(genderNameToToggle) {
+  @action toggleGender(genderValueToToggle) {
     const newFilters = this.filters;
 
-    Object.keys(newFilters.gender).forEach(genderName => {
-      if (genderName === genderNameToToggle) {
-        newFilters.gender[genderName] = !newFilters.gender[genderName];
+    newFilters.gender.forEach(gender => {
+      if (gender.value === genderValueToToggle) {
+        gender.active = !gender.active;
       }
     });
 
     this._filters.replace(newFilters);
   }
 
-  @action toggleCategory(categoryNameToToggle) {
+  @action toggleCategory(categoryValueToToggle) {
     const newFilters = this.filters;
 
-    Object.keys(newFilters.category).forEach(categoryName => {
-      if (categoryName === categoryNameToToggle) {
-        newFilters.category[categoryName] = !newFilters.category[categoryName];
+    newFilters.category.forEach(category => {
+      if (category.value === categoryValueToToggle) {
+        category.active = !category.active;
       }
     });
 

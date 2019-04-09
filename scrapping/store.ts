@@ -19,7 +19,7 @@ export class Store {
   monasteriesValidated = [];
 
   private filePathRaw = outputPath + "monasteries_raw.json";
-  private filePathValidated = outputPath + "monasteries_validated.json";
+  private filePathValidated = outputPath + "monasteries_processed.json";
   private filePath = outputPath + "monasteries.json";
 
   private autoSave = true;
@@ -110,12 +110,6 @@ export class Store {
         return this.checks[checkKey];
       });
 
-      /*
-      Object.keys(this.checks).map(checkKey => {
-        console.log(checkKey, this.checks[checkKey](monastery));
-      });
-      */
-
       return checkFns.every(fn => {
         return fn(monastery);
       });
@@ -156,6 +150,7 @@ export class Store {
       return m;
     });
 
+    /*
     const bundles = [];
     monasteriesToProccess.forEach(monastery => {
       if (!monastery.processed) {
@@ -202,26 +197,7 @@ export class Store {
       });
 
       if (bundle.length > 1) {
-        const genders = bundle.map(m => {
-          return m.gender.value;
-        });
-        fixedMonastery.gender = {};
-        fixedMonastery.gender.notes = bundle
-          .map(m => m.gender.note)
-          .filter(n => n);
-
-        if (genders.includes("m") && genders.includes("f")) {
-          fixedMonastery.gender.value = "?";
-        } else if (genders.includes("d")) {
-          fixedMonastery.gender.value = "d";
-        } else if (genders.includes("m")) {
-          fixedMonastery.gender.value = "m";
-        } else if (genders.includes("f")) {
-          fixedMonastery.gender.value = "f";
-        } else {
-          fixedMonastery.gender.value = false;
-        }
-
+       
         fixedMonastery.establishment = bundle
           .map(m => m.establishment)
           .filter(a => a)
@@ -239,12 +215,12 @@ export class Store {
       } else {
         fixedMonastery.gender = bundle[0].gender;
       }
-      fixed.push(fixedMonastery);
     });
-
-    fixed.sort((a, b) =>
-      a.sourceRecords.length > b.sourceRecords.length ? -1 : 1
-    );
+    
+    */
+    monasteriesToProccess.forEach(monastery => {
+      fixed.push(monastery);
+    });
 
     fs.writeFile(this.filePath, JSON.stringify(fixed, null, 2), () => {
       console.log("fixed store saved");
@@ -260,6 +236,21 @@ export class Store {
       return monastery;
     },
     validateGenderValues: monastery => {
+      const genderDict = [
+        { value: "m", alternatives: ["m", "male"] },
+        { value: "f", alternatives: ["f", "female"] },
+        { value: "d", alternatives: ["d", "t", "double"] },
+        { value: "", alternatives: ["", "unknown"] }
+      ];
+
+      monastery.orders.forEach(o => {
+        const gender = genderDict.find(v => v.alternatives.includes(o.gender));
+        if (gender) {
+          o.gender = gender.value;
+        } else {
+          o.gender = "";
+        }
+      });
       return monastery;
     },
     // check if the order id is valid and if the gender is right
