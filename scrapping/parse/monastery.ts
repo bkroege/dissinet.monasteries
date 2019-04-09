@@ -167,6 +167,11 @@ export class Monastery {
     }
   }
 
+  setInvalid(): void {
+    this.parsed = true;
+    this.saved = true;
+  }
+
   finishParsing(): void {
     this.data.meta = {
       timestamp: parsingTime,

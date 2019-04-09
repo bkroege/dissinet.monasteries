@@ -38,14 +38,18 @@ export class Parser {
 
   _parseMonastery(monastery, next) {
     const maxTimeForParsing = 10000;
+    let parsed = false;
     const timeout = setTimeout(() => {
       console.log("max time for parsing exceeded");
-      monastery.finishParsing();
-      next();
+      if (!parsed) {
+        monastery.setInvalid();
+        next();
+      }
     }, maxTimeForParsing);
 
     this.parseMonastery(monastery, () => {
       clearTimeout(timeout);
+      parsed = true;
       next();
     });
   }

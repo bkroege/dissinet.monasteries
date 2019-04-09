@@ -13,6 +13,9 @@ import AppContainer from "./app";
 
 const data = require("./monasteries.json");
 
+var monasteries = require("./data/monasteries");
+var orders = require("./data/orders");
+
 var version = "0.0.1 (experimental version)";
 var colors = [
   "#8dd3c7",
@@ -29,30 +32,57 @@ var colors = [
   "#ccebc5"
 ];
 
-orders.forEach((order, oi) => {
-  order.color = colors[oi];
-  order.active = true;
-  order.names.push(order.name.toLowerCase());
-});
+var onlyUnique = (value, index, self) => {
+  return self.indexOf(value) === index;
+};
 
-const othersOrder = orders.find(o => o.name === "others");
-const orderNamesInDict = [];
+console.log(orders);
+
+const filters = {
+  orders: {},
+  time: { from: 350, to: 1500 },
+  category: {},
+  gender: {},
+  status: {}
+};
+
+filters["gender"] = {
+  male: true,
+  female: true,
+  double: true
+};
+
+// orders
+const orderGroups = orders.map(o => o.ordergroup).filter(onlyUnique);
+orderGroups.forEach(
+  (o, oi) =>
+    (filters["orders"][o] = { label: o, color: colors[oi], branches: [] })
+);
 
 orders.forEach(order => {
-  order.names.forEach(name => orderNamesInDict.push(name));
+  filters["orders"][order.ordergroup].branches[order.label] = true;
 });
 
-data.forEach(monastery => {
-  monastery.orders.forEach(order => {
-    if (!orderNamesInDict.includes(order.name)) {
-      othersOrder.names.push(order.name);
+console.log(filters["orders"]);
+
+orders.forEach();
+
+const categories = orders.map(o => o.category).filter(onlyUnique);
+categories.forEach(c => (filters["category"][c] = true));
+
+const statuses = [];
+monasteries.forEach(monastery => {
+  monastery.statuses.forEach(status => {
+    if (!statuses.includes(status.id)) {
+      statuses.push(status.id);
     }
   });
 });
 
-console.log(othersOrder);
+statuses.forEach(s => (filters["status"][s] = true));
 
-othersOrder.names = othersOrder.names.filter((v, i, a) => a.indexOf(v) === i);
+console.log(filters);
+
 const store = new AppStore(data, orders);
 
 if (document.body) {

@@ -31,14 +31,20 @@ export class Store {
     this.orders = orders;
 
     // loading previously stored records
-    var monasteriesRaw = fs.readFileSync(this.filePathRaw, "utf8") || "[]";
+    var monasteriesRaw = fs.existsSync(this.filePathRaw)
+      ? fs.readFileSync(this.filePathRaw, "utf8")
+      : "[]";
+
+    var monasteriesValidated = fs.existsSync(this.filePathValidated)
+      ? fs.readFileSync(this.filePathValidated, "utf8")
+      : "[]";
+
+    var monasteriesFixed = fs.existsSync(this.filePath)
+      ? fs.readFileSync(this.filePath, "utf8")
+      : "[]";
+
     this.monasteriesRaw = JSON.parse(monasteriesRaw);
-
-    var monasteriesValidated =
-      fs.readFileSync(this.filePathValidated, "utf8") || "[]";
     this.monasteriesValidated = JSON.parse(monasteriesValidated);
-
-    var monasteriesFixed = fs.readFileSync(this.filePath, "utf8") || "[]";
     this.monasteries = JSON.parse(monasteriesFixed);
   }
 
