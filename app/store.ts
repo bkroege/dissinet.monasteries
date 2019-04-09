@@ -1,5 +1,6 @@
 import { keys, toJS, observable, action, computed } from "mobx";
 var JSZip = require("jszip");
+var orders = require("./data/orders");
 
 export default class AppStore {
   data;
@@ -43,18 +44,44 @@ export default class AppStore {
   @computed get activeMonasteries() {
     console.log(this.data);
 
+    // gender
     const genderOk = m => {
       const mGenders = m.orders.map(o => o.gender);
       return mGenders.some(g => this.allowedGenders.includes(g));
     };
 
-    // gender
-    return this.data.filter(genderOk);
+    //category
+    const categoryOk = m => {
+      const mOrders = m.orders.map(o => o.id);
+      const mCategories = mOrders.map(mo => orders.find(o => o.id == mo));
+      return mCategories.some(g => this.allowedCategories.includes(g));
+    };
+
+    //order
+    const orderOk = m => {
+      const mOrders = m.orders.map(o => o.id);
+      return mOrders.some(o => this.allowedOrders.includes(o));
+    };
+
+    return this.data.filter(genderOk).filter(orderOk);
   }
 
+  @computed get allowedCategories() {
+    return this.filters.category.filter(c => c.active).map(c => c.value);
+  }
   @computed get allowedGenders() {
-    const gender = this.filters.gender;
-    return Object.keys(gender).filter(o => gender[o]);
+    return this.filters.gender.filter(g => g.active).map(g => g.value);
+  }
+  @computed get allowedOrders() {
+    const activeOrders = [];
+    this.filters.orders.forEach(ordergroup => {
+      ordergroup.branches.forEach(branch => {
+        if (branch.active) {
+          activeOrders.push(branch.value);
+        }
+      });
+    });
+    return activeOrders;
   }
 
   @computed get activeRecordsCount() {

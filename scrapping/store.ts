@@ -250,15 +250,15 @@ export class Store {
       this.orders.forEach(order => {
         const allPossibleNames = [order.label];
         order["alternativenamesbothgenders"]
-          .split()
+          .split(", ")
           .forEach(n => allPossibleNames.push(n));
         order["alternativenamesfemale"]
-          .split()
+          .split(", ")
           .forEach(n => allPossibleNames.push(n));
         order["alternativenamesmale"]
-          .split()
+          .split(", ")
           .forEach(n => allPossibleNames.push(n));
-        add(parseInt(order.id, 10), allPossibleNames);
+        add(order.id, allPossibleNames);
       });
 
       console.log(orderDict);

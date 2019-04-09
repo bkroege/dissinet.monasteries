@@ -3,18 +3,27 @@ import "./../node_modules/leaflet/dist/leaflet.css";
 import "./../node_modules/leaflet.markercluster/dist/MarkerCluster.css";
 import "./../node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css";
 
-import orders from "./orders";
-
 import AppStore from "./store";
 
 import React from "react";
 import ReactDOM from "react-dom";
 import AppContainer from "./app";
 
-const data = require("./monasteries.json");
-
 var monasteries = require("./data/monasteries");
 var orders = require("./data/orders");
+
+const ordersCounts = {};
+
+monasteries.forEach(m => {
+  m.orders.forEach(o => {
+    if (o.id in ordersCounts) {
+      ordersCounts[o.id] += 1;
+    } else {
+      ordersCounts[o.id] = 1;
+    }
+  });
+});
+console.log(ordersCounts);
 
 var version = "0.0.1 (experimental version)";
 var colors = [
@@ -60,14 +69,18 @@ orderGroups.forEach((order, oi) =>
   filters["orders"].push({ label: order, color: colors[oi], branches: [] })
 );
 
-orders.forEach(order => {
-  const ordergroup = filters["orders"].find(o => o.label === order.ordergroup);
-  ordergroup.branches.push({
-    label: order.label,
-    value: order.label,
-    active: true
+orders
+  .filter(o => o.id in ordersCounts)
+  .forEach(order => {
+    const ordergroup = filters["orders"].find(
+      o => o.label === order.ordergroup
+    );
+    ordergroup.branches.push({
+      label: order.label,
+      value: order.id,
+      active: true
+    });
   });
-});
 
 // categories
 const categories = orders.map(o => o.category).filter(onlyUnique);

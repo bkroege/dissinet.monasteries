@@ -89,22 +89,24 @@ export default class ContainerPanel extends React.Component<any, any> {
         {/* order */}
         <div key="orders" className="panel-section orders">
           {this.renderHeading1("orders")}
-          {filters.orders.map((orderGroup, oi) => {
-            return (
-              <div key={oi}>
-                {this.renderHeading2(orderGroup.label)}
-                {orderGroup.branches.map((branch, bi) => {
-                  return this.renderCheckbox({
-                    key: bi,
-                    label: branch.label,
-                    value: branch.value,
-                    event: this.handleOrderFilter,
-                    checked: branch.active
-                  });
-                })}
-              </div>
-            );
-          })}
+          {filters.orders
+            .filter(og => og.branches.length)
+            .map((orderGroup, oi) => {
+              return (
+                <div key={oi}>
+                  {this.renderHeading2(orderGroup.label)}
+                  {orderGroup.branches.map((branch, bi) => {
+                    return this.renderCheckbox({
+                      key: bi,
+                      label: branch.label,
+                      value: branch.value,
+                      event: this.handleOrderFilter,
+                      checked: branch.active
+                    });
+                  })}
+                </div>
+              );
+            })}
           <hr />
         </div>
 
