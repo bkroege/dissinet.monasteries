@@ -49,7 +49,7 @@ var sources: Array<{
 }> = [
   /* OTHER */
   {
-    parse: true,
+    parse: false,
     parser: cisteciennesSpreadsheetParser,
     id: 12,
     meta: {
@@ -60,7 +60,7 @@ var sources: Array<{
 
   /* DARMC */
   {
-    parse: false,
+    parse: true,
     parser: earlyFoundationsDarmcParser,
     id: 14,
     meta: {

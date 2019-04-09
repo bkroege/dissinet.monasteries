@@ -44,6 +44,28 @@ export class StatusI {
   }
 }
 
+export class NameI {
+  value: string;
+  primary: boolean;
+  long: boolean;
+  lang: string;
+  note?;
+  constructor(value, data) {
+    const defaultData = {
+      primary: true,
+      long: false,
+      lang: ""
+    };
+
+    const mergedData = Object.assign({}, defaultData, data);
+
+    this.value = value;
+    this.primary = mergedData.primary;
+    this.long = mergedData.long;
+    this.lang = mergedData.lang;
+  }
+}
+
 export class OrderI {
   time: TimeI;
   id;
@@ -138,15 +160,10 @@ export class Monastery {
     this.data.geo = new GeoI(values);
   }
 
-  addName(value, data = { primary: true, long: false, lang: "" }): void {
+  addName(value, data = {}): void {
     const cleanedValue = Base.cleanText(value);
     if (cleanedValue) {
-      this.data.names.push({
-        value: cleanedValue,
-        priority: data.primary || true,
-        long: data.long || false,
-        lang: data.lang || false
-      });
+      this.data.names.push(new NameI(cleanedValue, data));
     }
   }
 
