@@ -53,7 +53,10 @@ export default class AppStore {
     //category
     const categoryOk = m => {
       const mOrders = m.orders.map(o => o.id);
-      const mCategories = mOrders.map(mo => orders.find(o => o.id == mo));
+      const mCategories = mOrders
+        .map(mo => orders.find(o => o.id == mo))
+        .filter(m => m)
+        .map(m => m.category);
       return mCategories.some(g => this.allowedCategories.includes(g));
     };
 
@@ -63,7 +66,17 @@ export default class AppStore {
       return mOrders.some(o => this.allowedOrders.includes(o));
     };
 
-    return this.data.filter(genderOk).filter(orderOk);
+    //status
+    const statusOk = m => {
+      const mStatuses = m.statuses.map(s => s.id);
+      return mStatuses.some(s => this.allowedStatuses.includes(s));
+    };
+
+    return this.data
+      .filter(genderOk)
+      .filter(statusOk)
+      .filter(categoryOk)
+      .filter(orderOk);
   }
 
   @computed get allowedCategories() {
@@ -71,6 +84,9 @@ export default class AppStore {
   }
   @computed get allowedGenders() {
     return this.filters.gender.filter(g => g.active).map(g => g.value);
+  }
+  @computed get allowedStatuses() {
+    return this.filters.status.filter(s => s.active).map(s => s.value);
   }
   @computed get allowedOrders() {
     const activeOrders = [];
