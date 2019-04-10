@@ -26,9 +26,11 @@ export class Store {
   private saving = false;
   private savingTimeout = 5000;
   public orders = [];
+  public statuses = [];
 
-  constructor(orders) {
+  constructor(orders, statuses) {
     this.orders = orders;
+    this.statuses = statuses;
 
     // loading previously stored records
     var monasteriesRaw = fs.existsSync(this.filePathRaw)
@@ -104,19 +106,8 @@ export class Store {
 
   validate() {
     console.log("validating");
-    // check valid
-    const monasteriesChecked = this.monasteriesRaw.filter(monastery => {
-      const checkFns = Object.keys(this.checks).map(checkKey => {
-        return this.checks[checkKey];
-      });
-
-      return checkFns.every(fn => {
-        return fn(monastery);
-      });
-    });
-
-    // correct
-    const monasteriesCorrected = monasteriesChecked.map(monastery => {
+    // supplementation
+    const monasteriesSupplemented = this.monasteriesRaw.map(monastery => {
       const fixFns = Object.keys(this.fixes).map(fixKey => {
         return this.fixes[fixKey];
       });
@@ -129,11 +120,22 @@ export class Store {
       return corrected;
     });
 
-    this.monasteriesValidated = monasteriesCorrected;
+    // filtering
+    const monasteriesFiltered = monasteriesSupplemented.filter(monastery => {
+      const checkFns = Object.keys(this.checks).map(checkKey => {
+        return this.checks[checkKey];
+      });
+
+      return checkFns.every(fn => {
+        return fn(monastery);
+      });
+    });
+
+    this.monasteriesValidated = monasteriesFiltered;
 
     fs.writeFile(
       this.filePathValidated,
-      JSON.stringify(monasteriesCorrected, null, 2),
+      JSON.stringify(this.monasteriesValidated, null, 2),
       () => {
         console.log("validated store saved");
       }
@@ -261,8 +263,6 @@ export class Store {
         add(order.id, allPossibleNames);
       });
 
-      console.log(orderDict);
-
       monastery.orders.forEach(o => {
         const order = orderDict.find(v => v.alternatives.includes(o.id));
         if (order) {
@@ -278,7 +278,7 @@ export class Store {
       const genderDict = [
         { value: "m", alternatives: ["m", "male"] },
         { value: "f", alternatives: ["f", "female"] },
-        { value: "d", alternatives: ["d", "t", "double"] },
+        { value: "d", alternatives: ["d", "double"] },
         { value: "", alternatives: ["", "unknown"] }
       ];
       monastery.orders.forEach(o => {
