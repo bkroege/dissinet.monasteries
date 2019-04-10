@@ -22,6 +22,10 @@ export default class ContainerPanel extends React.Component<any, any> {
     };
   }
 
+  handleTimeChange(value) {
+    this.props.store.changeTime(value);
+  }
+
   handleOrderFilter(e) {
     this.props.store.toggleOrder(e.target.value);
   }
@@ -103,7 +107,7 @@ export default class ContainerPanel extends React.Component<any, any> {
               onChange={value => {
                 this.setState({ time: value });
               }}
-              onChangeComplete={value => console.log(value)}
+              onChangeComplete={this.handleTimeChange.bind(this)}
               value={this.state.time}
             />
           </form>
@@ -118,7 +122,7 @@ export default class ContainerPanel extends React.Component<any, any> {
             .map((orderGroup, oi) => {
               return (
                 <div key={oi}>
-                  {this.renderHeading2(orderGroup.label)}
+                  {/*this.renderHeading2(orderGroup.label)*/}
                   {orderGroup.branches.map((branch, bi) => {
                     return this.renderCheckbox({
                       key: bi,

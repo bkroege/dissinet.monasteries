@@ -244,7 +244,7 @@ export class Store {
 
       const add = (value, alternatives) => {
         orderDict.push({
-          value: parseInt("value"),
+          value: parseInt(value, 10),
           alternatives: alternatives.filter(a => a).map(a => a.toLowerCase())
         });
       };

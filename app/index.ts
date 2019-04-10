@@ -11,6 +11,7 @@ import AppContainer from "./app";
 
 var monasteries = require("./data/monasteries");
 var orders = require("./data/orders");
+var statuses = require("./data/statuses");
 
 const ordersCounts = {};
 
@@ -49,7 +50,7 @@ console.log(orders);
 
 const filters = {
   orders: [],
-  time: { from: 350, to: 1500 },
+  time: { min: 350, max: 1500 },
   category: [],
   gender: [],
   status: []
@@ -81,6 +82,11 @@ orders
       active: true
     });
   });
+filters["orders"].push({
+  label: "unknown",
+  color: "black",
+  branches: [{ label: "uknown", value: 0, active: true }]
+});
 
 // categories
 const categories = orders.map(o => o.category).filter(onlyUnique);
@@ -92,20 +98,14 @@ categories.forEach(c =>
     active: true
   })
 );
+filters["category"].push({ label: "unknown", value: 0, active: true });
 
-//status
-const statuses = [];
-monasteries.forEach(monastery => {
-  monastery.statuses.forEach(status => {
-    if (!statuses.includes(status.id)) {
-      statuses.push(status.id);
-    }
-  });
+statuses.forEach(s => {
+  if (monasteries.some(m => m.statuses.find(st => st.id == s.id))) {
+    filters["status"].push({ label: s.default, value: s.id, active: true });
+  }
 });
-
-statuses.forEach(s =>
-  filters["status"].push({ label: s, value: s, active: true })
-);
+filters["status"].push({ label: "unknown", value: 0, active: true });
 
 console.log(filters);
 
