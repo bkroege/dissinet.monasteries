@@ -60,7 +60,7 @@ filters["gender"] = [
   { label: "male", value: "m", active: true },
   { label: "female", value: "f", active: true },
   { label: "double", value: "d", active: true },
-  { label: "unknown", value: "", active: true }
+  { label: "unknown", value: 0, active: true }
 ];
 
 // orders
@@ -72,19 +72,21 @@ orderGroups.forEach((order, oi) =>
 
 orders
   .filter(o => o.id in ordersCounts)
+  .filter(o => o.id !== "16")
+  .filter(o => o.id !== "17")
   .forEach(order => {
     const ordergroup = filters["orders"].find(
       o => o.label === order.ordergroup
     );
     ordergroup.branches.push({
       label: order.label,
-      value: order.id,
+      value: parseInt(order.id),
       active: true
     });
   });
 filters["orders"].push({
   label: "unknown",
-  color: "black",
+  color: "grey",
   branches: [{ label: "uknown", value: 0, active: true }]
 });
 
@@ -102,7 +104,11 @@ filters["category"].push({ label: "unknown", value: 0, active: true });
 
 statuses.forEach(s => {
   if (monasteries.some(m => m.statuses.find(st => st.id == s.id))) {
-    filters["status"].push({ label: s.default, value: s.id, active: true });
+    filters["status"].push({
+      label: s.default,
+      value: parseInt(s.id),
+      active: true
+    });
   }
 });
 filters["status"].push({ label: "unknown", value: 0, active: true });

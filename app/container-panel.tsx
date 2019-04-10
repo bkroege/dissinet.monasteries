@@ -2,8 +2,6 @@ import React from "react";
 import { observer } from "mobx-react";
 import InputRange from "react-input-range";
 
-require("./../node_modules/react-input-range/lib/bundle/react-input-range.css");
-
 @observer
 export default class ContainerPanel extends React.Component<any, any> {
   refs;
@@ -47,7 +45,7 @@ export default class ContainerPanel extends React.Component<any, any> {
 
   renderHeading1(content) {
     return (
-      <p key={content} className="is-4 title section-label">
+      <p key={content} className="is-6 title section-label">
         {content}
       </p>
     );
@@ -60,7 +58,7 @@ export default class ContainerPanel extends React.Component<any, any> {
     );
   }
 
-  renderCheckbox(data: { key; value; label; checked; event }) {
+  renderCheckbox(data: { key; value; label; checked; event; style? }) {
     return (
       <div className="field checkbox only-label is-small" key={data.key}>
         <input
@@ -75,7 +73,9 @@ export default class ContainerPanel extends React.Component<any, any> {
         />
         <label htmlFor={data.label}>
           <span className="legend-color" />
-          <span className="legend-name is-small">{data.label}</span>
+          <span className="legend-name is-small" style={data.style}>
+            {data.label}
+          </span>
         </label>
       </div>
     );
@@ -91,9 +91,10 @@ export default class ContainerPanel extends React.Component<any, any> {
       : "check all orders";
     return (
       <div className="panel">
-        <h1 className="title">Monasteries and convents in France</h1>
-        <h2 className="subtitle">
-          Showing {store.activeRecordsCount} / {store.recordsCountAll} records
+        <h1 className="title is-4">Monasteries and convents</h1>
+        <h1 className="subtitle is-5">France, 4th-15th c.</h1>
+        <h2 className="subtitle is-6 is-dark">
+          {store.activeRecordsCount} / {store.recordsCountAll} records
         </h2>
 
         {/* time */}
@@ -121,7 +122,7 @@ export default class ContainerPanel extends React.Component<any, any> {
             .filter(og => og.branches.length)
             .map((orderGroup, oi) => {
               return (
-                <div key={oi}>
+                <div className="order-group" key={oi}>
                   {/*this.renderHeading2(orderGroup.label)*/}
                   {orderGroup.branches.map((branch, bi) => {
                     return this.renderCheckbox({
@@ -129,7 +130,8 @@ export default class ContainerPanel extends React.Component<any, any> {
                       label: branch.label,
                       value: branch.value,
                       event: this.handleOrderFilter,
-                      checked: branch.active
+                      checked: branch.active,
+                      style: { backgroundColor: orderGroup.color }
                     });
                   })}
                 </div>

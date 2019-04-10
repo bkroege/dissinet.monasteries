@@ -89,10 +89,10 @@ export default class AppStore {
 
     return this.data
       .filter(timeOk)
-      .filter(genderOk)
-      .filter(statusOk)
+      .filter(orderOk)
       .filter(categoryOk)
-      .filter(orderOk);
+      .filter(statusOk)
+      .filter(genderOk);
   }
 
   @computed get orders() {
@@ -133,7 +133,7 @@ export default class AppStore {
 
     newFilters.orders.forEach(order => {
       order.branches.forEach(branch => {
-        if (branch.value === branchValueToToggle) {
+        if (branch.value == branchValueToToggle) {
           branch.active = !branch.active;
         }
       });
@@ -152,7 +152,7 @@ export default class AppStore {
     const newFilters = this.filters;
 
     newFilters.status.forEach(status => {
-      if (status.value === statusValueToToggle) {
+      if (status.value == statusValueToToggle) {
         status.active = !status.active;
       }
     });
@@ -164,7 +164,7 @@ export default class AppStore {
     const newFilters = this.filters;
 
     newFilters.gender.forEach(gender => {
-      if (gender.value === genderValueToToggle) {
+      if (gender.value == genderValueToToggle) {
         gender.active = !gender.active;
       }
     });
@@ -176,7 +176,7 @@ export default class AppStore {
     const newFilters = this.filters;
 
     newFilters.category.forEach(category => {
-      if (category.value === categoryValueToToggle) {
+      if (category.value == categoryValueToToggle) {
         category.active = !category.active;
       }
     });

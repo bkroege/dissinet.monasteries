@@ -7,6 +7,7 @@ $color3: #ae956d;
 $color4: #4bb8e8;
 $color5: #255b73;
 
+$color-muni: #0000dc;
 @import "./checkradio";
 
 #map {
@@ -26,10 +27,14 @@ $color5: #255b73;
   .leaflet-container {
     height: 100%;
     width: 100%;
+    .leaflet-tile-container {
+      filter: grayscale(10%) sepia(40%) brightness(95%);
+    }
   }
 }
 
 .panel {
+  font: normal 16px/1.45 Arial, Helvetica Neue, sans-serif;
   height: 100%;
   overflow-y: auto;
   overflow-x: none;
@@ -42,15 +47,16 @@ $color5: #255b73;
   padding: 20px;
   .title,
   .subtitle {
-    color: $color1;
+    color: $color-muni;
     strong {
       color: $color1;
     }
   }
-  .subtitle.section-label {
-    padding: 0px;
-    margin-bottom: 10px;
-    margin-top: 20px;
+  hr {
+    margin: 1rem 0;
+  }
+  .section-label {
+    margin-bottom: 1rem;
   }
   .panel-control {
     padding-left: 10px;
@@ -60,13 +66,18 @@ $color5: #255b73;
     }
   }
 
+  .order-group {
+    margin-bottom: 0.75rem;
+  }
+
   .checkbox {
     display: block;
     label {
       display: inline;
 
       .legend-name {
-        padding-left: 0.5em;
+        padding-left: 0.1em;
+        font-size: 0.9rem;
       }
       .legend-color {
         width: 1.4em;
@@ -79,7 +90,7 @@ $color5: #255b73;
     }
     &.only-label {
       label {
-        padding-left: 30px;
+        padding-left: 1.5rem;
       }
     }
   }
@@ -114,8 +125,8 @@ $color5: #255b73;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: #3f51b5;
-  border: 1px solid #3f51b5;
+  background: $color-muni;
+  border: 1px solid $color-muni;
   border-radius: 100%;
   cursor: pointer;
   display: block;
@@ -153,7 +164,7 @@ $color5: #255b73;
 }
 
 .input-range__label {
-  color: #aaaaaa;
+  color: black;
   font-family: "Helvetica Neue", san-serif;
   font-size: 0.8rem;
   -webkit-transform: translateZ(0);
@@ -177,6 +188,7 @@ $color5: #255b73;
 
 .input-range__label--value {
   position: absolute;
+  color: $color-muni;
   top: -1.8rem;
 }
 
@@ -211,7 +223,7 @@ $color5: #255b73;
 }
 
 .input-range__track--active {
-  background: #3f51b5;
+  background: $color-muni;
 }
 
 .input-range {
