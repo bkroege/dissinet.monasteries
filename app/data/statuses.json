@@ -1,0 +1,92 @@
+[
+  {
+    "id": "1",
+    "default": "abbey",
+    "english": "abbey",
+    "french": "abbaye",
+    "latin": "abbatia",
+    "alternatives": "",
+    "gender": ""
+  },
+  {
+    "id": "2",
+    "default": "priory",
+    "english": "priory",
+    "french": "prieuré",
+    "latin": "",
+    "alternatives": "",
+    "gender": ""
+  },
+  {
+    "id": "3",
+    "default": "monastery",
+    "english": "monastery",
+    "french": "monastère",
+    "latin": "",
+    "alternatives": "",
+    "gender": ""
+  },
+  {
+    "id": "4",
+    "default": "convent",
+    "english": "convent",
+    "french": "couvent",
+    "latin": "",
+    "alternatives": "",
+    "gender": ""
+  },
+  {
+    "id": "5",
+    "default": "commandery",
+    "english": "commandery",
+    "french": "commanderie",
+    "latin": "",
+    "alternatives": "",
+    "gender": ""
+  },
+  {
+    "id": "6",
+    "default": "house",
+    "english": "house",
+    "french": "maison",
+    "latin": "",
+    "alternatives": "",
+    "gender": ""
+  },
+  {
+    "id": "7",
+    "default": "provostry",
+    "english": "provostry",
+    "french": "prévôté",
+    "latin": "",
+    "alternatives": "",
+    "gender": ""
+  },
+  {
+    "id": "8",
+    "default": "female monastery",
+    "english": "nunnery",
+    "french": "",
+    "latin": "",
+    "alternatives": "",
+    "gender": ""
+  },
+  {
+    "id": "9",
+    "default": "grange",
+    "english": "grange",
+    "french": "grange",
+    "latin": "grangium",
+    "alternatives": "",
+    "gender": ""
+  },
+  {
+    "id": "10",
+    "default": "church",
+    "english": "church",
+    "french": "église",
+    "latin": "ecclesia",
+    "alternatives": "",
+    "gender": ""
+  }
+]

@@ -3,20 +3,36 @@ var fs = require("fs");
 import BASE from "./scrapping/base";
 
 const orderTableKey = "1oPjlu-9lAbADfbvpXnYJBqE5gDxuXWapq0k86jSj65g";
+const statusTableKey = "1jokkKYu6tYHyAaW0Svl0FQUxRp5pWQjujlnilVUwCNY";
 
+// moving orders table
 const ordersJSON = [];
-BASE.readSpreadsheet(orderTableKey, orderRows => {
-  orderRows.forEach(orderRow => {
-    delete orderRow["_xml"];
-    delete orderRow["_links"];
-    ordersJSON.push(orderRow);
+BASE.readSpreadsheet(orderTableKey, rows => {
+  rows.forEach(row => {
+    delete row["_xml"];
+    delete row["_links"];
+    ordersJSON.push(row);
   });
-
-  console.log(ordersJSON);
 
   fs.writeFile(
     "./app/data/orders.json",
     JSON.stringify(ordersJSON, null, 2),
+    () => {}
+  );
+});
+
+// moving statuses table
+const statusesJSON = [];
+BASE.readSpreadsheet(statusTableKey, rows => {
+  rows.forEach(row => {
+    delete row["_xml"];
+    delete row["_links"];
+    statusesJSON.push(row);
+  });
+
+  fs.writeFile(
+    "./app/data/statuses.json",
+    JSON.stringify(statusesJSON, null, 2),
     () => {}
   );
 });

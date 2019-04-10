@@ -26,7 +26,7 @@
   },
   {
     "id": "2",
-    "label": "Early medieval",
+    "label": "early medieval",
     "order": "early medieval",
     "branch": "",
     "ordergroup": "other",
@@ -591,7 +591,7 @@
     "foundationantequem": "1100",
     "dissolutionpostquem": "1803",
     "dissolutionantequem": "1803",
-    "alternativenamesbothgenders": "",
+    "alternativenamesbothgenders": "antonins",
     "alternativenamesmale": "",
     "alternativenamesfemale": "",
     "wikipediaentryen": "https://en.wikipedia.org/wiki/Hospital_Brothers_of_St._Anthony",
@@ -826,7 +826,7 @@
   },
   {
     "id": "34",
-    "label": "Augustinians",
+    "label": "augustins, augustinian",
     "order": "Augustinians",
     "branch": "Hermits",
     "ordergroup": "Augustinians",
