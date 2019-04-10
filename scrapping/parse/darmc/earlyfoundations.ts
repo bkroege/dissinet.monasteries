@@ -25,9 +25,7 @@ export class earlyFoundationsDarmcParser extends DarmcParser {
 
     monastery.addStatus({});
 
-    if (html.Affiliation) {
-      monastery.addOrder({ id: html.Affiliation || "" }, time);
-    }
+    monastery.addOrder({ id: html.Affiliation || "" }, time);
 
     if (html.SOURCE) {
       monastery.setParam("sourceliterature", html.SOURCE);

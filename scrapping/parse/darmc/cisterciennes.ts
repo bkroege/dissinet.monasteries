@@ -32,12 +32,6 @@ export class cisterciennesDarmcParser extends DarmcParser {
           10
         );
 
-        console.log(
-          "changeYear",
-          noteChunks[noteChunks.length - 1],
-          changeYear
-        );
-
         const firstDate = BASE.timeParse({ from: html.F_DATE, to: changeYear });
         const secondDate = BASE.timeParse({
           from: changeYear,

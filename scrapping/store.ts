@@ -244,7 +244,7 @@ export class Store {
 
       const add = (value, alternatives) => {
         orderDict.push({
-          value: value,
+          value: parseInt("value"),
           alternatives: alternatives.filter(a => a).map(a => a.toLowerCase())
         });
       };
@@ -265,13 +265,25 @@ export class Store {
 
       monastery.orders.forEach(o => {
         const order = orderDict.find(v => v.alternatives.includes(o.id));
-        if (order) {
-          o.id = order.value;
-        } else {
-          o.gender = "";
-        }
+        o.id = order ? order.value : 0;
       });
 
+      return monastery;
+    },
+    validateStatusValues: monastery => {
+      const statusDict = [];
+
+      this.statuses.forEach(status => {
+        statusDict.push({
+          value: parseInt(status.id, 10),
+          alternatives: [status.default]
+        });
+      });
+
+      monastery.statuses.forEach(o => {
+        const status = statusDict.find(v => v.alternatives.includes(o.id));
+        o.id = status ? status.value : 0;
+      });
       return monastery;
     },
     validateGenderValues: monastery => {
@@ -283,11 +295,7 @@ export class Store {
       ];
       monastery.orders.forEach(o => {
         const gender = genderDict.find(v => v.alternatives.includes(o.gender));
-        if (gender) {
-          o.gender = gender.value;
-        } else {
-          o.gender = "";
-        }
+        o.gender = gender ? gender.value : 0;
       });
       return monastery;
     },

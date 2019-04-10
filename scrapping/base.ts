@@ -1,3 +1,5 @@
+import { lt } from "semver";
+
 var GoogleSpreadsheet = require("google-spreadsheet");
 
 var BASE = {
@@ -139,6 +141,19 @@ var BASE = {
       post: v1.post,
       ante: v2.ante
     };
+  },
+
+  // todo
+  timeIntesectsMinMax(t: { to; from }, min, max) {
+    const lt = (v, x) => v && v < x;
+    const gt = (v, x) => v && v > x;
+
+    // completely somewhen else
+    if (lt(t.to.ante, min) || gt(t.from.post, max)) {
+      return false;
+    }
+
+    // one point is there
   },
 
   // translate time value into time object
