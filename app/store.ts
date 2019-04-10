@@ -72,7 +72,23 @@ export default class AppStore {
       return mStatuses.some(s => this.allowedStatuses.includes(s));
     };
 
+    // time
+    const timeOk = m => {
+      const fTime = this.filters.time;
+      const mTimes = [];
+      m.orders.forEach(o => mTimes.push(o.time));
+      m.statuses.forEach(o => mTimes.push(o.time));
+
+      return mTimes.some(t => {
+        const from = t.from.ante;
+        const to = t.to.post;
+
+        return (from && from > fTime.min) || (to && to < fTime.max);
+      });
+    };
+
     return this.data
+      .filter(timeOk)
       .filter(genderOk)
       .filter(statusOk)
       .filter(categoryOk)
@@ -123,6 +139,12 @@ export default class AppStore {
       });
     });
 
+    this._filters.replace(newFilters);
+  }
+
+  @action changeTime(timeValueToChange) {
+    const newFilters = this.filters;
+    newFilters.time = timeValueToChange;
     this._filters.replace(newFilters);
   }
 

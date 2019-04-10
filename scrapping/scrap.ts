@@ -14,6 +14,7 @@ export const parsingTime = now.toString();
 // load source table
 var sourceKey = "1ltj9_nRbQLXYthlXzDOqNK-woQpW7Y0LQFWy0wdqQ7g";
 const orderKey = "1oPjlu-9lAbADfbvpXnYJBqE5gDxuXWapq0k86jSj65g";
+const statusKey = "1jokkKYu6tYHyAaW0Svl0FQUxRp5pWQjujlnilVUwCNY";
 
 BASE.readSpreadsheet(sourceKey, sourceRows => {
   sourceRows.forEach(sourceRow => {
@@ -63,24 +64,34 @@ BASE.readSpreadsheet(sourceKey, sourceRows => {
       ordersJSON.push(orderRow);
     });
 
-    var store = new Store(ordersJSON);
-    //store.truncate();
-
-    const parse = (source, next) => {
-      console.log("going to parse", source.meta.id);
-      const parser = new source.parser(store, source.meta, () => {
-        console.log(source.meta.id, "finished");
+    // parsing status table
+    BASE.readSpreadsheet(statusKey, statusRows => {
+      const statusJSON = [];
+      statusRows.forEach(statusRow => {
+        delete statusRow["_xml"];
+        delete statusRow["_links"];
+        statusJSON.push(statusRow);
       });
-      parser.parse(next);
-    };
 
-    async.eachLimit(sources.filter(s => s.parse), 1, parse, (e, r) => {
-      store.saveToFile();
-      store.validate();
-      //store.findDuplicates();
-      console.log("raw", store.monasteriesRaw.length);
-      console.log("validated", store.monasteriesValidated.length);
-      console.log("final", store.monasteries.length);
+      var store = new Store(ordersJSON, statusJSON);
+      store.truncate();
+
+      const parse = (source, next) => {
+        console.log("going to parse", source.meta.id);
+        const parser = new source.parser(store, source.meta, () => {
+          console.log(source.meta.id, "finished");
+        });
+        parser.parse(next);
+      };
+
+      async.eachLimit(sources.filter(s => s.parse), 1, parse, (e, r) => {
+        store.saveToFile();
+        store.validate();
+        //store.findDuplicates();
+        console.log("raw", store.monasteriesRaw.length);
+        console.log("validated", store.monasteriesValidated.length);
+        console.log("final", store.monasteries.length);
+      });
     });
   });
 });
