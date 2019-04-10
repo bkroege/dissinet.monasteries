@@ -212,6 +212,7 @@ export default class ContainerMap extends React.Component<any, any> {
           zoom={store.zoom}
           center={store.center}
           maxZoom={10}
+          minZoom={5}
         >
           <ScaleControl position="topleft" imperial={false} />
           <AttributionControl position="bottomleft" />

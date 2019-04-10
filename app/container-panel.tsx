@@ -1,14 +1,25 @@
 import React from "react";
 import { observer } from "mobx-react";
+import InputRange from "react-input-range";
+
+require("./../node_modules/react-input-range/lib/bundle/react-input-range.css");
 
 @observer
 export default class ContainerPanel extends React.Component<any, any> {
   refs;
   props;
   mapEl;
+  state;
+  setState;
 
   constructor(props: any) {
     super(props);
+    this.state = {
+      time: {
+        min: 350,
+        max: 1500
+      }
+    };
   }
 
   handleOrderFilter(e) {
@@ -80,6 +91,24 @@ export default class ContainerPanel extends React.Component<any, any> {
         <h2 className="subtitle">
           Showing {store.activeRecordsCount} / {store.recordsCountAll} records
         </h2>
+
+        {/* time */}
+        <div key="time" className="panel-section time">
+          {this.renderHeading1("time")}
+          <form className="form">
+            <InputRange
+              draggableTrack
+              minValue={350}
+              maxValue={1500}
+              onChange={value => {
+                this.setState({ time: value });
+              }}
+              onChangeComplete={value => console.log(value)}
+              value={this.state.time}
+            />
+          </form>
+          <hr />
+        </div>
 
         {/* order */}
         <div key="orders" className="panel-section orders">
