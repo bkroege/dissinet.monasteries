@@ -196,6 +196,13 @@ $color-muni: #0000dc;
   left: -50%;
   position: relative;
 }
+.input-range__label {
+  &.input-range__label--value {
+    display: block;
+  }
+  display: none;
+}
+
 .input-range__label--max .input-range__label-container {
   left: 50%;
 }
