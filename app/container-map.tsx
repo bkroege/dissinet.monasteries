@@ -221,6 +221,13 @@ export default class ContainerMap extends React.Component<any, any> {
             attribution="<a href='http://awmc.unc.edu/wordpress/'>awmc</a>"
             className="map-base-layer-awmc"
           />
+          <TileLayer
+            url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}"
+            attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            subdomains="abcd"
+            className="map-base-layer-labels"
+            ext="png"
+          />
         </Map>
       </div>
     );
