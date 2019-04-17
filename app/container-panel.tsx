@@ -23,6 +23,9 @@ export default class ContainerPanel extends React.Component<any, any> {
   handleTimeChange(value) {
     this.props.store.changeTime(value);
   }
+  handleTimeActivateToggle(value) {
+    this.props.store.toggleTimeActive();
+  }
 
   handleOrderFilter(e) {
     this.props.store.toggleOrder(e.target.value);
@@ -102,6 +105,7 @@ export default class ContainerPanel extends React.Component<any, any> {
     const allLabel = store.allOrdersActive
       ? "uncheck all orders"
       : "check all orders";
+
     return (
       <div className="panel">
         <h1 className="title is-4">Monasteries and convents</h1>
@@ -113,8 +117,18 @@ export default class ContainerPanel extends React.Component<any, any> {
         {/* time */}
         <div key="time" className="panel-section time">
           {this.renderHeading1("time")}
-          <form className="form">
+          {this.renderCheckbox({
+            key: "time-activation",
+            label: "time filter active",
+            value: "",
+            event: this.handleTimeActivateToggle,
+            checked: filters.time.active,
+            style: {}
+          })}
+          <div style={{ paddingBottom: "0.5rem" }} />
+          <form className="form" style={{ margin: "0 10px" }}>
             <InputRange
+              disabled={!filters.time.active}
               draggableTrack
               minValue={350}
               maxValue={1500}

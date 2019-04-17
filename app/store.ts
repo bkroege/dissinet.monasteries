@@ -157,6 +157,12 @@ export default class AppStore {
     this._filters.replace(newFilters);
   }
 
+  @action toggleTimeActive() {
+    const newFilters = this.filters;
+    newFilters.time.active = !newFilters.time.active;
+    this._filters.replace(newFilters);
+  }
+
   @action toggleStatus(statusValueToToggle) {
     const newFilters = this.filters;
 
