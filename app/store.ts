@@ -76,21 +76,24 @@ export default class AppStore {
 
     // time
     const timeOk = m => {
-      const fTime = this.filters.time;
-      const mTimes = [];
+      if (this.filters.time.active) {
+        const fTime = this.filters.time;
+        const mTimes = [];
 
-      m.orders.forEach(o => mTimes.push(o.time));
-      m.statuses.forEach(o => mTimes.push(o.time));
+        m.orders.forEach(o => mTimes.push(o.time));
+        m.statuses.forEach(o => mTimes.push(o.time));
 
-      if (
-        mTimes.some(t => {
-          return BASE.timeIntesectsMinMax(t, fTime.min, fTime.max);
-        })
-      ) {
-        return true;
-      } else {
-        return false;
+        if (
+          mTimes.some(t => {
+            return BASE.timeIntesectsMinMax(t, fTime.min, fTime.max);
+          })
+        ) {
+          return true;
+        } else {
+          return false;
+        }
       }
+      return true;
     };
 
     return this.data

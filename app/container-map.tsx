@@ -71,6 +71,7 @@ export default class ContainerMap extends React.Component<any, any> {
 
     this.markerClusters = L.markerClusterGroup({
       showCoverageOnHover: false,
+      maxClusterRadius: 70,
       firstCircleElements: 6,
       clockHelpingCircleOptions: {
         weight: 0.7,
