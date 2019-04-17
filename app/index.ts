@@ -50,7 +50,7 @@ console.log(orders);
 
 const filters = {
   orders: [],
-  time: { min: 350, max: 1500 },
+  time: { min: 350, max: 1500, active: false },
   category: [],
   gender: [],
   status: []

@@ -2,6 +2,8 @@ import { keys, toJS, observable, action, computed } from "mobx";
 var JSZip = require("jszip");
 var orders = require("./data/orders");
 
+import BASE from "./../scrapping/base";
+
 export default class AppStore {
   data;
   _filters;
@@ -76,15 +78,19 @@ export default class AppStore {
     const timeOk = m => {
       const fTime = this.filters.time;
       const mTimes = [];
+
       m.orders.forEach(o => mTimes.push(o.time));
       m.statuses.forEach(o => mTimes.push(o.time));
 
-      return mTimes.some(t => {
-        const from = t.from.ante;
-        const to = t.to.post;
-
-        return (from && from > fTime.min) || (to && to < fTime.max);
-      });
+      if (
+        mTimes.some(t => {
+          return BASE.timeIntesectsMinMax(t, fTime.min, fTime.max);
+        })
+      ) {
+        return true;
+      } else {
+        return false;
+      }
     };
 
     return this.data
@@ -162,7 +168,6 @@ export default class AppStore {
 
   @action toggleGender(genderValueToToggle) {
     const newFilters = this.filters;
-
     newFilters.gender.forEach(gender => {
       if (gender.value == genderValueToToggle) {
         gender.active = !gender.active;
