@@ -153,7 +153,7 @@ export default class ContainerPanel extends React.Component<any, any> {
                   {/*this.renderHeading2(orderGroup.label)*/}
                   {orderGroup.branches.map((branch, bi) => {
                     return this.renderCheckbox({
-                      key: "order" + bi,
+                      key: "order" + oi + bi,
                       label: branch.label,
                       value: branch.value,
                       event: this.handleOrderFilter,
