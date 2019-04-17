@@ -73,10 +73,23 @@ export default class ContainerPanel extends React.Component<any, any> {
         />
         <label htmlFor={data.key}>
           <span className="legend-color" />
-          <span className="legend-name is-small" style={data.style}>
-            {data.label}
-          </span>
+          <span className="legend-name is-small">{data.label}</span>
         </label>
+
+        <div
+          className="colored-shit"
+          style={Object.assign(
+            {},
+            {
+              position: "absolute",
+              height: "1.1rem",
+              width: "1.1rem",
+              top: "0rem",
+              zIndex: "-100"
+            },
+            data.style
+          )}
+        />
       </div>
     );
   }
