@@ -145,8 +145,8 @@ var BASE = {
 
   // todo
   timeIntesectsMinMax(t: { to; from }, min, max) {
-    const lt = (v, x) => v && v < x;
-    const gt = (v, x) => v && v > x;
+    const lt = (v, x) => v && x && v < x;
+    const gt = (v, x) => v && x && v > x;
 
     // completely somewhen else
     if (lt(t.to.ante, min) || gt(t.from.post, max)) {
@@ -154,6 +154,20 @@ var BASE = {
     }
 
     // one point is there
+    if (
+      (gt(t.from.ante, min) && lt(t.from.ante, max)) ||
+      (gt(t.to.post, min) && lt(t.to.post, max)) ||
+      (gt(t.to.ante, min) && lt(t.to.ante, max))
+    ) {
+      return true;
+    }
+
+    // inside
+    if (lt(t.from.ante, min) && gt(t.to.post, max)) {
+      return true;
+    }
+
+    return false;
   },
 
   // translate time value into time object
