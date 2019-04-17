@@ -65,13 +65,13 @@ export default class ContainerPanel extends React.Component<any, any> {
           className="is-checkradio is-black no-borders is-small"
           type="checkbox"
           name="all"
-          onChange={data.event ? data.event.bind(this) : () => {}}
+          onChange={data.event.bind(this)}
           checked={data.checked}
           value={data.value}
-          id={data.label}
+          id={data.key}
           style={{}}
         />
-        <label htmlFor={data.label}>
+        <label htmlFor={data.key}>
           <span className="legend-color" />
           <span className="legend-name is-small" style={data.style}>
             {data.label}
@@ -126,7 +126,7 @@ export default class ContainerPanel extends React.Component<any, any> {
                   {/*this.renderHeading2(orderGroup.label)*/}
                   {orderGroup.branches.map((branch, bi) => {
                     return this.renderCheckbox({
-                      key: bi,
+                      key: "order" + bi,
                       label: branch.label,
                       value: branch.value,
                       event: this.handleOrderFilter,
@@ -145,7 +145,7 @@ export default class ContainerPanel extends React.Component<any, any> {
           {this.renderHeading1("status")}
           {filters.status.map((status, si) => {
             return this.renderCheckbox({
-              key: si,
+              key: "status" + si,
               label: status.label,
               value: status.value,
               event: this.handleStatusFilter,
@@ -160,7 +160,7 @@ export default class ContainerPanel extends React.Component<any, any> {
           {this.renderHeading1("gender")}
           {filters.gender.map((gender, gi) => {
             return this.renderCheckbox({
-              key: gi,
+              key: "gender" + gi,
               label: gender.label,
               value: gender.value,
               event: this.handleGenderFilter,
@@ -175,7 +175,7 @@ export default class ContainerPanel extends React.Component<any, any> {
           {this.renderHeading1("category")}
           {filters.category.map((category, ci) => {
             return this.renderCheckbox({
-              key: ci,
+              key: "category" + ci,
               label: category.label,
               value: category.value,
               event: this.handleCategoryFilter,
