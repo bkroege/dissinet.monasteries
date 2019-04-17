@@ -1,6 +1,7 @@
 @import "~bulma/bulma";
 
 $panel-w: 400;
+$color-black: #222222;
 $color1: #222222;
 $color2: #f9f9f9;
 $color3: #ae956d;
@@ -45,9 +46,11 @@ $color-muni: #0000dc;
   color: $color1;
   background-color: $color2;
   padding: 20px;
-  .title,
-  .subtitle {
+  h1.title {
     color: $color-muni;
+  }
+  .subtitle {
+    color: $color-black;
     strong {
       color: $color1;
     }
@@ -125,8 +128,8 @@ $color-muni: #0000dc;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: $color-muni;
-  border: 1px solid $color-muni;
+  background: $color-black;
+  border: 1px solid $color-black;
   border-radius: 100%;
   cursor: pointer;
   display: block;
@@ -188,7 +191,7 @@ $color-muni: #0000dc;
 
 .input-range__label--value {
   position: absolute;
-  color: $color-muni;
+  color: $color-black;
   top: -1.8rem;
 }
 
@@ -230,7 +233,7 @@ $color-muni: #0000dc;
 }
 
 .input-range__track--active {
-  background: $color-muni;
+  background: $color-black;
 }
 
 .input-range {
